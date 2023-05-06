@@ -13,6 +13,8 @@ $RECYCLE.BIN/
 log.txt
 
 # Configurations
+*/db.config.js
+**/db.config.js
 
 # Docs
 /documentation
@@ -36,6 +38,7 @@ log.txt
 
 # Node
 /node_modules
+*/node_modules
 **/node_modules
 npm-debug.log
 yarn-error.log
