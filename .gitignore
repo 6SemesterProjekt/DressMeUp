@@ -13,8 +13,8 @@ $RECYCLE.BIN/
 log.txt
 
 # Configurations
-#*/db.config.js
-#**/db.config.js
+*/db.config.js
+**/db.config.js
 
 # Docs
 /documentation
