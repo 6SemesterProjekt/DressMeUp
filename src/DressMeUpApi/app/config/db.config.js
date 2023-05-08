@@ -2,7 +2,7 @@ module.exports = {
   HOST: "localhost",
   PORT: 3306,
   USER: "root",
-  PASSWORD: "",
+  PASSWORD: "1234",
   DB: "dressmeupDb",
   dialect: "mysql",
 };
