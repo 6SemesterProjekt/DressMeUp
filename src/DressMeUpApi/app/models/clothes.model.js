@@ -49,6 +49,9 @@ module.exports = (sequelize, Sequelize) => {
     image: {
       type: Sequelize.STRING
     },
+    name: {
+      type: Sequelize.STRING
+    }
   });
   return Clothes;
 };
