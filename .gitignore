@@ -14,6 +14,7 @@ log.txt
 
 # Configurations
 **/db.config.js
+**/*.config.js
 
 # Docs
 /documentation
