@@ -10,17 +10,7 @@ exports.create = (req, res) => {
         return;
     }
 
-    const clothes = {
-        clothesType: req.body.clothesType,
-        color: req.body.color,
-        fabric: req.body.fabric,
-        seasons: req.body.seasons,
-        filterTags: req.body.filterTags,
-        brand: req.body.brand,
-        image: req.body.image
-    }
-
-    Clothes.create(clothes)
+    Clothes.create(req.body)
       .then(data => { 
         res.send(data); 
       })
@@ -91,16 +81,7 @@ exports.deleteClothes = (req, res) => {
 };
 
 exports.updateClothes = (req, res) => {
-    Clothes.update({
-      clothesType: req.body.clothesType,
-      color: req.body.color,
-      fabric: req.body.fabric,
-      seasons: req.body.seasons,
-      filterTags: req.body.filterTags,
-      brand: req.body.brand,
-      image: req.body.image
-    },
-    {
+    Clothes.update(req.body, {
         where: {
             id: req.params.id
         }
