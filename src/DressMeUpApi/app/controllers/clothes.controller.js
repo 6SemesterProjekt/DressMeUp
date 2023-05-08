@@ -17,7 +17,8 @@ exports.create = (req, res) => {
         seasons: req.body.seasons,
         filterTags: req.body.filterTags,
         brand: req.body.brand,
-        image: req.body.image
+        image: req.body.image,
+        name: req.body.name
     }
 
     Clothes.create(clothes)
@@ -98,7 +99,8 @@ exports.updateClothes = (req, res) => {
       seasons: req.body.seasons,
       filterTags: req.body.filterTags,
       brand: req.body.brand,
-      image: req.body.image
+      image: req.body.image,
+      name: req.body.name
     },
     {
         where: {
