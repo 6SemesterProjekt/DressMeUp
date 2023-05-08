@@ -13,8 +13,7 @@ $RECYCLE.BIN/
 log.txt
 
 # Configurations
-*/db.config.js
-/DressMeUpApi/app/config/db.config.js
+**/db.config.js
 
 # Docs
 /documentation
