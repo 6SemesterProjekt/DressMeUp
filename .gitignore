@@ -77,3 +77,4 @@ testem.log
 .DS_Store
 Thumbs.db
 RestAPI/app/config/db.config.js
+src/DressMeUpApi/app/config/db.config.js
