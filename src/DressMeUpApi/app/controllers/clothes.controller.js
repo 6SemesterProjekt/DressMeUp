@@ -124,4 +124,4 @@ exports.updateClothes = (req, res) => {
           message: error.message || "An error occured during update."
         })
     })
-}
+};
