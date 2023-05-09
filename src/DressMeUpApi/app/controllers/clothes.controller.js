@@ -10,7 +10,17 @@ exports.create = (req, res) => {
         return;
     }
 
-    Clothes.create(req.body)
+    const clothes = {
+        clothesType: req.body.clothesType,
+        color: req.body.color,
+        fabric: req.body.fabric,
+        seasons: req.body.seasons,
+        filterTags: req.body.filterTags,
+        brand: req.body.brand,
+        image: req.body.image
+    }
+
+    Clothes.create(clothes)
       .then(data => { 
         res.send(data); 
       })
@@ -81,7 +91,16 @@ exports.deleteClothes = (req, res) => {
 };
 
 exports.updateClothes = (req, res) => {
-    Clothes.update(req.body, {
+    Clothes.update({
+      clothesType: req.body.clothesType,
+      color: req.body.color,
+      fabric: req.body.fabric,
+      seasons: req.body.seasons,
+      filterTags: req.body.filterTags,
+      brand: req.body.brand,
+      image: req.body.image
+    },
+    {
         where: {
             id: req.params.id
         }
@@ -105,4 +124,4 @@ exports.updateClothes = (req, res) => {
           message: error.message || "An error occured during update."
         })
     })
-}
+};
