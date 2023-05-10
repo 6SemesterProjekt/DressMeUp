@@ -1,0 +1,14 @@
+ion-card {
+  padding: 4px;
+
+  ion-card-header{
+    padding: 8px;
+
+    div{
+      font-size: 16px;
+      height: 2em;
+      line-height: 1em;
+      overflow: hidden;
+    }
+  }
+}

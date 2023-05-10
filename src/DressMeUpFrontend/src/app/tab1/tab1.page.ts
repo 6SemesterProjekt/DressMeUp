@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { MyClothesComponent } from '../components/my-clothes-component/my-clothes-component/my-clothes-component.component';
+import { ClothesService } from '../services/clothes.service';
+import { Clothes } from '../interfaces/clothes';
 
 @Component({
   selector: 'app-tab1',
@@ -6,24 +9,25 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page {
-  public data = [
-    'Amsterdam',
-    'Buenos Aires',
-    'Cairo',
-    'Geneva',
-    'Hong Kong',
-    'Istanbul',
-    'London',
-    'Madrid',
-    'New York',
-    'Panama City',
-  ];
-  public results = [...this.data];
 
-  constructor() {}
+  clothes : Clothes[] = [];
+
+  constructor(private clothesService:ClothesService) {}
+
+  async ngOnInit(){
+    console.log('getting data')
+    this.clothesService
+      .getAllclothes()
+      .subscribe(
+        data=>this.clothes = data
+      )
+  }
 
   handleInput(event) {
     const query = event.target.value.toLowerCase();
-    this.results = this.data.filter((d) => d.toLowerCase().indexOf(query) > -1);
+  }
+
+  onClothesCardTapped(clothes : Clothes){
+    console.log(clothes)
   }
 }
