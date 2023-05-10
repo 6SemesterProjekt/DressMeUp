@@ -1,15 +1,7 @@
-ion-col {
-    //background-color: #135d54;
-    border: solid 1px #fff;
-    color: #fff;
-    text-align: center;
-    margin: 0;
+ion-grid {
+  --ion-grid-columns: 3;
+
+  ion-col {
+    //--ion-col-padding: 4px;
   }
-  ion-card-title{
-    font-size: 15px;
-  }
-  ion-card{
-    background-color: #efe8de;
-    margin: 0;
-  }
-  
+}

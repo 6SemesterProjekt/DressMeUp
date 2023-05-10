@@ -17,5 +17,5 @@ module.exports = app => {
     // Update outfit
     router.put("/:id", outfit.updateOutfit);
   
-    app.use('/api/outfit', router);
+    app.use('/api/outfits', router);
   }
