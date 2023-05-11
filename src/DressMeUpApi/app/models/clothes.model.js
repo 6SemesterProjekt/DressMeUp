@@ -53,5 +53,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING
     }
   });
+
+  Clothes.associate = function(models) {
+    Clothes.belongsTo(models.outfits)
+  }
+
   return Clothes;
 };
