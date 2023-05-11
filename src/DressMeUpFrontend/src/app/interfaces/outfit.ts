@@ -1,4 +1,4 @@
-export interface IOutfit {
+export interface Outfit {
   id: number,
   likes: number,
   dislikes: number,
