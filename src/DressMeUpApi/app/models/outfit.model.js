@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
     });
 
     Outfit.associate = function(models) {
-        Outfit.hasMany(models.clothes)
+        Outfit.belongsToMany(models.clothes, { through: 'ClothesOutfits', timestamps: false })
     }
 
     return Outfit;

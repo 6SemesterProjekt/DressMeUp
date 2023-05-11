@@ -1,5 +1,6 @@
 const db = require("../models");
 const Clothes = db.clothes;
+const Color = require("../models/color.model")
 
 exports.create = (req, res) => {
     // validate request
@@ -35,10 +36,8 @@ exports.getAllClothes = (req, res) => {
   var condition = req.query.clothesType ? 
   { clothesType: req.query.clothesType } : null;
 
-    Clothes.findAll(
-      {
-        where: condition 
-      }
+    Clothes.findAll({ where: condition, include: { all: true }}
+        
     )
         .then(data => {
             res.send(data);
@@ -54,7 +53,7 @@ exports.getAllClothes = (req, res) => {
 exports.getClothesById = (req, res) => {
     const id = req.params.id;
 
-    Clothes.findByPk(id)
+    Clothes.findByPk(id, {include: { all: true }})
         .then(data => {
             res.send(data);
         })
