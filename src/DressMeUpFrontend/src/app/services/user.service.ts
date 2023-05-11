@@ -34,31 +34,23 @@ export class UserService {
 
   /**
    * Method to add a follower to a user's follower list.
-   * @example: localhost:8080/api/users/{userIdToBeFollowed}/removefollower
-   * Payload: 
-   * {
-   *    "id": userIdToBeAdded
-   * }
-   * @param userIdToBeFollowed The user who is supposed to be followed
-   * @param userIdToBeAdded The user who wants to follow another user
+   * @example: POST localhost:8080/api/users/{userIdToBeFollowed}/followers/followerIdToBeAdded
+   * @param userId The user who is supposed to be followed
+   * @param followerId The user who wants to follow another user
    * @returns 
    */
-  followUser(userIdToBeFollowed : number, userIdToBeAdded : number) {
-    return this.http.post(this.baseUrl + userIdToBeFollowed + '/addfollower/', { id: userIdToBeAdded });
+  followUser(userId : number, followerId : number) {
+    return this.http.post(this.baseUrl + userId + '/followers/' + followerId, null);
   }
 
   /**
    * Method to remove a follower from a user's follower list.
-   * @example: localhost:8080/api/users/{userIdFollowed}/removefollower
-   * Payload: 
-   * {
-   *    "id": userIdToBeRemoved
-   * }
-   * @param userIdFollowed The currently followed user
-   * @param userIdToBeRemoved The user who should be removed from followers
+   * @example: DELETE localhost:8080/api/users/{userIdFollowed}/followers/{followerIdToBeRemoved}
+   * @param userId The currently followed user
+   * @param followerId The user who should be removed from followers
    * @returns 
    */
-  unfollowUser(userIdFollowed : number, userIdToBeRemoved : number) {
-    return this.http.post(this.baseUrl + userIdFollowed + '/removefollower/', { id: userIdToBeRemoved });
+  unfollowUser(userId : number, followerId : number) {
+    return this.http.delete(this.baseUrl + userId + '/followers/' + followerId, null);
   }
 }
