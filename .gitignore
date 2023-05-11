@@ -25,7 +25,7 @@ log.txt
 
 # Ionic
 /.ionic
-/www
+**/www
 /platforms
 /plugins
 
@@ -34,7 +34,7 @@ log.txt
 /tmp
 /out-tsc
 /bazel-out
-/www
+**/www
 
 # Node
 /node_modules
