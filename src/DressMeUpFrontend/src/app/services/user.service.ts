@@ -31,4 +31,25 @@ export class UserService {
   updateUser(id : number, user : User) {
     return this.http.put<User>(this.baseUrl + id, user);
   }
+
+  /**
+   * Method to add a follower to a user's follower list.
+   * @param userIdToBeFollowed The user who is supposed to be followed
+   * @param userIdToBeAdded The user who wants to follow another user
+   * @returns 
+   */
+  followUser(userIdToBeFollowed : number, userIdToBeAdded : number) {
+    return this.http.post(this.baseUrl + userIdToBeFollowed + '/addfollower/', { id: userIdToBeAdded });
+  }
+
+  /**
+   * Method to remove a follower from a user's follower list.
+   * @param userIdFollowed The currently followed user
+   * @param userIdToBeRemoved The user who should be removed from followers
+   * @param userIdFollowed The currently followed user
+   * @returns 
+   */
+  unfollowUser(userIdFollowed : number, userIdToBeRemoved : number) {
+    return this.http.post(this.baseUrl + userIdFollowed + '/removefollower/', { id: userIdToBeRemoved });
+  }
 }
