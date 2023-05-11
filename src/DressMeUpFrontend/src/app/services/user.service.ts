@@ -34,6 +34,11 @@ export class UserService {
 
   /**
    * Method to add a follower to a user's follower list.
+   * Example: localhost:8080/api/users/{userIdToBeFollowed}/removefollower
+   * Payload: 
+   * {
+   *    "id": userIdToBeAdded
+   * }
    * @param userIdToBeFollowed The user who is supposed to be followed
    * @param userIdToBeAdded The user who wants to follow another user
    * @returns 
@@ -44,9 +49,13 @@ export class UserService {
 
   /**
    * Method to remove a follower from a user's follower list.
+   * Example: localhost:8080/api/users/{userIdFollowed}/removefollower
+   * Payload: 
+   * {
+   *    "id": userIdToBeRemoved
+   * }
    * @param userIdFollowed The currently followed user
    * @param userIdToBeRemoved The user who should be removed from followers
-   * @param userIdFollowed The currently followed user
    * @returns 
    */
   unfollowUser(userIdFollowed : number, userIdToBeRemoved : number) {
