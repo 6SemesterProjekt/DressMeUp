@@ -1,17 +1,21 @@
-import { Clothes } from "./clothes";
-import { Outfit } from "./outfit";
+import { IClothes } from "./clothes";
+import { IOutfit } from "./outfit";
 
-export interface User {
-  id: number;
-  name: string;
-  phoneNo: string;
-  email: string;
-  password: string;
-  clothes: Clothes[];
-  outfits: Outfit[];
-  followers: User[]; 
-  following: User[];
-  admin: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+export interface IUser {
+    id: number,
+    email: string,
+    phoneNumber: string,
+    password: string,
+    fullName: string,
+    username: string,
+    createdAt: Date,
+    updatedAt: Date,
+    clothes: IClothes[],
+    outfits: IOutfit[],
+    Followers: IUser[],
+    Following: IUser[],
+    Admin: boolean,
+    LikedOutfits: IOutfit[],
+    DislikedOutfits: IOutfit[],
+    SavedOutfits: IOutfit[],
 }

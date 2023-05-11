@@ -1,8 +1,10 @@
-export interface Outfit {
+import { IClothes } from "./clothes";
+
+export interface IOutfit {
   id: number,
   likes: number,
   dislikes: number,
-  clothes: any[],
+  clothes: IClothes[],
   createdAt: Date,
   updatedAt: Date
 }
