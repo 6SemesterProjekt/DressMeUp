@@ -1,4 +1,4 @@
-export interface IClothes {
+export interface Clothes {
   ClothesType: number;
   Color: number[];
   Fabric: number[];

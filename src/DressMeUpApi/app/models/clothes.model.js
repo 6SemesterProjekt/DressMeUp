@@ -55,3 +55,19 @@ module.exports = (sequelize, Sequelize) => {
   });
   return Clothes;
 };
+
+
+
+
+/*  Postman example:
+{
+    "clothesType": 1, 
+    "color": "ffffff",
+    "fabric": "uld",
+    "seasons": "Vinter",
+    "filterTags": "T-shirt",
+    "brand": "Nike",
+    "image": "img.png",
+    "name": "sorte sko"
+}
+*/

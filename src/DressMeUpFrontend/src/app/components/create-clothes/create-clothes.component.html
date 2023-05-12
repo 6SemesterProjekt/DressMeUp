@@ -1,0 +1,88 @@
+<ion-content style="height: 75%">
+  <ion-card>
+    <form (formGroup)="postForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-label position="floating">Tøjnavn</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+        <div class="error-message" *ngIf="postForm.get('name').invalid && postForm.get('name').touched">
+          Angiv et navn
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Sæsoner</ion-label>
+        <ion-input type="text" formControlName="seasons"></ion-input>
+        <div class="error-message" *ngIf="
+            postForm.get('description').invalid &&
+            postForm.get('description').touched
+          ">
+          Angiv en sæson
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Stoftyper</ion-label>
+        <ion-input type="text" formControlName="fabric"></ion-input>
+        <div class="error-message" *ngIf="postForm.get('fabric').invalid && postForm.get('fabric').touched">
+
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Farve</ion-label>
+        <ion-input type="text" formControlName="color"></ion-input>
+        <div class="error-message" *ngIf="
+            postForm.get('color').invalid &&
+            postForm.get('color').touched
+          ">
+          Vælg en farve
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Vælg billede</ion-label>
+        <ion-input type="text" formControlName="image"></ion-input>
+        <div class="error-message" *ngIf="postForm.get('image').invalid && postForm.get('image').touched">
+          Tilføj billede.
+
+        </div>
+
+        <ion-button (click)="addPhotoToGallery()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-button>
+
+
+
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Brand</ion-label>
+        <ion-input type="text" formControlName="brand"></ion-input>
+        <div class="error-message" *ngIf="
+            postForm.get('brand').invalid && postForm.get('brand').touched
+          ">
+          Angiv et brand
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Tøj type</ion-label>
+        <ion-input type="text" formControlName="filterTags"></ion-input>
+        <div class="error-message" *ngIf="
+            postForm.get('filterTags').invalid &&
+            postForm.get('filterTags').touched
+          ">
+          Angiv tøj type
+        </div>
+      </ion-item>
+
+      <ion-button type="submit" [disabled]="!postForm.valid">Gem</ion-button>
+    </form>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
+          <ion-img [src]="photo.webviewPath"></ion-img>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>
