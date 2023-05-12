@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
   });
 
   Fabric.associate = function(models) {
-      Fabric.belongsToMany(models.clothes, { through: 'ClothesFabrics', timestamps: false });
+      Fabric.belongsToMany(models.clothes, { through: 'ClothesFabrics', timestamps: false, onDelete: 'CASCADE' });
   }
 
   return Fabric;

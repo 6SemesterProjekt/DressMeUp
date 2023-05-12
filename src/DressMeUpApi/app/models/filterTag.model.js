@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
   });
 
   FilterTag.associate = function(models) {
-    FilterTag.belongsToMany(models.clothes, { through: 'ClothesFilterTags', timestamps: false });
+    FilterTag.belongsToMany(models.clothes, { through: 'ClothesFilterTags', timestamps: false, onDelete: 'CASCADE' });
   }
 
   return FilterTag;

@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
   });
 
   Color.associate = function(models) {
-      Color.belongsToMany(models.clothes, { through: 'ClothesColors', timestamps: false });
+      Color.belongsToMany(models.clothes, { through: 'ClothesColors', timestamps: false, onDelete: 'CASCADE' });
   }
 
   return Color;

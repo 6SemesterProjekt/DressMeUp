@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
   });
 
   Season.associate = function(models) {
-      Season.belongsToMany(models.clothes, { through: 'ClothesSeasons', timestamps: false });
+      Season.belongsToMany(models.clothes, { through: 'ClothesSeasons', timestamps: false, onDelete: 'CASCADE' });
   }
 
   return Season;
