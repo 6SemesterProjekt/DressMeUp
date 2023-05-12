@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { MyClothesComponent } from '../components/my-clothes-component/my-clothes-component/my-clothes-component.component';
 import { ClothesService } from '../services/clothes.service';
 import { Clothes } from '../interfaces/clothes';
+import { PhotoService } from '../services/photo.service';
+import { CreateClothesComponent } from '../components/create-clothes/create-clothes.component';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -10,24 +13,38 @@ import { Clothes } from '../interfaces/clothes';
 })
 export class Tab1Page {
 
-  clothes : Clothes[] = [];
+  clothes: Clothes[] = [];
 
-  constructor(private clothesService:ClothesService) {}
+  constructor(private modalController: ModalController, private clothesService: ClothesService, public photoService: PhotoService) { }
 
-  async ngOnInit(){
+  async ngOnInit() {
     console.log('getting data')
     this.clothesService
       .getAllclothes()
       .subscribe(
-        data=>this.clothes = data
+        data => this.clothes = data
       )
+  }
+
+  addPhotoToGallery() {
+    this.photoService.addNewToGallery();
   }
 
   handleInput(event) {
     const query = event.target.value.toLowerCase();
   }
 
-  onClothesCardTapped(clothes : Clothes){
+  onClothesCardTapped(clothes: Clothes) {
     console.log(clothes)
+  }
+
+
+  async openPostForm() {
+    const modal = await this.modalController.create({
+      component: CreateClothesComponent
+    });
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    console.log(data);
   }
 }

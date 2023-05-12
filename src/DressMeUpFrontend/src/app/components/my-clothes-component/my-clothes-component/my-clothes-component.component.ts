@@ -8,10 +8,10 @@ import { Clothes } from 'src/app/interfaces/clothes';
 })
 export class MyClothesComponent implements OnInit {
 
-  @Input() clothes : Clothes;
+  @Input() clothes: Clothes;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

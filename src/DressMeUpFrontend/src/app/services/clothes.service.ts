@@ -9,7 +9,7 @@ import { Clothes } from "../interfaces/clothes";
 })
 export class ClothesService {
   baseUrl: string = environment.apiBaseUrl + "/clothes";
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // request all the clothes from api
   getAllclothes(): Observable<Clothes[]> {
@@ -17,16 +17,16 @@ export class ClothesService {
       map((response) => {
         return response.map(
           (i) =>
-            ({
-              ClothesType: i.ClothesType,
-              Color: i.Color,
-              Fabric: i.Fabric,
-              Seasons: i.Seasons,
-              FilterTags: i.filterTags,
-              Brand: i.brand,
-              Image: i.image,
-              Name: i.name,
-            } as Clothes)
+          ({
+            ClothesType: i.ClothesType,
+            Color: i.Color,
+            Fabric: i.Fabric,
+            Seasons: i.Seasons,
+            FilterTags: i.filterTags,
+            Brand: i.brand,
+            Image: i.image,
+            Name: i.name,
+          } as Clothes)
         );
       })
     );
@@ -38,16 +38,16 @@ export class ClothesService {
       map((response) => {
         return response.map(
           (i) =>
-            ({
-              ClothesType: i.ClothesType,
-              Color: i.Color,
-              Fabric: i.Fabric,
-              Seasons: i.Seasons,
-              FilterTags: i.filterTags,
-              Brand: i.brand,
-              Image: i.image,
-              Name: i.name,
-            } as Clothes)
+          ({
+            ClothesType: i.ClothesType,
+            Color: i.Color,
+            Fabric: i.Fabric,
+            Seasons: i.Seasons,
+            FilterTags: i.filterTags,
+            Brand: i.brand,
+            Image: i.image,
+            Name: i.name,
+          } as Clothes)
         );
       })
     );
