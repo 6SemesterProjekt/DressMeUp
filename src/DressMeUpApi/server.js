@@ -14,6 +14,7 @@ const db = require("./app/models");
 
 require("./app/routes/clothes.routes")(app);
 require("./app/routes/outfit.routes")(app);
+require("./app/routes/colors.routes")(app);
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to DressMeUp API" });
