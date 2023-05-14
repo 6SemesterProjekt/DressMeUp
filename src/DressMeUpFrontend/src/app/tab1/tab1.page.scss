@@ -9,3 +9,36 @@ ion-icon {
 ion-fab-button {
   margin: 15px;
 }
+
+ion-toolbar {
+  --background: #EFE8DE;
+}
+
+ion-header {
+  --background: #EFE8DE;
+}
+
+form {
+  ion-button {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem;
+    --background: #468e23;
+  }
+
+  div {
+    color: red;
+  }
+}
+
+#button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.center-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

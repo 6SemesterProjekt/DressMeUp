@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ModalController, ToastController } from "@ionic/angular";
+import { ActionSheetController, ModalController, ToastController } from "@ionic/angular";
 import { Clothes } from "src/app/interfaces/clothes";
 import { ClothesService } from "src/app/services/clothes.service";
 import { PhotoService, UserPhoto } from "src/app/services/photo.service";
@@ -20,7 +20,9 @@ export class CreateClothesComponent implements OnInit {
     private modalController: ModalController,
     public toastController: ToastController,
     private clothesService: ClothesService,
-    public photoService: PhotoService
+    public photoService: PhotoService,
+
+    public actionSheetController: ActionSheetController
   ) {
     this.postForm = this.formBuilder.group({
       clothesType: ["", Validators.required],
@@ -43,7 +45,7 @@ export class CreateClothesComponent implements OnInit {
     "image": "img.png",
     "name": "sorte sko" */
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onSubmit() {
     if (this.postForm.valid) {
@@ -83,5 +85,26 @@ export class CreateClothesComponent implements OnInit {
 
   addPhotoToGallery() {
     this.photoService.addNewToGallery();
+  }
+  public async showActionSheet(photo: UserPhoto, position: number) {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Photos',
+      buttons: [{
+        text: 'Delete',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {
+          this.photoService.deletePicture(photo, position);
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          // Nothing to do, action sheet is automatically closed
+        }
+      }]
+    });
+    await actionSheet.present();
   }
 }
