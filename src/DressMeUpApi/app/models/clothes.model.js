@@ -34,15 +34,24 @@ module.exports = (sequelize, Sequelize) => {
 
 
 
-/*  Postman example:
+/*  Postman example new:
 {
-    "clothesType": 1, 
-    "color": "ffffff",
-    "fabric": "uld",
-    "seasons": "Vinter",
-    "filterTags": "T-shirt",
-    "brand": "Nike",
-    "image": "img.png",
-    "name": "sorte sko"
+    "clothesType": 1,
+    "brand": "Abrand",
+    "image": "",
+    "name": "t-shirt 23",
+    "outfits": [],
+    "colors": [
+        1,2,3
+    ],
+    "fabrics": [
+        2
+    ],
+    "seasons": [
+        1
+    ],
+    "filterTags": [
+        1
+    ]
 }
 */

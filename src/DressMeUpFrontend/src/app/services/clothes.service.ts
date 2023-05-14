@@ -3,13 +3,15 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { map, Observable, catchError } from "rxjs";
 import { Clothes } from "../interfaces/clothes";
+import { PhotoService } from "../services/photo.service";
+
 
 @Injectable({
   providedIn: "root",
 })
 export class ClothesService {
   baseUrl: string = environment.apiBaseUrl + "/clothes";
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private photoService: PhotoService) { }
 
   // request all the clothes from api
   getAllclothes(): Observable<Clothes[]> {
