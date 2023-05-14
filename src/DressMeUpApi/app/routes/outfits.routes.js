@@ -1,5 +1,5 @@
 module.exports = app => {
-    const outfit = require("../controllers/outfit.controller");
+    const outfit = require("../controllers/outfits.controller");
     var router = require("express").Router();
   
     // Create a new outfit

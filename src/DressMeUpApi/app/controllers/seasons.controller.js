@@ -1,79 +1,79 @@
 const db = require("../models");
-const Outfit = db.outfit;
+const Season = db.seasons;
 
 exports.create = (req, res) => {
-    const outfit = {
-        likes: req.body.likes,
-        dislikes: req.body.dislikes
+    const season = {
+        name: req.body.name,
+        id: req.body.id
     }
 
-    Outfit.create(outfit)
+    Season.create(season)
     .then(data => { 
         res.send(data); 
       })
       .catch(error => {
           res.status(500).send({
-              message: error.message || "Some error accurred while trying to create outfit."
+              message: error.message || "Some error occurred while trying to create season."
           });
       });
 };
 
-exports.getAllOutfits = (req, res) => {
-    Outfit.findAll()
+exports.getAllSeasons = (req, res) => {
+    Season.findAll()
     .then(data => {
         res.send(data);
     })
     .catch(err => {
         res.status(500).send({
             message:
-                err.message || "Some error occurred while retrieving all outfits."
+                err.message || "Some error occurred while retrieving all seasons."
         });
     });
 };
 
-exports.getOutfitById = (req, res) => {
+exports.getSeasonById = (req, res) => {
     const id = req.params.id;
 
-    Outfit.findByPk(id)
+    Season.findByPk(id)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving outfit with id=" + id
+                message: "Error retrieving season with id=" + id
             });
         });
 };
 
-exports.deleteOutfit = (req, res) => {
+exports.deleteSeason = (req, res) => {
     const id = req.params.id;
 
-    Outfit.destroy({
+    Season.destroy({
         where: { id: id }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Outfit deleted successfully!"
+                    message: "Season deleted successfully!"
                 });
             } else {
                 res.send({
-                    message: `Cannot delete outfit with id=${id}. Outfit not found!`
+                    message: `Cannot delete season with id=${id}. Season not found!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete outfit with id=" + id
+                message: "Could not delete season with id=" + id
             });
         });
 
 };
 
-exports.updateOutfit = (req, res) => {
-    Outfit.update({
-        likes: req.body.likes,
-        dislikes: req.body.dislikes
+exports.updateSeason = (req, res) => {
+    Season.update({
+        name: req.body.name,
+        id: req.body.id
     },
     {
         where: {
@@ -82,12 +82,12 @@ exports.updateOutfit = (req, res) => {
     })
     .then(result=> {
         if(result == 1){
-            Outfit.findByPk(req.params.id)
+            Season.findByPk(req.params.id)
             .then(data=>{
                 res.status(200).send(data);
               })
               .catch(error=>{
-                res.status(400).send('Could not get the updated outfit due to an error. ' + error.message);
+                res.status(400).send('Could not get the updated season due to an error. ' + error.message);
               })
         }
         else {
