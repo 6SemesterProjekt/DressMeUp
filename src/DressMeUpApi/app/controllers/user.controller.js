@@ -39,16 +39,14 @@ exports.getUserById = (req, res) => {
 
 exports.getAllUsers = (req, res) => {
     Users.findAll()
-        .then(data => {
-            res.send(data);
-        }
-        )
-        .catch(err => {
-            res.status(500).send({
-                message: "Error retrieving all users"
-            });
-        }
-        );
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Error retrieving all users"
+        });
+    });
 }
 
 exports.deleteUser = (req, res) => {
