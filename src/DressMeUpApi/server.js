@@ -13,7 +13,11 @@ app.use(express.urlencoded({ extended: true }));
 const db = require("./app/models");
 
 require("./app/routes/clothes.routes")(app);
-require("./app/routes/outfit.routes")(app);
+require("./app/routes/outfits.routes")(app);
+require("./app/routes/colors.routes")(app);
+require("./app/routes/fabrics.routes")(app);
+require("./app/routes/seasons.routes")(app);
+require("./app/routes/filterTags.routes")(app);
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to DressMeUp API" });
