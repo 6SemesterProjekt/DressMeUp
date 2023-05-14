@@ -1,79 +1,79 @@
 const db = require("../models");
-const Outfit = db.outfit;
+const Color = db.colors;
 
 exports.create = (req, res) => {
-    const outfit = {
-        likes: req.body.likes,
-        dislikes: req.body.dislikes
+    const color = {
+        name: req.body.name,
+        id: req.body.id
     }
 
-    Outfit.create(outfit)
+    Color.create(color)
     .then(data => { 
         res.send(data); 
       })
       .catch(error => {
           res.status(500).send({
-              message: error.message || "Some error accurred while trying to create outfit."
+              message: error.message || "Some error occurred while trying to create color."
           });
       });
 };
 
-exports.getAllOutfits = (req, res) => {
-    Outfit.findAll()
+exports.getAllColors = (req, res) => {
+    Color.findAll()
     .then(data => {
         res.send(data);
     })
     .catch(err => {
         res.status(500).send({
             message:
-                err.message || "Some error occurred while retrieving all outfits."
+                err.message || "Some error occurred while retrieving all colors."
         });
     });
 };
 
-exports.getOutfitById = (req, res) => {
+exports.getColorById = (req, res) => {
     const id = req.params.id;
 
-    Outfit.findByPk(id)
+    Color.findByPk(id)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving outfit with id=" + id
+                message: "Error retrieving color with id=" + id
             });
         });
 };
 
-exports.deleteOutfit = (req, res) => {
+exports.deleteColor = (req, res) => {
     const id = req.params.id;
 
-    Outfit.destroy({
+    Color.destroy({
         where: { id: id }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Outfit deleted successfully!"
+                    message: "Color deleted successfully!"
                 });
             } else {
                 res.send({
-                    message: `Cannot delete outfit with id=${id}. Outfit not found!`
+                    message: `Cannot delete color with id=${id}. Color not found!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete outfit with id=" + id
+                message: "Could not delete color with id=" + id
             });
         });
 
 };
 
-exports.updateOutfit = (req, res) => {
-    Outfit.update({
-        likes: req.body.likes,
-        dislikes: req.body.dislikes
+exports.updateColor = (req, res) => {
+    Color.update({
+        name: req.body.name,
+        id: req.body.id
     },
     {
         where: {
@@ -82,12 +82,12 @@ exports.updateOutfit = (req, res) => {
     })
     .then(result=> {
         if(result == 1){
-            Outfit.findByPk(req.params.id)
+            Color.findByPk(req.params.id)
             .then(data=>{
                 res.status(200).send(data);
               })
               .catch(error=>{
-                res.status(400).send('Could not get the updated outfit due to an error. ' + error.message);
+                res.status(400).send('Could not get the updated color due to an error. ' + error.message);
               })
         }
         else {
