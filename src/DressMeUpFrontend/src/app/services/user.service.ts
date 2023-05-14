@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { User } from '../interfaces/user';
+import { IUser } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +13,23 @@ export class UserService {
   constructor(private http:HttpClient) { }
 
   getUsers(){
-    return this.http.get<User[]>(this.baseUrl);
+    return this.http.get<IUser[]>(this.baseUrl);
   }
 
   getUserById(id : number) {
-    return this.http.get<User>(this.baseUrl + id);
+    return this.http.get<IUser>(this.baseUrl + id);
   }
 
-  createUser(user : User) {
-    return this.http.post<User>(this.baseUrl, user);
+  createUser(user : IUser) {
+    return this.http.post<IUser>(this.baseUrl, user);
   }
 
   deleteUser(id : number) {
     return this.http.delete(this.baseUrl + id);
   }
 
-  updateUser(id : number, user : User) {
-    return this.http.put<User>(this.baseUrl + id, user);
+  updateUser(id : number, user : IUser) {
+    return this.http.put<IUser>(this.baseUrl + id, user);
   }
 
   /**

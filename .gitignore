@@ -16,8 +16,8 @@ log.txt
 **/db.config.js
 **/*.config.js
 
-# Docs
-/documentation
+# Compodoc
+**/documentation
 
 /.sourcemaps
 /.versions
