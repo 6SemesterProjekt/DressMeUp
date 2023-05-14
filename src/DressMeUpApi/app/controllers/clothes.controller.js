@@ -20,10 +20,10 @@ exports.create = async (req, res) => {
         });
     
         // add the associated items to the join tables (many-to-many)
-        await newCloth.setColors(req.body.colors.map(c=>c.id));
-        await newCloth.setSeasons(req.body.seasons.map(s=>s.id));
-        await newCloth.setFabrics(req.body.fabrics.map(f=>f.id));
-        await newCloth.setFilterTags(req.body.filterTags.map(ft=>ft.id));
+        await newCloth.setColors(req.body.colors);
+        await newCloth.setSeasons(req.body.seasons);
+        await newCloth.setFabrics(req.body.fabrics);
+        await newCloth.setFilterTags(req.body.filterTags);
     
         res.send(newCloth);
 
