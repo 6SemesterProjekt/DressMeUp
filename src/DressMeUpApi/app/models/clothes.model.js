@@ -7,20 +7,20 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING
     },
     image: {
-      type: Sequelize.BLOB
+      type: Sequelize.STRING
     },
     name: {
       type: Sequelize.STRING
     }
   });
 
-  Clothes.associate = function(models) {
-    Clothes.belongsToMany(models.outfits, { 
+  Clothes.associate = function (models) {
+    Clothes.belongsToMany(models.outfits, {
       as: 'outfits',
-      through: 'clothesOutfits', 
-      timestamps: false, 
-      onDelete: 'SET NULL', 
-      foreignKey: { allowNull: true } 
+      through: 'clothesOutfits',
+      timestamps: false,
+      onDelete: 'SET NULL',
+      foreignKey: { allowNull: true }
     });
     Clothes.belongsToMany(models.colors, { as: 'colors', through: 'clothesColors', timestamps: false, onDelete: 'CASCADE' });
     Clothes.belongsToMany(models.fabrics, { as: 'fabrics', through: 'clothesFabrics', timestamps: false, onDelete: 'CASCADE' });
@@ -30,3 +30,28 @@ module.exports = (sequelize, Sequelize) => {
 
   return Clothes;
 };
+
+
+
+
+/*  Postman example new:
+{
+    "clothesType": 1,
+    "brand": "Abrand",
+    "image": "",
+    "name": "t-shirt 23",
+    "outfits": [],
+    "colors": [
+        1,2,3
+    ],
+    "fabrics": [
+        2
+    ],
+    "seasons": [
+        1
+    ],
+    "filterTags": [
+        1
+    ]
+}
+*/

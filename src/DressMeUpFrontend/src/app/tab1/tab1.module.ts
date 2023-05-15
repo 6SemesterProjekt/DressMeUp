@@ -18,4 +18,4 @@ import { SharedModule } from '../components/shared/shared.module';
   ],
   declarations: [Tab1Page, MyClothesComponent]
 })
-export class Tab1PageModule {}
+export class Tab1PageModule { }

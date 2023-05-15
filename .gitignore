@@ -13,7 +13,6 @@ $RECYCLE.BIN/
 log.txt
 
 # Configurations
-**/db.config.js
 **/*.config.js
 
 # Compodoc
@@ -22,6 +21,13 @@ log.txt
 /.sourcemaps
 /.versions
 /coverage
+
+# Environment variables
+.env
+.env.*
+.env.local
+**/environment.js
+**/environment
 
 # Ionic
 /.ionic
@@ -77,3 +83,4 @@ testem.log
 .DS_Store
 Thumbs.db
 
+src/DressMeUpApi/app/config/db.config.js

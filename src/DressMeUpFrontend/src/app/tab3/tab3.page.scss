@@ -1,0 +1,28 @@
+.socialBox {
+    border-radius: 30;
+    background-color: antiquewhite;
+    height: auto;
+    width: auto;
+}
+
+ion-card{
+    background-color: #E8EDEB;
+}
+
+ion-toolbar{
+    --background:  #EFE8DE;
+}
+
+ion-chip{
+    //background-color:white;
+    border: width 3px;;
+}
+
+// not working. placed in global.scss
+/* ion-searchbar{
+    .searchbar-input-container{
+        .searchbar-input{
+            border-radius: 30px !important;
+        }
+    }
+} */
