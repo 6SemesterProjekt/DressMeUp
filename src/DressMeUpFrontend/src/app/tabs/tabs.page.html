@@ -1,17 +1,17 @@
-<ion-tabs>
+<ion-tabs (ionTabsDidChange)="setSelectedTab()">
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="clothes">
-      <ion-icon aria-hidden="true" name="body-sharp"></ion-icon>
+      <ng-icon size="24" aria-hidden="true" [name]="selected === 'clothes' ? 'matCheckroom' : 'matCheckroomOutline'"></ng-icon>
       <ion-label>Mit tøj</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab2">
-      <ion-icon aria-hidden="true" name="shirt-sharp"></ion-icon>
+    <ion-tab-button tab="outfits">
+      <ion-icon aria-hidden="true" [name]="selected === 'outfits' ? 'shirt' : 'shirt-outline'"></ion-icon>
       <ion-label>DressMeUp</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab3">
-      <ion-icon aria-hidden="true" name="people-sharp"></ion-icon>
+    <ion-tab-button tab="udforsk">
+      <ion-icon aria-hidden="true" [name]="selected === 'udforsk' ? 'people' : 'people-outline'"></ion-icon>
       <ion-label>Udforsk</ion-label>
     </ion-tab-button>
   </ion-tab-bar>

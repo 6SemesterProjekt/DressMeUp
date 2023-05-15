@@ -9,7 +9,7 @@ import { IClothes } from "src/app/interfaces/clothes";
 export class MyClothesComponent implements OnInit {
   @Input() clothes: IClothes;
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {}
 }

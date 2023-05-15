@@ -11,6 +11,6 @@ import { CreateClothesComponent } from './components/create-clothes/create-cloth
   declarations: [AppComponent, CreateClothesComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
