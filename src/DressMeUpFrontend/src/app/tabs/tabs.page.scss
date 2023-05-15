@@ -1,1 +1,9 @@
+ion-tab-bar {
+  --background: var(--creme);
+  border-radius: 8px 8px 0 0;
 
+  ion-tab-button {
+    --color: var(--groen);
+    --color-selected: var(--groen);
+  }
+}
