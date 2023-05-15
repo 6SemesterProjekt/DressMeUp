@@ -1,10 +1,12 @@
 <app-header title="Mit tøj">
+  <ion-header>
   <ion-searchbar
   animated="true"
    placeholder="Søg efter tøj..."
    [debounce]="1000"
    (ionInput)="handleInput($event)"
    ></ion-searchbar>
+  </ion-header>
 </app-header>
 
 <ion-content [fullscreen]="false">
