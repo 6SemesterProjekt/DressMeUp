@@ -82,3 +82,5 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+src/DressMeUpApi/app/config/db.config.js
