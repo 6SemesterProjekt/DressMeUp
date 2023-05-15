@@ -1,7 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActionSheetController, ModalController, ToastController } from "@ionic/angular";
-import { Clothes } from "src/app/interfaces/clothes";
+import {
+  ActionSheetController,
+  ModalController,
+  ToastController,
+} from "@ionic/angular";
+import { IClothes } from "src/app/interfaces/clothes";
 import { ClothesService } from "src/app/services/clothes.service";
 import { PhotoService, UserPhoto } from "src/app/services/photo.service";
 
@@ -46,16 +50,15 @@ export class CreateClothesComponent implements OnInit {
     "image": "img.png",
     "name": "sorte sko" */
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   onSubmit() {
-
-    const newCloth: Clothes = {
-      ClothesType: /* this.postForm.value.clothesType */1,
-      Color: /* this.postForm.value.color */[1],
-      Fabric: /* this.postForm.value.fabric */[1],
-      Seasons: /* this.postForm.value.seasons */[1],
-      FilterTags: /* this.postForm.value.filterTags */[1],
+    const newCloth: IClothes = {
+      ClothesType: /* this.postForm.value.clothesType */ 1,
+      Color: /* this.postForm.value.color */ [1],
+      Fabric: /* this.postForm.value.fabric */ [1],
+      Seasons: /* this.postForm.value.seasons */ [1],
+      FilterTags: /* this.postForm.value.filterTags */ [1],
       Brand: /* this.postForm.value.brand */ "Nike",
       Image: this.photo,
       Name: /* this.postForm.value.name */ "Some t-shirt",
@@ -63,7 +66,6 @@ export class CreateClothesComponent implements OnInit {
 
     this.clothesService.createNewItem(newCloth).subscribe((i) => {
       if (i) {
-
         console.log(i);
       }
     });
@@ -86,27 +88,32 @@ export class CreateClothesComponent implements OnInit {
   }
 
   addPhotoToGallery() {
-    this.photoService.addNewToGallery().then(response => this.photo = response);
+    this.photoService
+      .addNewToGallery()
+      .then((response) => (this.photo = response));
   }
 
   public async showActionSheet(photo: UserPhoto, position: number) {
     const actionSheet = await this.actionSheetController.create({
-      header: 'Photos',
-      buttons: [{
-        text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          this.photoService.deletePicture(photo, position);
-        }
-      }, {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          // Nothing to do, action sheet is automatically closed
-        }
-      }]
+      header: "Photos",
+      buttons: [
+        {
+          text: "Delete",
+          role: "destructive",
+          icon: "trash",
+          handler: () => {
+            this.photoService.deletePicture(photo, position);
+          },
+        },
+        {
+          text: "Cancel",
+          icon: "close",
+          role: "cancel",
+          handler: () => {
+            // Nothing to do, action sheet is automatically closed
+          },
+        },
+      ],
     });
     await actionSheet.present();
   }

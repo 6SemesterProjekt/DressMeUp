@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { MyClothesComponent } from "../components/my-clothes-component/my-clothes-component/my-clothes-component.component";
 import { ClothesService } from "../services/clothes.service";
-import { Clothes } from "../interfaces/clothes";
+import { IClothes } from "../interfaces/clothes";
 import { PhotoService, UserPhoto } from "../services/photo.service";
 import { CreateClothesComponent } from "../components/create-clothes/create-clothes.component";
 import { ModalController } from "@ionic/angular";
@@ -12,13 +12,13 @@ import { ModalController } from "@ionic/angular";
   styleUrls: ["tab1.page.scss"],
 })
 export class Tab1Page {
-  clothes: Clothes[] = [];
+  clothes: IClothes[] = [];
 
   constructor(
     private modalController: ModalController,
     private clothesService: ClothesService,
-    public photoService: PhotoService,
-  ) { }
+    public photoService: PhotoService
+  ) {}
 
   async ngOnInit() {
     console.log("getting data");
@@ -35,7 +35,7 @@ export class Tab1Page {
     const query = event.target.value.toLowerCase();
   }
 
-  onClothesCardTapped(clothes: Clothes) {
+  onClothesCardTapped(clothes: IClothes) {
     console.log(clothes);
   }
 
@@ -47,6 +47,4 @@ export class Tab1Page {
     const { data } = await modal.onDidDismiss();
     console.log(data);
   }
-
-
 }

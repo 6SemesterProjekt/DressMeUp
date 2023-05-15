@@ -16,12 +16,19 @@ log.txt
 **/db.config.js
 **/*.config.js
 
-# Docs
-/documentation
+# Compodoc
+**/documentation
 
 /.sourcemaps
 /.versions
 /coverage
+
+# Environment variables
+.env
+.env.*
+.env.local
+**/environment.js
+**/environment
 
 # Ionic
 /.ionic
