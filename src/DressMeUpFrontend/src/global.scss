@@ -24,3 +24,29 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+
+// Added by Mark, makes so all the searchbar has a border-radius
+ion-searchbar{
+    .searchbar-input-container{
+        .searchbar-input{
+            border-radius: 30px !important;
+        }
+    }
+}
+
+ion-tabs{
+    background: #EFE8DE;
+}
+ion-toolbar{
+    --background:  #EFE8DE;
+}
+ion-searchbar{
+    --background: #EFE8DE;
+}
+
+/* ion-header{
+    --background: #EFE8DE;
+} */
+
