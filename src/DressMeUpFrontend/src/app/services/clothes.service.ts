@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { map, Observable, catchError } from "rxjs";
 import { IClothes } from "../interfaces/clothes";
+import {BlobServiceClient, StorageSharedKeyCredential } from "@azure/storage-blob";
 
 @Injectable({
   providedIn: "root",
@@ -68,4 +69,22 @@ export class ClothesService {
 
     return this.http.post<IClothes>(this.baseUrl, cloth);
   }
+
+  async uploadPhoto(name:string, file:File) {
+    try {
+      // Retrieve the selected file from the input element
+      const fileInput = document.getElementById('photoInput') as HTMLInputElement;
+      const file = fileInput.files[0];
+  
+      // Create a connection string and BlobServiceClient
+      const connectionString = environment.connectionString;
+      const sharedKeyCredential = new StorageSharedKeyCredential(environment.accountName, environment.accountKey);
+      const blobServiceClient = new BlobServiceClient(connectionString, sharedKeyCredential);
+  
+      // Specify the container name and the name for the blob (file) to be uploaded
+      const containerName = 'photos';
+      const blobName = name +'.jpg';
+  
+     
+  
 }

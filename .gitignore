@@ -23,6 +23,13 @@ log.txt
 /.versions
 /coverage
 
+# Environment variables
+.env
+.env.*
+.env.local
+**/environment.js
+**/environment
+
 # Ionic
 /.ionic
 **/www

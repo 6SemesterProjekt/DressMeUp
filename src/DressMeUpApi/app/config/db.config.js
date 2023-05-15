@@ -1,8 +1,8 @@
 module.exports = {
   HOST: "localhost",
   PORT: 3306,
-  USER: "root",
-  PASSWORD: "",
+  USER: "dev",
+  PASSWORD: "root",
   DB: "dressmeupDB",
   dialect: "mysql",
 };
