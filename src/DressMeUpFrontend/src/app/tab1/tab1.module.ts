@@ -18,4 +18,4 @@ import { MyClothesComponent } from '../components/my-clothes-component/my-clothe
   ],
   declarations: [Tab1Page, MyClothesComponent]
 })
-export class Tab1PageModule {}
+export class Tab1PageModule { }

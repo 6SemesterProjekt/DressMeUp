@@ -14,6 +14,7 @@ export class CreateClothesComponent implements OnInit {
   @Output() formSubmit = new EventEmitter();
 
   postForm: FormGroup;
+  photo: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,26 +49,27 @@ export class CreateClothesComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit() {
-    if (this.postForm.valid) {
-      const newCloth: Clothes = {
-        ClothesType: this.postForm.value.clothesType,
-        Color: this.postForm.value.color,
-        Fabric: this.postForm.value.fabric,
-        Seasons: this.postForm.value.seasons,
-        FilterTags: this.postForm.value.filterTags,
-        Brand: this.postForm.value.brand,
-        Image: this.postForm.value.image,
-        Name: this.postForm.value.name,
-      };
 
-      this.clothesService.createNewItem(newCloth).subscribe((i) => {
-        if (i) {
-          this.modalController.dismiss(this.postForm.value, "confirm");
-          this.presentToast();
-          console.log(newCloth);
-        }
-      });
-    }
+    const newCloth: Clothes = {
+      ClothesType: /* this.postForm.value.clothesType */1,
+      Color: /* this.postForm.value.color */[1],
+      Fabric: /* this.postForm.value.fabric */[1],
+      Seasons: /* this.postForm.value.seasons */[1],
+      FilterTags: /* this.postForm.value.filterTags */[1],
+      Brand: /* this.postForm.value.brand */ "Nike",
+      Image: this.photo,
+      Name: /* this.postForm.value.name */ "Some t-shirt",
+    };
+
+    this.clothesService.createNewItem(newCloth).subscribe((i) => {
+      if (i) {
+
+        console.log(i);
+      }
+    });
+
+    // close the modal if succes
+    this.modalController.dismiss(null, "succes");
   }
 
   onCancel() {
@@ -84,8 +86,9 @@ export class CreateClothesComponent implements OnInit {
   }
 
   addPhotoToGallery() {
-    this.photoService.addNewToGallery();
+    this.photoService.addNewToGallery().then(response => this.photo = response);
   }
+
   public async showActionSheet(photo: UserPhoto, position: number) {
     const actionSheet = await this.actionSheetController.create({
       header: 'Photos',

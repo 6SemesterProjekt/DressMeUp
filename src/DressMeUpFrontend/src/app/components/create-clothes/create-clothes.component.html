@@ -147,7 +147,7 @@
       </ion-item>
 
 
-      <ion-button style="width: 100%;" type="submit" [disabled]="!postForm.valid">Gem</ion-button>
+      <ion-button style="width: 100%;" (click)="onSubmit()">Gem</ion-button>
     </form>
   </ion-card>
 </ion-content>

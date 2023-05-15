@@ -15,6 +15,7 @@ export class ClothesService {
 
   // request all the clothes from api
   getAllclothes(): Observable<Clothes[]> {
+
     return this.http.get<any[]>(this.baseUrl).pipe(
       map((response) => {
         return response.map(
@@ -33,6 +34,7 @@ export class ClothesService {
       })
     );
   }
+
 
   // request cloth by the id from api
   getClothesById(clothesId: number): Observable<Clothes[]> {
@@ -58,14 +60,14 @@ export class ClothesService {
   // create new cloth object from api
   createNewItem(newCloth: Clothes) {
     const cloth = {
-      ClothesType: newCloth.ClothesType,
-      Color: newCloth.Color,
-      Fabric: newCloth.Fabric,
-      Seasons: newCloth.Seasons,
-      FilterTags: newCloth.FilterTags,
-      Brand: newCloth.Brand,
-      Image: newCloth.Image,
-      Name: newCloth.Name,
+      clothesType: newCloth.ClothesType,
+      color: newCloth.Color,
+      fabric: newCloth.Fabric,
+      seasons: newCloth.Seasons,
+      filterTags: newCloth.FilterTags,
+      brand: newCloth.Brand,
+      image: newCloth.Image,
+      name: newCloth.Name,
     };
 
     return this.http.post<Clothes>(this.baseUrl, cloth);

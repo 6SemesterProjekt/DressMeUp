@@ -25,6 +25,8 @@ exports.create = async (req, res) => {
         await newCloth.setFabrics(req.body.fabrics);
         await newCloth.setFilterTags(req.body.filterTags);
 
+        console.log(req.body);
+        console.log(newCloth);
         res.send(newCloth);
 
     } catch (error) {
@@ -40,6 +42,7 @@ exports.getAllClothes = (req, res) => {
     var condition = req.query.clothesType ?
         { clothesType: req.query.clothesType } : null;
 
+
     Clothes.findAll({
         where: condition,
         include: {
@@ -49,7 +52,18 @@ exports.getAllClothes = (req, res) => {
     })
         .then(data => {
             /* var bufferBase64 = new Buffer(req.image.blob, 'binary').toString('base64');
-    req.image = bufferBase64; */
+            req.image = bufferBase64; */
+
+
+            //const buffer = Buffer.from('Hello World');
+            //const blob = bufferToBlob(buffer);
+            //data.res.image = bufferToBlob(data.req.image);
+
+            // const b64 = Buffer.from(rest.Body).toString('base64');
+            // CHANGE THIS IF THE IMAGE YOU ARE WORKING WITH IS .jpg OR WHATEVER
+            //const mimeType = 'image/png'; // e.g., image/png
+            //data.res.image = `<img src="data:${mimeType};base64,${b64}" />`;
+
             res.send(data);
         })
         .catch(err => {

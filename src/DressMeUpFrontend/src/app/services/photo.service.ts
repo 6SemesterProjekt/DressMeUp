@@ -1,9 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
 import { Platform } from '@ionic/angular';
+import { environment } from 'src/environments/environment';
 
 export interface UserPhoto {
   filepath: string;
@@ -14,13 +16,31 @@ export interface UserPhoto {
   providedIn: 'root'
 })
 export class PhotoService {
+  public photo: UserPhoto;
   public photos: UserPhoto[] = [];
   private PHOTO_STORAGE: string = 'photos';
   private platform: Platform;
 
-  constructor(platform: Platform) {
+  constructor(/* private http: HttpClient, */ platform: Platform) {
     this.platform = platform;
   }
+
+  /*   makeImageToBlob(base64Image: string) {
+      const buffer = Buffer.from(base64Image, 'base64');
+      const blob = new Blob([buffer]);
+      return blob;
+    } */
+  /*  uploadImage(base64Image: string) {
+     const apiUrl = environment.apiBaseUrl +'/upload-image'; // Replace with your API endpoint
+   
+     const payload = {
+       image: base64Image
+     };
+   
+     return this.http.post(apiUrl, payload);
+   } */
+
+
 
   public async addNewToGallery() {
     // Take a photo
@@ -33,7 +53,15 @@ export class PhotoService {
     this.photos.unshift({
       filepath: "soon...",
       webviewPath: capturedPhoto.webPath
+
     });
+    console.log(capturedPhoto.webPath);
+    const response = await fetch(capturedPhoto.webPath!);
+    const blob = await response.blob();
+    console.log(blob);
+
+    //return blob;
+    return capturedPhoto.webPath.toString();
   }
 
 
