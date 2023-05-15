@@ -67,6 +67,7 @@ export class CreateClothesComponent implements OnInit {
     this.clothesService.createNewItem(newCloth).subscribe((i) => {
       if (i) {
         console.log(i);
+        
       }
     });
 
