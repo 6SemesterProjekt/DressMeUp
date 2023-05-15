@@ -58,8 +58,8 @@ export class ClothesService {
   createNewItem(newCloth: IClothes) {
     const cloth = {
       clothesType: newCloth.ClothesType,
-      color: newCloth.Color,
-      fabric: newCloth.Fabric,
+      colors: newCloth.Color,
+      fabrics: newCloth.Fabric,
       seasons: newCloth.Seasons,
       filterTags: newCloth.FilterTags,
       brand: newCloth.Brand,
