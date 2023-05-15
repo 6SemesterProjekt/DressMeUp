@@ -13,7 +13,6 @@ $RECYCLE.BIN/
 log.txt
 
 # Configurations
-**/db.config.js
 **/*.config.js
 
 # Compodoc
