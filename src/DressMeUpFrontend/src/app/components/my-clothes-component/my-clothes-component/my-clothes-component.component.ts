@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Clothes } from 'src/app/interfaces/clothes';
+import { IClothes } from 'src/app/interfaces/clothes';
 
 @Component({
   selector: 'my-clothes-component',
@@ -8,7 +8,7 @@ import { Clothes } from 'src/app/interfaces/clothes';
 })
 export class MyClothesComponent implements OnInit {
 
-  @Input() clothes : Clothes;
+  @Input() clothes : IClothes;
 
   constructor() { }
 

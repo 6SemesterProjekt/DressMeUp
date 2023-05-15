@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MyClothesComponent } from '../components/my-clothes-component/my-clothes-component/my-clothes-component.component';
 import { ClothesService } from '../services/clothes.service';
-import { Clothes } from '../interfaces/clothes';
+import { IClothes } from '../interfaces/clothes';
 
 @Component({
   selector: 'app-tab1',
@@ -10,7 +10,7 @@ import { Clothes } from '../interfaces/clothes';
 })
 export class Tab1Page {
 
-  clothes : Clothes[] = [];
+  clothes : IClothes[] = [];
 
   constructor(private clothesService:ClothesService) {}
 
@@ -27,7 +27,7 @@ export class Tab1Page {
     const query = event.target.value.toLowerCase();
   }
 
-  onClothesCardTapped(clothes : Clothes){
+  onClothesCardTapped(clothes : IClothes){
     console.log(clothes)
   }
 }
