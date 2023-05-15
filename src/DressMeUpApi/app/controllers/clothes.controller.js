@@ -20,10 +20,18 @@ exports.create = async (req, res) => {
         });
 
         // add the associated items to the join tables (many-to-many)
-        await newCloth.setColors(req.body.colors);
-        await newCloth.setSeasons(req.body.seasons);
-        await newCloth.setFabrics(req.body.fabrics);
-        await newCloth.setFilterTags(req.body.filterTags);
+        if(req.body.colors.length) {
+            await newCloth.setColors(req.body.colors);
+        }
+        if (req.body.seasons.length){
+            await newCloth.setSeasons(req.body.seasons);
+        }
+        if (req.body.fabrics.length){
+            await newCloth.setFabrics(req.body.fabrics);
+        }
+        if (req.body.filterTags.length){
+            await newCloth.setFilterTags(req.body.filterTags);
+        }
 
         console.log(req.body);
         console.log(newCloth);
