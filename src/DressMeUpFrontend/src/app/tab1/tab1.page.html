@@ -1,14 +1,18 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title> Mit tøj </ion-title>
   </ion-toolbar>
-  <ion-searchbar
-    animated="true"
-    placeholder="Søg efter tøj..."
-    [debounce]="1000"
-    (ionInput)="handleInput($event)"
-  ></ion-searchbar>
-</ion-header>
+
+</ion-header> -->
+
+<app-header title="Mit tøj"></app-header>
+
+<ion-searchbar
+animated="true"
+placeholder="Søg efter tøj..."
+[debounce]="1000"
+(ionInput)="handleInput($event)"
+></ion-searchbar>
 
 <ion-content [fullscreen]="false">
   <ion-grid [fixed]="true">

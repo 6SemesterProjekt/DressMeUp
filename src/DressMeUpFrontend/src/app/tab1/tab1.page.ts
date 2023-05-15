@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
-import { MyClothesComponent } from '../components/my-clothes-component/my-clothes-component/my-clothes-component.component';
 import { ClothesService } from '../services/clothes.service';
 import { IClothes } from '../interfaces/clothes';
-
-
-
 
 @Component({
   selector: 'app-tab1',
