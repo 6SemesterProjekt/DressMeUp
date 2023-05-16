@@ -27,10 +27,6 @@ export class Tab1Page {
       .subscribe((data) => (this.clothes = data));
   }
 
-  addPhotoToGallery() {
-    this.photoService.addNewToGallery();
-  }
-
   handleInput(event) {
     const query = event.target.value.toLowerCase();
   }
@@ -44,7 +40,10 @@ export class Tab1Page {
       component: CreateClothesComponent,
     });
     await modal.present();
-    const { data } = await modal.onDidDismiss();
-    console.log(data);
+    await modal.onDidDismiss().then(output=>{
+      this.clothesService
+      .getAllclothes()
+      .subscribe((data) => (this.clothes = data));
+    });
   }
 }
