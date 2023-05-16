@@ -19,7 +19,6 @@ export class CreateClothesComponent implements OnInit {
 
   postForm: FormGroup;
   photo: string;
-  base64photo: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,7 +36,7 @@ export class CreateClothesComponent implements OnInit {
       seasons: ["", Validators.required],
       filterTags: ["", Validators.required],
       brand: ["", [Validators.required, Validators.minLength(2)]],
-      image: ["", Validators.required],
+      image: [""],
       name: ["", Validators.required],
     });
   }
@@ -53,18 +52,21 @@ export class CreateClothesComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSubmit() {
+  async onSubmit() {
+    console.log(this.postForm)
+    let url = await this.photoService.uploadPictureToSotrage();
+    console.log('Component: ' + url)
     const newCloth: IClothes = {
-      ClothesType: /* this.postForm.value.clothesType */ 1,
-      Color: /* this.postForm.value.color */ [1],
-      Fabric: /* this.postForm.value.fabric */ [1],
-      Seasons: /* this.postForm.value.seasons */ [1],
-      FilterTags: /* this.postForm.value.filterTags */ [1],
-      Brand: /* this.postForm.value.brand */ "Nike",
-      Image: this.photo,
-      Name: /* this.postForm.value.name */ "Some t-shirt",
+      ClothesType: this.postForm.value.clothesType,
+      Color: [this.postForm.value.color],
+      Fabric: [this.postForm.value.fabric],
+      Seasons: [this.postForm.value.seasons],
+      FilterTags: [this.postForm.value.filterTags],
+      Brand: this.postForm.value.brand,
+      Image: url,
+      Name: this.postForm.value.name
     };
-
+    console.log(newCloth)
     this.clothesService.createNewItem(newCloth).subscribe((i) => {
       if (i) {
         console.log(i);
@@ -102,7 +104,6 @@ export class CreateClothesComponent implements OnInit {
     this.photoService.getPictureForClothes()
       .then(res=>{
         console.log(res);
-        this.photo = res;
       });
   }
 

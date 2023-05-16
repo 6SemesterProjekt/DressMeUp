@@ -17,7 +17,7 @@ export interface UserPhoto {
   providedIn: 'root'
 })
 export class PhotoService {
-  public photo: UserPhoto;
+  public photo: Blob;
   public photos: UserPhoto[] = [];
   private PHOTO_STORAGE: string = 'photos';
   private platform: Platform;
@@ -29,9 +29,9 @@ export class PhotoService {
 
   async getPictureForClothes(){
     let rawPicture = await this.takePicture();
-    let blobPicture = await this.convertPictureToBlob(rawPicture)
-    let url = await this.uploadPictureToSotrage(blobPicture);
-    return url;
+    this.photo = await this.convertPictureToBlob(rawPicture)
+    //let url = await this.uploadPictureToSotrage(blobPicture);
+    //return url;
   }
 
   async takePicture() {
@@ -55,8 +55,9 @@ export class PhotoService {
     return new Blob([ab], {type: 'image/jpeg'});
   }
 
-  async uploadPictureToSotrage(blob : Blob){
-    let url = this.blobService.uploadPhoto(blob);
+  async uploadPictureToSotrage(){
+    this.blobService.init();
+    let url = await this.blobService.uploadPhoto(this.photo);
     return url;
   }
 

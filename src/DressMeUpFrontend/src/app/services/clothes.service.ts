@@ -10,7 +10,7 @@ import { PhotoService } from "../services/photo.service";
 })
 export class ClothesService {
   baseUrl: string = environment.apiBaseUrl + "/clothes";
-  constructor(private http: HttpClient, private photoService: PhotoService) {}
+  constructor(private http: HttpClient) {}
 
   // request all the clothes from api
   getAllclothes(): Observable<IClothes[]> {

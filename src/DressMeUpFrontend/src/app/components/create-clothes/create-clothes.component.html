@@ -48,7 +48,7 @@
       <ion-item>
         <ion-select label="Stoftype" placeholder="vælg stoftype" formControlName="fabric">
           <ion-select-option value="">Ingen stoftype</ion-select-option>
-          <ion-select-option value="Bomuld">Bomuld</ion-select-option>
+          <ion-select-option value="1">Bomuld</ion-select-option>
           <ion-select-option value="Uld">Uld</ion-select-option>
           <ion-select-option value="Denim">Denim</ion-select-option>
           <ion-select-option value="Læder">Læder</ion-select-option>
@@ -74,12 +74,12 @@
       <ion-item>
         <ion-select label="Farve" placeholder="vælg en farve" formControlName="color">
           <ion-select-option value="">Ingen farve</ion-select-option>
-          <ion-select-option value="Sort">Sort</ion-select-option>
-          <ion-select-option value="Hvid">Hvid</ion-select-option>
-          <ion-select-option value="Grøn">Grøn</ion-select-option>
-          <ion-select-option value="Gul">Gul</ion-select-option>
-          <ion-select-option value="Blå">Blå</ion-select-option>
-          <ion-select-option value="Rød">Rød</ion-select-option>
+          <ion-select-option value="1">Sort</ion-select-option>
+          <ion-select-option value="2">Hvid</ion-select-option>
+          <ion-select-option value="3">Grøn</ion-select-option>
+          <ion-select-option value="4">Gul</ion-select-option>
+          <ion-select-option value="5">Blå</ion-select-option>
+          <ion-select-option value="6">Rød</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -108,12 +108,12 @@
       <ion-item>
         <ion-select label="Type" placeholder="vælg en type" formControlName="filterTags">
           <ion-select-option value="">Ingen type</ion-select-option>
-          <ion-select-option value="Hat">Hat</ion-select-option>
-          <ion-select-option value="shirt">T-shirt</ion-select-option>
-          <ion-select-option value="Jakke">Jakke</ion-select-option>
-          <ion-select-option value="Frakke">Frakke</ion-select-option>
-          <ion-select-option value="Bukser">Bukser</ion-select-option>
-          <ion-select-option value="Sko">Sko</ion-select-option>
+          <ion-select-option value="1">Hat</ion-select-option>
+          <ion-select-option value="2">T-shirt</ion-select-option>
+          <ion-select-option value="3">Jakke</ion-select-option>
+          <ion-select-option value="4">Frakke</ion-select-option>
+          <ion-select-option value="5">Bukser</ion-select-option>
+          <ion-select-option value="6">Sko</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -147,7 +147,7 @@
       </ion-item>
 
 
-      <ion-button style="width: 100%;" (click)="onSubmit()">Gem</ion-button>
+      <ion-button style="width: 100%;" type="submit" >Gem</ion-button>
     </form>
   </ion-card>
 </ion-content>
