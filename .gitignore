@@ -15,6 +15,7 @@ log.txt
 # Configurations
 **/*.config.js
 
+
 # Compodoc
 **/documentation
 
@@ -28,6 +29,7 @@ log.txt
 .env.local
 **/environment.js
 **/environment
+**/environment.ts
 
 # Ionic
 /.ionic
