@@ -85,3 +85,4 @@ testem.log
 Thumbs.db
 
 src/DressMeUpApi/app/config/db.config.js
+src/DressMeUpFrontend/src/environments/environment.ts
