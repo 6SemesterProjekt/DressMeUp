@@ -19,6 +19,7 @@ export class CreateClothesComponent implements OnInit {
 
   postForm: FormGroup;
   photo: string;
+  base64photo: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -89,9 +90,20 @@ export class CreateClothesComponent implements OnInit {
   }
 
   addPhotoToGallery() {
-    this.photoService
-      .addNewToGallery()
-      .then((response) => (this.photo = response));
+    // this.photoService
+    //   .addNewToGallery()
+    //   .then((response) => {
+    //     (this.photo = response);
+    //     this.base64photo = this.photoService.base64photo;
+    //     console.log('Component')
+    //     console.log(this.base64photo)
+    //   });
+
+    this.photoService.getPictureForClothes()
+      .then(res=>{
+        console.log(res);
+        this.photo = res;
+      });
   }
 
   public async showActionSheet(photo: UserPhoto, position: number) {

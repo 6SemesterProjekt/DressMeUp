@@ -56,6 +56,8 @@ export class ClothesService {
 
   // create new cloth object from api
   createNewItem(newCloth: IClothes) {
+    console.log('Service')
+    console.log(newCloth)
     const cloth = {
       clothesType: newCloth.ClothesType,
       colors: newCloth.Color,
