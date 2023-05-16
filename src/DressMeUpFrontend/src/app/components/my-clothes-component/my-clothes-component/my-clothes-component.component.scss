@@ -2,9 +2,12 @@ ion-card {
   padding: 4px;
   border: none;
   box-shadow: none;
+  margin: 5px;
 
   img {
-    
+    height: 130px;
+    object-fit: cover;
+    object-position: 50% 50%;
   }
 
   ion-card-header{
