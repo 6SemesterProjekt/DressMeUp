@@ -30,8 +30,6 @@ export class PhotoService {
   async getPictureForClothes(){
     let rawPicture = await this.takePicture();
     this.photo = await this.convertPictureToBlob(rawPicture)
-    //let url = await this.uploadPictureToSotrage(blobPicture);
-    //return url;
   }
 
   async takePicture() {
@@ -56,7 +54,6 @@ export class PhotoService {
   }
 
   async uploadPictureToSotrage(){
-    this.blobService.init();
     let url = await this.blobService.uploadPhoto(this.photo);
     return url;
   }

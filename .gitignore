@@ -28,7 +28,6 @@ log.txt
 .env.*
 .env.local
 **/environment.js
-**/environment
 **/environment.ts
 
 # Ionic

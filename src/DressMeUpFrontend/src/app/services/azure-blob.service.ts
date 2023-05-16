@@ -15,7 +15,7 @@ export class AzureBlobService {
   container : ContainerClient;
 
   constructor() { 
-    
+    this.init();
   }
 
   init() {

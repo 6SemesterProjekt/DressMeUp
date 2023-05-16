@@ -26,29 +26,19 @@ export class CreateClothesComponent implements OnInit {
     public toastController: ToastController,
     private clothesService: ClothesService,
     public photoService: PhotoService,
+    public actionSheetController: ActionSheetController) {
 
-    public actionSheetController: ActionSheetController
-  ) {
-    this.postForm = this.formBuilder.group({
-      clothesType: ["", Validators.required],
-      color: ["", Validators.required],
-      fabric: ["", Validators.required],
-      seasons: ["", Validators.required],
-      filterTags: ["", Validators.required],
+      this.postForm = this.formBuilder.group({
+      clothesType: [null, Validators.required],
+      color: [null, Validators.required],
+      fabric: [null, Validators.required],
+      seasons: [null, Validators.required],
+      filterTags: [null, Validators.required],
       brand: ["", [Validators.required, Validators.minLength(2)]],
       image: [""],
       name: ["", Validators.required],
     });
   }
-
-  /*   "clothesType": 1, 
-    "color": "ffffff",
-    "fabric": "uld",
-    "seasons": "Vinter",
-    "filterTags": "T-shirt",
-    "brand": "Nike",
-    "image": "img.png",
-    "name": "sorte sko" */
 
   ngOnInit() {}
 
