@@ -15,6 +15,7 @@ log.txt
 # Configurations
 **/*.config.js
 
+
 # Compodoc
 **/documentation
 
@@ -27,7 +28,7 @@ log.txt
 .env.*
 .env.local
 **/environment.js
-**/environment
+**/environment.ts
 
 # Ionic
 /.ionic
@@ -84,3 +85,4 @@ testem.log
 Thumbs.db
 
 src/DressMeUpApi/app/config/db.config.js
+src/DressMeUpFrontend/src/environments/environment.ts
