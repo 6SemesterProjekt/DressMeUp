@@ -17,6 +17,7 @@ require("./app/routes/colors.routes")(app);
 require("./app/routes/fabrics.routes")(app);
 require("./app/routes/seasons.routes")(app);
 require("./app/routes/filterTags.routes")(app);
+require("./app/routes/users.routes")(app);
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to DressMeUp API" });
