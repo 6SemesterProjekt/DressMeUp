@@ -24,9 +24,33 @@ exports.create = (req, res) => {
 exports.getUserById = (req, res) => {
     const userId = req.params.id;
     
-    Users.findByPk(userId)
+    Users.findByPk(userId, {
+        include: { 
+            all: true, 
+            through: { attributes: [
+                'liked', 'disliked', 'saved'
+            ]} 
+        }
+    })
         .then(data => {
-            res.send(data);
+            let response = {
+                id: data.id,
+                email: data.email,
+                phoneNumber: data.phoneNumber,
+                fullName: data.fullName,
+                username: data.username,
+                createdAt: data.createdAt,
+                updatedAt: data.updatedAt,
+                clothes: data.clothes,
+                followers: [],
+                following: [],
+                admin: data.admin,
+                likedOutfits: data.outfits.filter(o=>o.UserOutfit.liked),
+                dislikedOutfits: data.outfits.filter(o=>o.UserOutfit.disliked),
+                savedOutfits: data.outfits.filter(o=>o.UserOutfit.saved),
+            }
+
+            res.send(response);
         }
         )
         .catch(err => {
@@ -38,7 +62,12 @@ exports.getUserById = (req, res) => {
 };
 
 exports.getAllUsers = (req, res) => {
-    Users.findAll()
+    Users.findAll({
+        include: { 
+            all: true, 
+            through: { attributes: []} 
+        }
+    })
     .then(data => {
         res.send(data);
     })

@@ -19,13 +19,14 @@ module.exports = (sequelize, Sequelize) => {
       as: 'outfits',
       through: 'clothesOutfits', 
       timestamps: false, 
-      onDelete: 'SET NULL', 
-      foreignKey: { allowNull: true } 
+      onDelete: 'CASCADE', 
+      foreignKey: { name: 'ClothesId', allowNull: true } 
     });
     Clothes.belongsToMany(models.colors, { as: 'colors', through: 'clothesColors', timestamps: false, onDelete: 'CASCADE' });
     Clothes.belongsToMany(models.fabrics, { as: 'fabrics', through: 'clothesFabrics', timestamps: false, onDelete: 'CASCADE' });
     Clothes.belongsToMany(models.seasons, { as: 'seasons', through: 'clothesSeasons', timestamps: false, onDelete: 'CASCADE' });
     Clothes.belongsToMany(models.filterTags, { as: 'filterTags', through: 'clothesFilterTags', timestamps: false, onDelete: 'CASCADE' });
+    Clothes.belongsTo(models.users, {foreignKey: 'userId' });
   }
 
   return Clothes;

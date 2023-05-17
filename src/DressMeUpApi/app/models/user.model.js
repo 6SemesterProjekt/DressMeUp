@@ -1,6 +1,3 @@
-import Clothes from "./clothes.model";
-import Outfit from "./outfit.model";
-
 module.exports = (sequelize, Sequelize) => {
 
     const User = sequelize.define("User", {
@@ -47,76 +44,21 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.BOOLEAN,
             allowNull: false,
             defaultValue: false
-        },
-        
-        createdAt: {
-            type: Sequelize.DATE,
-            allowNull: false,
-            defaultValue: Sequelize.NOW
-        },
-        updatedAt: {
-            type: Sequelize.DATE,
-            allowNull: false,
-            defaultValue: Sequelize.NOW
-        },
-
-        clothes: {
-            type: Sequelize.ARRAY(Sequelize.INTEGER),
-            allowNull: true,
-            references: {
-                model: Clothes,
-                key: 'id'
-            }
-        },
-        outfits: {
-            type: Sequelize.ARRAY(Sequelize.INTEGER),
-            allowNull: true,
-            references: {
-                model: Outfit,
-                key: 'id'
-            }
-        },
-        followers: {
-            type: Sequelize.ARRAY(Sequelize.INTEGER),
-            allowNull: true,
-            references: {
-                model: User,
-                key: 'id'
-            }
-        },
-        following: {
-            type: Sequelize.ARRAY(Sequelize.INTEGER),
-            allowNull: true,
-            references: {
-                model: User,
-                key: 'id'
-            }
-        },
-        likedOutfits: {
-            type: Sequelize.ARRAY(Sequelize.INTEGER),
-            allowNull: true,
-            references: {
-                model: Outfit,
-                key: 'id'
-            }
-        },
-        dislikedOutfits: {
-            type: Sequelize.ARRAY(Sequelize.INTEGER),
-            allowNull: true,
-            references: {
-                model: Outfit,
-                key: 'id'
-            }
-        },
-        savedOutfits: {
-            type: Sequelize.ARRAY(Sequelize.INTEGER),
-            allowNull: true,
-            references: {
-                model: Outfit,
-                key: 'id'
-            }
         }
     });
+
+    User.associate = function(models) {
+        User.hasMany(models.clothes, { onDelete: 'CASCADE'});
+    }
+
+    User.associate = function(models) {
+        User.belongsToMany(models.outfits, { 
+          as: 'outfits',
+          through: models.userOutfits, 
+          onDelete: 'CASCADE',
+          foreignKey: 'userId'
+        });
+    }
 
     return User;
 };
