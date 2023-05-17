@@ -42,10 +42,24 @@ exports.getAllClothes = (req, res) => {
 
     Clothes.findAll({ 
         where: condition, 
-        include: { 
-            all: true, 
+        include: [{ 
+            model: db.seasons, 
+            as: 'seasons',
             through: { attributes: []} 
-        }
+        },
+        { 
+            model: db.colors, 
+            as: 'colors',
+            through: { attributes: []} 
+        },{ 
+            model: db.filterTags, 
+            as: 'filterTags',
+            through: { attributes: []} 
+        },{ 
+            model: db.fabrics, 
+            as: 'fabrics',
+            through: { attributes: []} 
+        }]
     })
     .then(data => {
         res.send(data);
@@ -62,17 +76,31 @@ exports.getClothesById = (req, res) => {
     const id = req.params.id;
 
     Clothes.findByPk(id, {
-        include: { 
-            all: true, 
+        include: [{ 
+            model: db.seasons, 
+            as: 'seasons',
             through: { attributes: []} 
-        }
+        },
+        { 
+            model: db.colors, 
+            as: 'colors',
+            through: { attributes: []} 
+        },{ 
+            model: db.filterTags, 
+            as: 'filterTags',
+            through: { attributes: []} 
+        },{ 
+            model: db.fabrics, 
+            as: 'fabrics',
+            through: { attributes: []} 
+        }]
     })
     .then(data => {
         res.send(data);
     })
     .catch(err => {
         res.status(500).send({
-            message: "Error retrieving clothes with id=" + id
+            message: "Error retrieving clothes with id=" + id + ": " + err
         });
     });
 };

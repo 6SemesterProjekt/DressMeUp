@@ -7,7 +7,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING
     },
     image: {
-      type: Sequelize.BLOB
+      type: Sequelize.STRING
     },
     name: {
       type: Sequelize.STRING
@@ -26,7 +26,8 @@ module.exports = (sequelize, Sequelize) => {
     Clothes.belongsToMany(models.fabrics, { as: 'fabrics', through: 'clothesFabrics', timestamps: false, onDelete: 'CASCADE' });
     Clothes.belongsToMany(models.seasons, { as: 'seasons', through: 'clothesSeasons', timestamps: false, onDelete: 'CASCADE' });
     Clothes.belongsToMany(models.filterTags, { as: 'filterTags', through: 'clothesFilterTags', timestamps: false, onDelete: 'CASCADE' });
-    Clothes.belongsTo(models.users, {foreignKey: 'userId' });
+
+    Clothes.belongsTo(models.users);
   }
 
   return Clothes;
