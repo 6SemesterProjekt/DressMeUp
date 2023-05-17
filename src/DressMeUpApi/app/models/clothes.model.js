@@ -8,7 +8,6 @@ module.exports = (sequelize, Sequelize) => {
     },
     image: {
       type: Sequelize.STRING
-      type: Sequelize.STRING
     },
     name: {
       type: Sequelize.STRING
