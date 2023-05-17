@@ -14,6 +14,7 @@ module.exports = (sequelize, Sequelize) => {
                     throw new Error("Email must be provided");
                   }
                 },
+            },
             unique: true
         },
         
@@ -26,6 +27,7 @@ module.exports = (sequelize, Sequelize) => {
                     throw new Error("Phone number must be provided");
                   }
                 },
+            },
             unique: true
         },
         password: {
