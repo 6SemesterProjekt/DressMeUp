@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { map, Observable, catchError } from "rxjs";
 import { IClothes } from "../interfaces/clothes";
+import { PhotoService } from "../services/photo.service";
 
 @Injectable({
   providedIn: "root",
@@ -55,15 +56,17 @@ export class ClothesService {
 
   // create new cloth object from api
   createNewItem(newCloth: IClothes) {
+    console.log('Service')
+    console.log(newCloth)
     const cloth = {
-      ClothesType: newCloth.ClothesType,
-      Color: newCloth.Color,
-      Fabric: newCloth.Fabric,
-      Seasons: newCloth.Seasons,
-      FilterTags: newCloth.FilterTags,
-      Brand: newCloth.Brand,
-      Image: newCloth.Image,
-      Name: newCloth.Name,
+      clothesType: newCloth.ClothesType,
+      colors: newCloth.Color,
+      fabrics: newCloth.Fabric,
+      seasons: newCloth.Seasons,
+      filterTags: newCloth.FilterTags,
+      brand: newCloth.Brand,
+      image: newCloth.Image,
+      name: newCloth.Name,
     };
 
     return this.http.post<IClothes>(this.baseUrl, cloth);

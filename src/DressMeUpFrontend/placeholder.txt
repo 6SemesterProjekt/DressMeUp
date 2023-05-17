@@ -1,2 +1,0 @@
-Placeholder file for GitHub to track the directory. 
-Can be deleted once folder has content.

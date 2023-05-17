@@ -1,0 +1,26 @@
+.main-header {
+  background-color: var(--creme);
+  z-index: 15;
+
+  ion-toolbar {
+    --background: var(--creme)
+  }
+
+  ion-col {
+    padding: 0;
+  }
+  
+  img {
+    height: 40px;
+    padding-left: 8px;
+  }
+
+  #title-col {
+    text-align: center;
+    font-size: 20px;
+  }
+}
+
+
+
+

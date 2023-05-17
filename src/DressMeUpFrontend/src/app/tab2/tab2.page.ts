@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { OutfitsService } from '../services/outfits.service';
+import { IOutfit } from '../interfaces/outfit';
+import { OutfitComponent } from '../components/outfit/outfit.component';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +10,21 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  outfits : IOutfit[] = [];
+
+  constructor(private outfitService:OutfitsService) {}
+
+  async ngOnInit(){
+    console.log('getting data')
+    this.outfitService
+      .getAllOutfits()
+      .subscribe(
+        data=>this.outfits = data
+      )
+  }
+
+  onOutfitCardTapped(outfit : IOutfit){
+    console.log(outfit)
+  }
 
 }

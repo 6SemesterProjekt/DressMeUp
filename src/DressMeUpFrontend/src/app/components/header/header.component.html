@@ -1,0 +1,18 @@
+<ion-header class="main-header">
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="2">        
+          <img alt="logo" height="40" src="../../../assets/logo.png" (click)="onLogoClicked()">
+      </ion-col>
+      <ion-col size="8" id="title-col">
+        {{title | uppercase}}
+      </ion-col>
+      <ion-col size="2">
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
+</ion-header>
+<ng-content></ng-content>
+
+  
+

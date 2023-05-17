@@ -1,33 +1,49 @@
-import { Component } from '@angular/core';
-import { MyClothesComponent } from '../components/my-clothes-component/my-clothes-component/my-clothes-component.component';
-import { ClothesService } from '../services/clothes.service';
-import { Clothes } from '../interfaces/clothes';
+import { Component } from "@angular/core";
+import { MyClothesComponent } from "../components/my-clothes-component/my-clothes-component/my-clothes-component.component";
+import { ClothesService } from "../services/clothes.service";
+import { IClothes } from "../interfaces/clothes";
+import { PhotoService, UserPhoto } from "../services/photo.service";
+import { CreateClothesComponent } from "../components/create-clothes/create-clothes.component";
+import { ModalController } from "@ionic/angular";
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss'],
+  selector: "app-tab1",
+  templateUrl: "tab1.page.html",
+  styleUrls: ["tab1.page.scss"],
 })
 export class Tab1Page {
+  clothes: IClothes[] = [];
 
-  clothes : Clothes[] = [];
+  constructor(
+    private modalController: ModalController,
+    private clothesService: ClothesService,
+    public photoService: PhotoService
+  ) {}
 
-  constructor(private clothesService:ClothesService) {}
-
-  async ngOnInit(){
-    console.log('getting data')
+  async ngOnInit() {
+    console.log("getting data");
     this.clothesService
       .getAllclothes()
-      .subscribe(
-        data=>this.clothes = data
-      )
+      .subscribe((data) => (this.clothes = data));
   }
 
   handleInput(event) {
     const query = event.target.value.toLowerCase();
   }
 
-  onClothesCardTapped(clothes : Clothes){
-    console.log(clothes)
+  onClothesCardTapped(clothes: IClothes) {
+    console.log(clothes);
+  }
+
+  async openPostForm() {
+    const modal = await this.modalController.create({
+      component: CreateClothesComponent,
+    });
+    await modal.present();
+    await modal.onDidDismiss().then(output=>{
+      this.clothesService
+      .getAllclothes()
+      .subscribe((data) => (this.clothes = data));
+    });
   }
 }

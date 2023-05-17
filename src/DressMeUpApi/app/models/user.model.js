@@ -7,22 +7,21 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: true,
             validate: {
                 customValidator(value) {
-                  if (value === null && this.phoneNumber === null) {
-                    throw new Error("Email must be provided");
-                  }
+                    if (value === null && this.phoneNumber === null) {
+                        throw new Error("Email must be provided");
+                    }
                 },
             },
             unique: true
         },
-        
         phoneNumber: {
             type: Sequelize.STRING,
             allowNull: true,
             validate: {
                 customValidator(value) {
-                  if (value === null && this.email === null) {
-                    throw new Error("Phone number must be provided");
-                  }
+                    if (value === null && this.email === null) {
+                        throw new Error("Phone number must be provided");
+                    }
                 },
             },
             unique: true

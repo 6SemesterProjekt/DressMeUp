@@ -1,15 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> DressMeUp </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="Generator">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+</app-header>
+
+<ion-content [fullscreen]="false">
+  <ion-grid [fixed]="true">
+    <ion-row>
+      <ion-col class="ion-no-padding" size="1" *ngFor="let outfit of outfits">
+        <outfit [outfits]="outfit" (click)="onOutfitCardTapped(outfit)"></outfit>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <app-explore-container name="DressMeUp">
     <ion-searchbar></ion-searchbar>
