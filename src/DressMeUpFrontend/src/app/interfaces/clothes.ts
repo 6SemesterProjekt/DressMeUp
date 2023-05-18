@@ -1,5 +1,5 @@
 export interface IClothes {
-  ClothesType: number;
+  ClothesType: ClothesType;
   Color: number[];
   Fabric: number[];
   Seasons: number[];
@@ -7,4 +7,8 @@ export interface IClothes {
   Brand: string;
   Image: string;
   Name: string;
+}
+
+export enum ClothesType {
+  Accessoires = 1, Overtøj, Overdele, Underdele, Sko
 }

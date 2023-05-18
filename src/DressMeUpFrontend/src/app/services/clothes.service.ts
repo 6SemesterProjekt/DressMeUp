@@ -19,10 +19,10 @@ export class ClothesService {
         return response.map(
           (i) =>
             ({
-              ClothesType: i.ClothesType,
-              Color: i.Color,
-              Fabric: i.Fabric,
-              Seasons: i.Seasons,
+              ClothesType: i.clothesType,
+              Color: i.color,
+              Fabric: i.fabric,
+              Seasons: i.seasons,
               FilterTags: i.filterTags,
               Brand: i.brand,
               Image: i.image,
@@ -40,10 +40,10 @@ export class ClothesService {
         return response.map(
           (i) =>
             ({
-              ClothesType: i.ClothesType,
-              Color: i.Color,
-              Fabric: i.Fabric,
-              Seasons: i.Seasons,
+              ClothesType: i.clothesType,
+              Color: i.color,
+              Fabric: i.fabric,
+              Seasons: i.seasons,
               FilterTags: i.filterTags,
               Brand: i.brand,
               Image: i.image,
@@ -56,8 +56,6 @@ export class ClothesService {
 
   // create new cloth object from api
   createNewItem(newCloth: IClothes) {
-    console.log('Service')
-    console.log(newCloth)
     const cloth = {
       clothesType: newCloth.ClothesType,
       colors: newCloth.Color,

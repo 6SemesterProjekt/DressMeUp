@@ -15,7 +15,7 @@ import { PhotoService, UserPhoto } from "src/app/services/photo.service";
   styleUrls: ["./create-clothes.component.scss"],
 })
 export class CreateClothesComponent implements OnInit {
-  @Output() formSubmit = new EventEmitter();
+  //@Output() formSubmit = new EventEmitter();
 
   postForm: FormGroup;
   photo: string;
@@ -28,13 +28,13 @@ export class CreateClothesComponent implements OnInit {
     public photoService: PhotoService,
     public actionSheetController: ActionSheetController) {
 
-      this.postForm = this.formBuilder.group({
+    this.postForm = this.formBuilder.group({
       clothesType: [null, Validators.required],
-      color: [null, Validators.required],
-      fabric: [null, Validators.required],
-      seasons: [null, Validators.required],
-      filterTags: [null, Validators.required],
-      brand: ["", [Validators.required, Validators.minLength(2)]],
+      color: [null],
+      fabric: [null],
+      seasons: [null],
+      filterTags: [null],
+      brand: [""],
       image: [""],
       name: ["", Validators.required],
     });
