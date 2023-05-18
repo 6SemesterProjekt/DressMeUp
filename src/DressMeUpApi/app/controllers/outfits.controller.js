@@ -99,4 +99,6 @@ exports.updateOutfit = (req, res) => {
           message: error.message || "An error occured during update."
         })
     })
+
+    // TODO: Implement methods for like, dislike, save
 };

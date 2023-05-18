@@ -50,13 +50,26 @@ exports.getAllClothes = (req, res) => {
     var condition = req.query.clothesType ?
         { clothesType: req.query.clothesType } : null;
 
-
-    Clothes.findAll({
-        where: condition,
-        include: {
-            all: true,
-            through: { attributes: [] }
-        }
+    Clothes.findAll({ 
+        where: condition, 
+        include: [{ 
+            model: db.seasons, 
+            as: 'seasons',
+            through: { attributes: []} 
+        },
+        { 
+            model: db.colors, 
+            as: 'colors',
+            through: { attributes: []} 
+        },{ 
+            model: db.filterTags, 
+            as: 'filterTags',
+            through: { attributes: []} 
+        },{ 
+            model: db.fabrics, 
+            as: 'fabrics',
+            through: { attributes: []} 
+        }]
     })
         .then(data => {
             /* var bufferBase64 = new Buffer(req.image.blob, 'binary').toString('base64');
@@ -86,19 +99,33 @@ exports.getClothesById = (req, res) => {
     const id = req.params.id;
 
     Clothes.findByPk(id, {
-        include: {
-            all: true,
-            through: { attributes: [] }
-        }
+        include: [{ 
+            model: db.seasons, 
+            as: 'seasons',
+            through: { attributes: []} 
+        },
+        { 
+            model: db.colors, 
+            as: 'colors',
+            through: { attributes: []} 
+        },{ 
+            model: db.filterTags, 
+            as: 'filterTags',
+            through: { attributes: []} 
+        },{ 
+            model: db.fabrics, 
+            as: 'fabrics',
+            through: { attributes: []} 
+        }]
     })
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Error retrieving clothes with id=" + id
-            });
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Error retrieving clothes with id=" + id + ": " + err
         });
+    });
 };
 
 exports.deleteClothes = (req, res) => {

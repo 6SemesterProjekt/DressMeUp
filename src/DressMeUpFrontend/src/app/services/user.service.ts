@@ -8,7 +8,7 @@ import { IUser } from '../interfaces/user';
 })
 export class UserService {
 
-  baseUrl: string = environment.apiBaseUrl + "/users";
+  baseUrl: string = environment.apiBaseUrl + "/users/";
 
   constructor(private http:HttpClient) { }
 
