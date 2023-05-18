@@ -12,6 +12,11 @@ import { ModalController } from "@ionic/angular";
   styleUrls: ["tab1.page.scss"],
 })
 export class Tab1Page {
+  filterOptions = ['Alle', 'Overdel', 'Underdel', 'T-shirt', 'Hatte', 'Sko'];
+  selectedFilter: string;
+
+
+
   clothes: IClothes[] = [];
   searchCriteria : string = '';
 
@@ -19,7 +24,7 @@ export class Tab1Page {
     private modalController: ModalController,
     private clothesService: ClothesService,
     public photoService: PhotoService
-  ) {}
+  ) { }
 
   async ngOnInit() {
     this.clothesService
@@ -27,12 +32,18 @@ export class Tab1Page {
       .subscribe((data) => (this.clothes = data));
   }
 
+
   onSearchBarChanged(event) {
     this.searchCriteria = event.target.value.toLowerCase()
   }
 
   getClothes(){
     return this.clothes.filter(c=>c.Name.toLocaleLowerCase().includes(this.searchCriteria));
+  }
+
+  applyFilter() {
+    console.log('Selected filter:', this.selectedFilter);
+    // Perform filtering or any other actions based on the selected filter
   }
 
   onClothesCardTapped(clothes: IClothes) {
@@ -44,10 +55,10 @@ export class Tab1Page {
       component: CreateClothesComponent,
     });
     await modal.present();
-    await modal.onDidDismiss().then(output=>{
+    await modal.onDidDismiss().then(output => {
       this.clothesService
-      .getAllclothes()
-      .subscribe((data) => (this.clothes = data));
+        .getAllclothes()
+        .subscribe((data) => (this.clothes = data));
     });
   }
 }

@@ -23,11 +23,11 @@ export class PhotoService {
   private platform: Platform;
   base64photo: string;
 
-  constructor(/* private http: HttpClient, */ platform: Platform, private blobService : AzureBlobService) {
+  constructor(/* private http: HttpClient, */ platform: Platform, private blobService: AzureBlobService) {
     this.platform = platform;
   }
 
-  async getPictureForClothes(){
+  async getPictureForClothes() {
     let rawPicture = await this.takePicture();
     this.photo = await this.convertPictureToBlob(rawPicture)
   }
@@ -41,30 +41,30 @@ export class PhotoService {
     return capturedPhoto;
   }
 
-  async convertPictureToBlob(photo : Photo){
+  async convertPictureToBlob(photo: Photo) {
     var byteString = atob(photo.base64String);
 
     var ab = new ArrayBuffer(byteString.length);
     var ia = new Uint8Array(ab);
     for (var i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
+      ia[i] = byteString.charCodeAt(i);
     }
 
-    return new Blob([ab], {type: 'image/jpeg'});
+    return new Blob([ab], { type: 'image/jpeg' });
   }
 
-  async uploadPictureToSotrage(){
+  async uploadPictureToSotrage() {
     let url = await this.blobService.uploadPhoto(this.photo);
     return url;
   }
 
 
 
-    /*   makeImageToBlob(base64Image: string) {
-      const buffer = Buffer.from(base64Image, 'base64');
-      const blob = new Blob([buffer]);
-      return blob;
-    } */
+  /*   makeImageToBlob(base64Image: string) {
+    const buffer = Buffer.from(base64Image, 'base64');
+    const blob = new Blob([buffer]);
+    return blob;
+  } */
   /*  uploadImage(base64Image: string) {
      const apiUrl = environment.apiBaseUrl +'/upload-image'; // Replace with your API endpoint
    
@@ -83,11 +83,7 @@ export class PhotoService {
       quality: 100
     });
 
-    this.photos.unshift({
-      filepath: "soon...",
-      webviewPath: capturedPhoto.webPath
 
-    });
     //console.log(capturedPhoto.webPath);
     const response = await fetch(capturedPhoto.webPath!);
     const blob = await response.blob();
@@ -95,6 +91,13 @@ export class PhotoService {
     let f = await this.readAsBase64(capturedPhoto);
     console.log(f)
     this.base64photo = f;
+
+    this.photos.unshift({
+      filepath: "soon...",
+      webviewPath: capturedPhoto.webPath.toString()
+
+    });
+
     //return blob;
     return capturedPhoto.webPath.toString();
   }
