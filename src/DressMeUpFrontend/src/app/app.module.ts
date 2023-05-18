@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -7,11 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateClothesComponent } from './components/create-clothes/create-clothes.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { OutfitClothComponent } from './components/outfit-cloth/outfit-cloth.component';
+import 'hammerjs';
 @NgModule({
-  declarations: [AppComponent, CreateClothesComponent],
+  declarations: [AppComponent, CreateClothesComponent, OutfitClothComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: HAMMER_GESTURE_CONFIG, useClass: HammerGestureConfig }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

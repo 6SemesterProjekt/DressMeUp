@@ -1,0 +1,28 @@
+.swipable-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.left {
+    left: 1rem;
+}
+
+.right {
+    right: 1rem;
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease-in-out;
+}

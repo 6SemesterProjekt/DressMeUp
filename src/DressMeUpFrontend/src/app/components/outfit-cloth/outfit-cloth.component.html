@@ -1,0 +1,26 @@
+<!-- <div class="container">
+  <ion-fab horizontal="start" slot="fixed">
+    <ion-fab-button (click)="onSwipeLeft()">
+      <ion-icon name="left-arrow" style="color:#ffffff"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="container">
+    <div class="arrow left-arrow" (click)="onSwipeLeft()"></div>
+    <div class="image-container" (swiperight)="onSwipeRight()" (swipeleft)="onSwipeLeft()">
+      <img [src]="imagePaths[currentIndex]" alt="Object Image">
+    </div>
+    <div class="arrow right-arrow" (click)="onSwipeRight()"></div>
+  </div>
+
+  <ion-fab horizontal="end" slot="fixed">
+    <ion-fab-button (click)="onSwipeRight()">
+      <ion-icon name="right-arrow" style="color:#ffffff"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</div> -->
+<div class="swipable-container" (swipeleft)="swipeLeft()" (swiperight)="swipeRight()">
+  <div class="arrow left" (click)="swipeLeft()">◀</div>
+  <img class="image" [src]="currentImageSrc" alt="Image">
+  <div class="arrow right" (click)="swipeRight()">▶</div>
+</div>
