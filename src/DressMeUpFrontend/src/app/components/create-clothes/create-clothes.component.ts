@@ -65,6 +65,7 @@ export class CreateClothesComponent implements OnInit {
     });
 
     // close the modal if succes
+    this.presentToast();
     this.modalController.dismiss(null, "succes");
   }
 
