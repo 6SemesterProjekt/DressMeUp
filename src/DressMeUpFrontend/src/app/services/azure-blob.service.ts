@@ -25,6 +25,8 @@ export class AzureBlobService {
   }
 
   async uploadPhoto(blob : Blob) : Promise<string> {
+    if (blob == null) { return "https://www.creativefabrica.com/wp-content/uploads/2018/11/Clothes-icon-by-rudezstudio-4-580x386.jpg"; }
+
     let newBlobName = `photo${new Date().getTime()}.jpg`;
     await this.container.uploadBlockBlob(newBlobName, blob, blob.size);
 

@@ -8,6 +8,14 @@
     (ionInput)="onSearchBarChanged($event)"
    ></ion-searchbar>
 
+   <div class="scrollDiv" (ngModel)="selectedFilter">
+    <div style="margin-left: 15px;" class="filter-options" *ngFor="let option of filterOptions"
+      (click)="selectedFilter = option">
+      {{ option }}
+
+    </div>
+  </div>
+
   </ion-header>
 </app-header>
 

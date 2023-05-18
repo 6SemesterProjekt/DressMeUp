@@ -5,6 +5,7 @@ import { IClothes } from "../interfaces/clothes";
 import { PhotoService, UserPhoto } from "../services/photo.service";
 import { CreateClothesComponent } from "../components/create-clothes/create-clothes.component";
 import { ModalController } from "@ionic/angular";
+import { ClothesType } from "../interfaces/clothes";
 
 @Component({
   selector: "app-tab1",
@@ -12,13 +13,10 @@ import { ModalController } from "@ionic/angular";
   styleUrls: ["tab1.page.scss"],
 })
 export class Tab1Page {
-  filterOptions = ['Alle', 'Overdel', 'Underdel', 'T-shirt', 'Hatte', 'Sko'];
-  selectedFilter: string;
-
-
-
-  clothes: IClothes[] = [];
+  filterOptions = ['Alle', 'Overtøj', 'Overdele', 'Underdele', 'Accessoires', 'Sko'];
   searchCriteria : string = '';
+  selectedFilter: string = 'Alle';
+  clothes: IClothes[] = [];  
 
   constructor(
     private modalController: ModalController,
@@ -32,18 +30,16 @@ export class Tab1Page {
       .subscribe((data) => (this.clothes = data));
   }
 
-
   onSearchBarChanged(event) {
     this.searchCriteria = event.target.value.toLowerCase()
   }
 
   getClothes(){
-    return this.clothes.filter(c=>c.Name.toLocaleLowerCase().includes(this.searchCriteria));
-  }
-
-  applyFilter() {
-    console.log('Selected filter:', this.selectedFilter);
-    // Perform filtering or any other actions based on the selected filter
+    return this.clothes
+    .filter(c=>c.Name.toLocaleLowerCase().includes(this.searchCriteria))
+    .filter(c=> 
+      this.selectedFilter != 'Alle' ? c.ClothesType == ClothesType[this.selectedFilter] : c
+    );
   }
 
   onClothesCardTapped(clothes: IClothes) {

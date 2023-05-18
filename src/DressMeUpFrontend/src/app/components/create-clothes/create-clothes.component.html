@@ -21,6 +21,16 @@
         </div>
       </ion-item>
 
+      <ion-item>
+        <ion-select label="Type" placeholder="vælg en type" formControlName="clothesType">
+          <ion-select-option [value]="1">Accessoires</ion-select-option>
+          <ion-select-option [value]="2">Overtøj</ion-select-option>
+          <ion-select-option [value]="3">Overdele</ion-select-option>
+          <ion-select-option [value]="4">Underdele</ion-select-option>
+          <ion-select-option [value]="5">Sko</ion-select-option>
+        </ion-select>
+      </ion-item>
+
       <!--  <ion-item>
         <ion-label position="floating">Sæsoner</ion-label>
         <ion-input type="text" formControlName="seasons"></ion-input>
@@ -117,14 +127,7 @@
         </ion-select>
       </ion-item>
 
-      <ion-item>
-        <ion-select label="Type" placeholder="vælg en type" formControlName="clothesType">
-          <ion-select-option [value]="1">Hoved</ion-select-option>
-          <ion-select-option [value]="2">Overdele</ion-select-option>
-          <ion-select-option [value]="3">Underdele</ion-select-option>
-          <ion-select-option [value]="4">Sko</ion-select-option>
-        </ion-select>
-      </ion-item>
+
 
       <ion-item>
         <ion-grid>
