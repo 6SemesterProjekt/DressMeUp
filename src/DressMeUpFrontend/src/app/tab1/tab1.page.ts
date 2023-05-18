@@ -18,6 +18,7 @@ export class Tab1Page {
 
 
   clothes: IClothes[] = [];
+  searchCriteria : string = '';
 
   constructor(
     private modalController: ModalController,
@@ -26,24 +27,23 @@ export class Tab1Page {
   ) { }
 
   async ngOnInit() {
-    console.log("getting data");
     this.clothesService
       .getAllclothes()
       .subscribe((data) => (this.clothes = data));
   }
 
+
+  onSearchBarChanged(event) {
+    this.searchCriteria = event.target.value.toLowerCase()
+  }
+
+  getClothes(){
+    return this.clothes.filter(c=>c.Name.toLocaleLowerCase().includes(this.searchCriteria));
+  }
+
   applyFilter() {
     console.log('Selected filter:', this.selectedFilter);
     // Perform filtering or any other actions based on the selected filter
-  }
-
-
-
-
-
-
-  handleInput(event) {
-    const query = event.target.value.toLowerCase();
   }
 
   onClothesCardTapped(clothes: IClothes) {

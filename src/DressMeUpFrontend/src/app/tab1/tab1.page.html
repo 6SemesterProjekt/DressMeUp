@@ -1,33 +1,26 @@
 <app-header title="Mit tøj" style="font-weight: bold;">
   <ion-header>
-    <ion-searchbar animated="true" placeholder="Søg efter tøj..." [debounce]="1000"
-      (ionInput)="handleInput($event)"></ion-searchbar>
 
-
-    <!--the scrollable div that contains the filtertags. Not done yet. Also see the scss. -->
-    <div class="scrollDiv" (ngModel)="selectedFilter">
-      <div style="margin-left: 15px;" class="filter-options" *ngFor="let option of filterOptions"
-        (click)="selectedFilter = option">
-        {{ option }}
-
-      </div>
-    </div>
-
-
-
+  <ion-searchbar
+    animated="true"
+    placeholder="Søg efter tøj..."
+    [debounce]="500"
+    (ionInput)="onSearchBarChanged($event)"
+   ></ion-searchbar>
 
   </ion-header>
 </app-header>
 
 <ion-content [fullscreen]="false">
 
-
-
-
   <ion-grid [fixed]="true">
     <ion-row>
-      <ion-col class="ion-no-padding" size="1" *ngFor="let piece of clothes">
-        <my-clothes-component [clothes]="piece" (click)="onClothesCardTapped(piece)"></my-clothes-component>
+      <ion-col class="ion-no-padding" size="1" *ngFor="let piece of getClothes()">
+        <my-clothes-component
+          [clothes]="piece"
+          (click)="onClothesCardTapped(piece)"
+        ></my-clothes-component>
+
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -37,6 +30,5 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 
 </ion-content>
