@@ -1,33 +1,92 @@
-import { Component, ViewChild, ElementRef, OnInit, AfterViewInit, NgZone, ViewChildren } from '@angular/core';
-import { GestureController, IonCard, IonicModule } from '@ionic/angular';
-import { NgModule } from '@angular/core';
-import * as Hammer from 'hammerjs';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  QueryList,
+  Renderer2,
+  VERSION,
+  ViewChild,
+  ViewChildren,
+} from "@angular/core";
+import {
+  GestureController,
+  Gesture,
+  GestureDetail,
+  IonCard,
+} from "@ionic/angular";
 
 @Component({
-  selector: 'app-outfit-cloth',
-  templateUrl: './outfit-cloth.component.html',
-  styleUrls: ['./outfit-cloth.component.scss'],
+  selector: "app-outfit-cloth",
+  templateUrl: "./outfit-cloth.component.html",
+  styleUrls: ["./outfit-cloth.component.scss"],
 })
-export class OutfitClothComponent {
-
-  @ViewChild('container', { static: true }) container: ElementRef;
+export class OutfitClothComponent implements AfterViewInit {
+  @ViewChildren(IonCard, { read: ElementRef }) cards!: ElementRef;
 
   images: string[] = [
-    '../../assets/Images/png/1-jacket.png',
-    '../../assets/Images/png/2-jacket.png',
-    '../../assets/Images/png/3-jacket.png'];
+    "../../assets/Images/png/1-jacket.png",
+    "../../assets/Images/png/2-jacket.png",
+    "../../assets/Images/png/3-jacket.png",
+  ];
+  currentImage: string = this.images[0];
+  gesture: Gesture;
 
-  currentImageIndex = 0;
-  currentImageSrc: string = this.images[this.currentImageIndex];
+  constructor(private gestureCtrl: GestureController) {}
 
-  swipeLeft() {
-    this.currentImageIndex = (this.currentImageIndex - 1 + this.images.length) % this.images.length;
-    this.currentImageSrc = this.images[this.currentImageIndex];
+  ngAfterViewInit() {
+    this.createGesture();
   }
 
-  swipeRight() {
-    this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
-    this.currentImageSrc = this.images[this.currentImageIndex];
+  createGesture() {
+    this.gesture = this.gestureCtrl.create({
+      el: document.querySelector(".container"),
+      gestureName: "swipe",
+      direction: "x",
+      gesturePriority: 0,
+      threshold: 5,
+      onMove: (ev) => this.onSwipe(ev),
+    });
+    this.gesture.enable();
+  }
+
+  onSwipe(event: any) {
+    const deltaX = event.deltaX;
+    if (deltaX < -150) {
+      this.previousImage();
+    } else if (deltaX > 150) {
+      this.nextImage();
+    }
+  }
+
+  previousImage() {
+    const currentIndex = this.images.indexOf(this.currentImage);
+    const previousIndex =
+      (currentIndex - 1 + this.images.length) % this.images.length;
+    this.currentImage = this.images[previousIndex];
+  }
+
+  nextImage() {
+    const currentIndex = this.images.indexOf(this.currentImage);
+    const nextIndex = (currentIndex + 1) % this.images.length;
+    this.currentImage = this.images[nextIndex];
   }
 }
 
+/* previousImage() {
+    const currentIndex = this.images.indexOf(this.currentImage);
+    const previousIndex =
+      (currentIndex - 1 + this.images.length) % this.images.length;
+    this.currentImage = this.images[previousIndex];
+
+    console.log("currentIndex: " + this.currentImage);
+    console.log("We make the call for left image! (ideally)");
+  }
+
+  nextImage() {
+    const currentIndex = this.images.indexOf(this.currentImage);
+    const nextIndex = (currentIndex + 1) % this.images.length;
+    this.currentImage = this.images[nextIndex];
+    console.log("currentIndex: " + this.currentImage);
+    console.log("We make the call for right image! (ideally)");
+  } */

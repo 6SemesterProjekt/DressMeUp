@@ -19,8 +19,17 @@
   </ion-fab>
 
 </div> -->
-<div class="swipable-container" (swipeleft)="swipeLeft()" (swiperight)="swipeRight()">
-  <div class="arrow left" (click)="swipeLeft()">◀</div>
-  <img class="image" [src]="currentImageSrc" alt="Image">
-  <div class="arrow right" (click)="swipeRight()">▶</div>
+
+<div class="container" (swipe)="onSwipe($event)">
+  <ion-icon
+    name="arrow-back-outline"
+    class="arrow left"
+    (click)="previousImage()"
+  ></ion-icon>
+  <img [src]="currentImage" alt="Swipeable Image" />
+  <ion-icon
+    name="arrow-forward-outline"
+    class="arrow right"
+    (click)="nextImage()"
+  ></ion-icon>
 </div>
