@@ -1,10 +1,10 @@
 <app-header title="Mit tøj">
   <ion-header>
   <ion-searchbar
-  animated="true"
-   placeholder="Søg efter tøj..."
-   [debounce]="1000"
-   (ionInput)="handleInput($event)"
+    animated="true"
+    placeholder="Søg efter tøj..."
+    [debounce]="1000"
+    (ionInput)="onSearchBarChanged($event)"
    ></ion-searchbar>
   </ion-header>
 </app-header>
@@ -13,7 +13,7 @@
 
   <ion-grid [fixed]="true">
     <ion-row>
-      <ion-col class="ion-no-padding" size="1" *ngFor="let piece of clothes">
+      <ion-col class="ion-no-padding" size="1" *ngFor="let piece of getClothes()">
         <my-clothes-component
           [clothes]="piece"
           (click)="onClothesCardTapped(piece)"

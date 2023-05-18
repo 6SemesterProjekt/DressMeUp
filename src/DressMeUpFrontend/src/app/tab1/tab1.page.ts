@@ -13,6 +13,7 @@ import { ModalController } from "@ionic/angular";
 })
 export class Tab1Page {
   clothes: IClothes[] = [];
+  searchCriteria : string = '';
 
   constructor(
     private modalController: ModalController,
@@ -21,14 +22,17 @@ export class Tab1Page {
   ) {}
 
   async ngOnInit() {
-    console.log("getting data");
     this.clothesService
       .getAllclothes()
       .subscribe((data) => (this.clothes = data));
   }
 
-  handleInput(event) {
-    const query = event.target.value.toLowerCase();
+  onSearchBarChanged(event) {
+    this.searchCriteria = event.target.value.toLowerCase()
+  }
+
+  getClothes(){
+    return this.clothes.filter(c=>c.Name.toLocaleLowerCase().includes(this.searchCriteria));
   }
 
   onClothesCardTapped(clothes: IClothes) {
