@@ -20,16 +20,18 @@
 
 </div> -->
 
-<div class="container" (swipe)="onSwipe($event)">
+<div class="container">
   <ion-icon
     name="arrow-back-outline"
     class="arrow left"
-    (click)="previousImage()"
+    (click)="loadPreviousImage()"
+    #leftArrow
   ></ion-icon>
-  <img [src]="currentImage" alt="Swipeable Image" />
+  <img [src]="images[currentImageIndex]" #image />
   <ion-icon
     name="arrow-forward-outline"
     class="arrow right"
-    (click)="nextImage()"
+    (click)="loadNextImage()"
+    #rightArrow
   ></ion-icon>
 </div>

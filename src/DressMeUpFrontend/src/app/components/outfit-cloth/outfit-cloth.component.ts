@@ -1,75 +1,69 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostListener,
-  QueryList,
-  Renderer2,
-  VERSION,
-  ViewChild,
-  ViewChildren,
-} from "@angular/core";
-import {
-  GestureController,
-  Gesture,
-  GestureDetail,
-  IonCard,
-} from "@ionic/angular";
+import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
+import { GestureController } from "@ionic/angular";
 
 @Component({
   selector: "app-outfit-cloth",
   templateUrl: "./outfit-cloth.component.html",
   styleUrls: ["./outfit-cloth.component.scss"],
 })
-export class OutfitClothComponent implements AfterViewInit {
-  @ViewChildren(IonCard, { read: ElementRef }) cards!: ElementRef;
+export class OutfitClothComponent {
+  @ViewChild("image", { static: true, read: ElementRef }) image: ElementRef;
+  @ViewChild("leftArrow", { static: true, read: ElementRef })
+  leftArrow: ElementRef;
+  @ViewChild("rightArrow", { static: true, read: ElementRef })
+  rightArrow: ElementRef;
 
   images: string[] = [
     "../../assets/Images/png/1-jacket.png",
     "../../assets/Images/png/2-jacket.png",
     "../../assets/Images/png/3-jacket.png",
   ];
-  currentImage: string = this.images[0];
-  gesture: Gesture;
+  currentImageIndex: number = 0;
+  isSwiping: boolean = false;
 
   constructor(private gestureCtrl: GestureController) {}
 
   ngAfterViewInit() {
-    this.createGesture();
-  }
-
-  createGesture() {
-    this.gesture = this.gestureCtrl.create({
-      el: document.querySelector(".container"),
+    const gesture = this.gestureCtrl.create({
+      el: this.image.nativeElement,
       gestureName: "swipe",
-      direction: "x",
-      gesturePriority: 0,
-      threshold: 5,
-      onMove: (ev) => this.onSwipe(ev),
+      onStart: () => {
+        this.isSwiping = true;
+      },
+      onMove: (ev) => {
+        // Handle swipe movement if needed
+      },
+      onEnd: (ev) => {
+        this.isSwiping = false;
+        if (ev.deltaX > 0) {
+          this.loadPreviousImage();
+        } else {
+          this.loadNextImage();
+        }
+      },
     });
-    this.gesture.enable();
+    gesture.enable(true);
   }
 
-  onSwipe(event: any) {
-    const deltaX = event.deltaX;
-    if (deltaX < -150) {
-      this.previousImage();
-    } else if (deltaX > 150) {
-      this.nextImage();
+  loadPreviousImage() {
+    if (!this.isSwiping) {
+      this.currentImageIndex =
+        (this.currentImageIndex - 1 + this.images.length) % this.images.length;
+      this.reloadImage();
     }
   }
 
-  previousImage() {
-    const currentIndex = this.images.indexOf(this.currentImage);
-    const previousIndex =
-      (currentIndex - 1 + this.images.length) % this.images.length;
-    this.currentImage = this.images[previousIndex];
+  loadNextImage() {
+    if (!this.isSwiping) {
+      this.currentImageIndex =
+        (this.currentImageIndex + 1) % this.images.length;
+      this.reloadImage();
+    }
   }
 
-  nextImage() {
-    const currentIndex = this.images.indexOf(this.currentImage);
-    const nextIndex = (currentIndex + 1) % this.images.length;
-    this.currentImage = this.images[nextIndex];
+  reloadImage() {
+    const imageElement: HTMLImageElement = this.image.nativeElement;
+    imageElement.src = this.images[this.currentImageIndex];
   }
 }
 
@@ -79,7 +73,7 @@ export class OutfitClothComponent implements AfterViewInit {
       (currentIndex - 1 + this.images.length) % this.images.length;
     this.currentImage = this.images[previousIndex];
 
-    console.log("currentIndex: " + this.currentImage);
+    console.log("currentIndex: " + this.currentImageIndex);
     console.log("We make the call for left image! (ideally)");
   }
 
@@ -87,6 +81,6 @@ export class OutfitClothComponent implements AfterViewInit {
     const currentIndex = this.images.indexOf(this.currentImage);
     const nextIndex = (currentIndex + 1) % this.images.length;
     this.currentImage = this.images[nextIndex];
-    console.log("currentIndex: " + this.currentImage);
+    console.log("currentIndex: " + this.currentImageIndex);
     console.log("We make the call for right image! (ideally)");
   } */
