@@ -14,8 +14,8 @@
   <ion-card>
     <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
       <ion-item>
-        <ion-label position="floating">Tøjnavn</ion-label>
-        <ion-input type="text" formControlName="name"></ion-input>
+        <ion-label position="floating">Tøjvalg</ion-label>
+        <ion-input aria-label="Tøjvalg" type="text" formControlName="name"></ion-input>
         <div class="error-message" *ngIf="postForm.get('name').invalid && postForm.get('name').touched">
           Angiv et navn
         </div>
@@ -85,7 +85,7 @@
 
       <ion-item>
         <ion-label position="floating">Brand</ion-label>
-        <ion-input type="text" formControlName="brand"></ion-input>
+        <ion-input aria-label="Brand" type="text" formControlName="brand"></ion-input>
         <div class="error-message" *ngIf="postForm.get('brand').invalid && postForm.get('brand').touched">
           Angiv et brand
         </div>
@@ -156,7 +156,7 @@
       </ion-item>
 
 
-      <ion-button style="width: 100%;" type="submit" [disabled]="!postForm.valid" >Gem</ion-button>
+      <ion-button style="width: 100%;" type="submit" [disabled]="!postForm.valid">Gem</ion-button>
     </form>
   </ion-card>
 </ion-content>

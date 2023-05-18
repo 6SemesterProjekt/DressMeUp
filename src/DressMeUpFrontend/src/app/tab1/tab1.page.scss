@@ -42,3 +42,45 @@ form {
   flex-direction: column;
   align-items: center;
 }
+
+// for the filtertags
+.scrollDiv {
+  white-space: nowrap;
+  overflow-x: scroll !important;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+
+
+/* Hide the scrollbar for WebKit browsers (Chrome, Safari) */
+.scrollDiv::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide the scrollbar for Firefox */
+.scrollDiv {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* ion-button {
+  background-color: #2f4858;
+  padding: 8px 16px;
+  border-radius: 20px;
+} */
+
+.filter-options {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin: 4px;
+  background-color: var(--ion-color-light);
+  color: var(--ion-color-dark);
+  font-size: 14px;
+}

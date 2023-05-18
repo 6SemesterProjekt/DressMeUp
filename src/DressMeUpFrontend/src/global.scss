@@ -25,21 +25,37 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-ion-searchbar{
-    .searchbar-input-container{
-        .searchbar-input{
+ion-searchbar {
+    .searchbar-input-container {
+        .searchbar-input {
             border-radius: 30px !important;
         }
     }
 }
 
-ion-searchbar{
+
+ion-searchbar {
     --background: #EFE8DE;
 }
 
 .child-header {
-  background-color: white;
-  opacity: 1;
+    background-color: white;
+    opacity: 1;
 }
 
+ion-fab-button {
+    //--background: #2f4858; // the blue color
+    --background: #50694a; // the green color
+}
 
+ion-button {
+    --background: #2f4858;
+}
+
+/* ion-tab-button {
+    ng-icon {
+        --backbround: #2f4858;
+        ;
+    }
+
+} */

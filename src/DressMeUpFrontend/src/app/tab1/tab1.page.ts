@@ -12,13 +12,18 @@ import { ModalController } from "@ionic/angular";
   styleUrls: ["tab1.page.scss"],
 })
 export class Tab1Page {
+  filterOptions = ['Alle', 'Overdel', 'Underdel', 'T-shirt', 'Hatte', 'Sko'];
+  selectedFilter: string;
+
+
+
   clothes: IClothes[] = [];
 
   constructor(
     private modalController: ModalController,
     private clothesService: ClothesService,
     public photoService: PhotoService
-  ) {}
+  ) { }
 
   async ngOnInit() {
     console.log("getting data");
@@ -26,6 +31,16 @@ export class Tab1Page {
       .getAllclothes()
       .subscribe((data) => (this.clothes = data));
   }
+
+  applyFilter() {
+    console.log('Selected filter:', this.selectedFilter);
+    // Perform filtering or any other actions based on the selected filter
+  }
+
+
+
+
+
 
   handleInput(event) {
     const query = event.target.value.toLowerCase();
@@ -40,10 +55,10 @@ export class Tab1Page {
       component: CreateClothesComponent,
     });
     await modal.present();
-    await modal.onDidDismiss().then(output=>{
+    await modal.onDidDismiss().then(output => {
       this.clothesService
-      .getAllclothes()
-      .subscribe((data) => (this.clothes = data));
+        .getAllclothes()
+        .subscribe((data) => (this.clothes = data));
     });
   }
 }
