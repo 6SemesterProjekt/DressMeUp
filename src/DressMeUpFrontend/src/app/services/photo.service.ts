@@ -50,7 +50,8 @@ export class PhotoService {
       ia[i] = byteString.charCodeAt(i);
     }
 
-    return new Blob([ab], { type: 'image/jpeg' });
+    //return new Blob([ab], { type: 'image/jpeg' });
+    return new Blob([ab], { type: 'image/png' });
   }
 
   async uploadPictureToSotrage() {
