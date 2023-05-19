@@ -50,6 +50,8 @@ export class OutfitClothComponent {
       this.currentImageIndex =
         (this.currentImageIndex - 1 + this.images.length) % this.images.length;
       this.reloadImage();
+      console.log("currentIndex: " + this.currentImageIndex);
+      console.log("We make the call for left image! (ideally)");
     }
   }
 
@@ -58,6 +60,9 @@ export class OutfitClothComponent {
       this.currentImageIndex =
         (this.currentImageIndex + 1) % this.images.length;
       this.reloadImage();
+
+      console.log("currentIndex: " + this.currentImageIndex);
+      console.log("We make the call for right image! (ideally)");
     }
   }
 
