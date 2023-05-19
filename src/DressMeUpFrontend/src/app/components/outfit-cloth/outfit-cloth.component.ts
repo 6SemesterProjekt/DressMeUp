@@ -1,10 +1,13 @@
+import { CommonModule } from "@angular/common";
 import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
-import { GestureController } from "@ionic/angular";
+import { GestureController, IonicModule } from "@ionic/angular";
 
 @Component({
   selector: "app-outfit-cloth",
   templateUrl: "./outfit-cloth.component.html",
   styleUrls: ["./outfit-cloth.component.scss"],
+  /* standalone: true,
+  imports: [IonicModule, CommonModule], */
 })
 export class OutfitClothComponent {
   @ViewChild("image", { static: true, read: ElementRef }) image: ElementRef;
@@ -21,7 +24,7 @@ export class OutfitClothComponent {
   currentImageIndex: number = 0;
   isSwiping: boolean = false;
 
-  constructor(private gestureCtrl: GestureController) {}
+  constructor(private gestureCtrl: GestureController) { }
 
   ngAfterViewInit() {
     const gesture = this.gestureCtrl.create({

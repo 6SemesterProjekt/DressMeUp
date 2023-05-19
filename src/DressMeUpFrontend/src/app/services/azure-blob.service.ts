@@ -12,9 +12,9 @@ const SAS_TOKEN = environment.storageAccountSasToken;
 })
 export class AzureBlobService {
 
-  container : ContainerClient;
+  container: ContainerClient;
 
-  constructor() { 
+  constructor() {
     this.init();
   }
 
@@ -24,8 +24,9 @@ export class AzureBlobService {
     this.container = blobServiceClient.getContainerClient(CONTAINER_NAME);
   }
 
-  async uploadPhoto(blob : Blob) : Promise<string> {
-    let newBlobName = `photo${new Date().getTime()}.jpg`;
+  async uploadPhoto(blob: Blob): Promise<string> {
+    let newBlobName = `photo${new Date().getTime()}.png`;
+    //let newBlobName = `photo${new Date().getTime()}.jpg`;
     await this.container.uploadBlockBlob(newBlobName, blob, blob.size);
 
     let blobUrl = `https://${STORAGE_ACCOUNT_NAME}.blob.core.windows.net/${CONTAINER_NAME}/${newBlobName}`;
