@@ -8,6 +8,8 @@ ion-icon {
 
 ion-fab-button {
   margin: 15px;
+  --background: var(--groen) !important;
+  --color: var(--creme);
 }
 
 ion-toolbar {
@@ -18,18 +20,18 @@ ion-header {
   --background: #EFE8DE;
 }
 
-form {
-  ion-button {
-    display: flex;
-    justify-content: space-between;
-    margin: 0.5rem;
-    --background: #468e23;
-  }
+// form {
+//   ion-button {
+//     display: flex;
+//     justify-content: space-between;
+//     margin: 0.5rem;
+//     --background: #468e23;
+//   }
 
-  div {
-    color: red;
-  }
-}
+//   div {
+//     color: red;
+//   }
+// }
 
 #button-wrapper {
   display: flex;
@@ -54,8 +56,6 @@ form {
   /* IE and Edge */
 }
 
-
-
 /* Hide the scrollbar for WebKit browsers (Chrome, Safari) */
 .scrollDiv::-webkit-scrollbar {
   display: none;
@@ -66,12 +66,6 @@ form {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-
-/* ion-button {
-  background-color: #2f4858;
-  padding: 8px 16px;
-  border-radius: 20px;
-} */
 
 .filter-options {
   display: inline-flex;

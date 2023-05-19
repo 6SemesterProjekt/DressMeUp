@@ -1,7 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Opret tøj</ion-title>
-    <ion-buttons slot="end">
+    <div class="header-title">
+      OPRET TØJ
+    </div>
+    <ion-buttons slot="end" style="z-index: 20;">
       <ion-button (click)="onCancel()">
         <ion-icon name="close-outline" size="large"></ion-icon>
         Luk
@@ -10,18 +12,29 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="height: 75%">
+<ion-content [fullscreen]="false">
   <ion-card>
     <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
       <ion-item>
-        <ion-label position="floating">Tøjvalg</ion-label>
-        <ion-input aria-label="Tøjvalg" type="text" formControlName="name"></ion-input>
+        <ion-label position="floating">Tøj navn</ion-label>
+        <ion-input aria-label="Tøj navn" type="text" formControlName="name"></ion-input>
         <div class="error-message" *ngIf="postForm.get('name').invalid && postForm.get('name').touched">
           Angiv et navn
         </div>
       </ion-item>
 
       <ion-item>
+        <ion-label position="fixed">Type</ion-label>
+        <ion-radio-group [allowEmptySelection]="false" value="end" formControlName="clothesType">
+          <ion-radio [value]="1">Accessoires</ion-radio>
+          <ion-radio [value]="2">Overtøj</ion-radio>
+          <ion-radio [value]="3">Overdele</ion-radio>
+          <ion-radio [value]="4">Underdele</ion-radio>
+          <ion-radio [value]="5">Sko</ion-radio>
+        </ion-radio-group>
+      </ion-item>
+
+      <!-- <ion-item>
         <ion-select label="Type" placeholder="vælg en type" formControlName="clothesType">
           <ion-select-option [value]="1">Accessoires</ion-select-option>
           <ion-select-option [value]="2">Overtøj</ion-select-option>
@@ -29,7 +42,7 @@
           <ion-select-option [value]="4">Underdele</ion-select-option>
           <ion-select-option [value]="5">Sko</ion-select-option>
         </ion-select>
-      </ion-item>
+      </ion-item> -->
 
       <!--  <ion-item>
         <ion-label position="floating">Sæsoner</ion-label>
@@ -45,7 +58,7 @@
         </div>
       </ion-item> -->
 
-      <ion-item>
+      <!-- <ion-item>
         <ion-select label="Sæsoner" placeholder="vælg en sæson" formControlName="seasons">
           <ion-select-option [value]="null">Ingen sæson</ion-select-option>
           <ion-select-option [value]="1">Forår</ion-select-option>
@@ -68,7 +81,7 @@
           <ion-select-option [value]="8">Polyester</ion-select-option>
           <ion-select-option [value]="9">Gummi</ion-select-option>
         </ion-select>
-      </ion-item>
+      </ion-item> -->
 
       <!--   <ion-item>
         <ion-label position="floating">Farve</ion-label>
@@ -101,21 +114,7 @@
         </div>
       </ion-item>
 
-      <!--   <ion-item>
-        <ion-label position="floating">Tøj type</ion-label>
-        <ion-input type="text" formControlName="filterTags"></ion-input>
-        <div
-          class="error-message"
-          *ngIf="
-            postForm.get('filterTags').invalid &&
-            postForm.get('filterTags').touched
-          "
-        >
-          Angiv tøj type
-        </div>
-      </ion-item> -->
-
-      <ion-item>
+      <!-- <ion-item>
         <ion-select label="Filter tags" placeholder="vælg en type" formControlName="filterTags">
           <ion-select-option [value]="null">Ingen type</ion-select-option>
           <ion-select-option [value]="1">Hat</ion-select-option>
@@ -125,8 +124,7 @@
           <ion-select-option [value]="5">Bukser</ion-select-option>
           <ion-select-option [value]="6">Sko</ion-select-option>
         </ion-select>
-      </ion-item>
-
+      </ion-item> -->
 
 
       <ion-item>

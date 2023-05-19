@@ -76,7 +76,7 @@ export class CreateClothesComponent implements OnInit {
   async presentToast() {
     const toast = await this.toastController.create({
       message: "Tøj oprettet!",
-      duration: 3000, // milliseconds
+      duration: 2000, // milliseconds
       position: "top", // 'top', 'middle', or 'bottom'
     });
     toast.present();
