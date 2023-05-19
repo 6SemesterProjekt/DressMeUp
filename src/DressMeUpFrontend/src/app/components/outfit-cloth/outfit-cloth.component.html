@@ -21,17 +21,7 @@
 </div> -->
 
 <div class="container">
-  <ion-icon
-    name="arrow-back-outline"
-    class="arrow left"
-    (click)="loadPreviousImage()"
-    #leftArrow
-  ></ion-icon>
-  <img [src]="images[currentImageIndex]" #image />
-  <ion-icon
-    name="arrow-forward-outline"
-    class="arrow right"
-    (click)="loadNextImage()"
-    #rightArrow
-  ></ion-icon>
+  <ion-icon name="arrow-back-outline" class="arrow left" (click)="loadPreviousImage()" #leftArrow></ion-icon>
+  <img style="height: 300px;" [src]="images[currentImageIndex]" #image />
+  <ion-icon name="arrow-forward-outline" class="arrow right" (click)="loadNextImage()" #rightArrow></ion-icon>
 </div>

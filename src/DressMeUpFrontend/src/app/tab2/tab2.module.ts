@@ -21,4 +21,4 @@ import { OutfitClothComponent } from "../components/outfit-cloth/outfit-cloth.co
   ],
   declarations: [Tab2Page, OutfitComponent, OutfitClothComponent],
 })
-export class Tab2PageModule {}
+export class Tab2PageModule { }

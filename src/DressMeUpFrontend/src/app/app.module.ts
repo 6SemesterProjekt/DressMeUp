@@ -11,8 +11,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { CreateClothesComponent } from "./components/create-clothes/create-clothes.component";
 import { ReactiveFormsModule } from "@angular/forms";
-import { OutfitClothComponent } from "./components/outfit-cloth/outfit-cloth.component";
-import "hammerjs";
+//import { OutfitClothComponent } from "./components/outfit-cloth/outfit-cloth.component";
+
 
 @NgModule({
   declarations: [AppComponent, CreateClothesComponent],
@@ -21,12 +21,12 @@ import "hammerjs";
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
+
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HAMMER_GESTURE_CONFIG, useClass: HammerGestureConfig },
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
