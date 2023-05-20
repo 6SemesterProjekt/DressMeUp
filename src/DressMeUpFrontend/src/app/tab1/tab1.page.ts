@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 import { MyClothesComponent } from "../components/my-clothes-component/my-clothes-component/my-clothes-component.component";
 import { ClothesService } from "../services/clothes.service";
 import { IClothes } from "../interfaces/clothes";
-import { PhotoService, UserPhoto } from "../services/photo.service";
 import { CreateClothesComponent } from "../components/create-clothes/create-clothes.component";
 import { ModalController } from "@ionic/angular";
 import { ClothesType } from "../interfaces/clothes";
@@ -13,16 +12,22 @@ import { ClothesType } from "../interfaces/clothes";
   styleUrls: ["tab1.page.scss"],
 })
 export class Tab1Page {
-  filterOptions = ['Alle', 'Overtøj', 'Overdele', 'Underdele', 'Accessoires', 'Sko'];
-  searchCriteria : string = '';
-  selectedFilter: string = 'Alle';
-  clothes: IClothes[] = [];  
+  filterOptions = [
+    "Alle",
+    "Overtøj",
+    "Overdele",
+    "Underdele",
+    "Accessoires",
+    "Sko",
+  ];
+  searchCriteria: string = "";
+  selectedFilter: string = "Alle";
+  clothes: IClothes[] = [];
 
   constructor(
     private modalController: ModalController,
-    private clothesService: ClothesService,
-    public photoService: PhotoService
-  ) { }
+    private clothesService: ClothesService
+  ) {}
 
   async ngOnInit() {
     this.clothesService
@@ -31,15 +36,17 @@ export class Tab1Page {
   }
 
   onSearchBarChanged(event) {
-    this.searchCriteria = event.target.value.toLowerCase()
+    this.searchCriteria = event.target.value.toLowerCase();
   }
 
-  getClothes(){
+  getClothes() {
     return this.clothes
-    .filter(c=>c.Name.toLocaleLowerCase().includes(this.searchCriteria))
-    .filter(c=> 
-      this.selectedFilter != 'Alle' ? c.ClothesType == ClothesType[this.selectedFilter] : c
-    );
+      .filter((c) => c.Name.toLocaleLowerCase().includes(this.searchCriteria))
+      .filter((c) =>
+        this.selectedFilter != "Alle"
+          ? c.ClothesType == ClothesType[this.selectedFilter]
+          : c
+      );
   }
 
   onClothesCardTapped(clothes: IClothes) {
@@ -51,7 +58,7 @@ export class Tab1Page {
       component: CreateClothesComponent,
     });
     await modal.present();
-    await modal.onDidDismiss().then(output => {
+    await modal.onDidDismiss().then((output) => {
       this.clothesService
         .getAllclothes()
         .subscribe((data) => (this.clothes = data));

@@ -1,36 +1,25 @@
-import { CommonModule } from "@angular/common";
 import {
   Component,
   ViewChild,
   ElementRef,
-  AfterViewInit,
   Input,
+  AfterViewInit,
 } from "@angular/core";
-import { GestureController, IonicModule } from "@ionic/angular";
+import { GestureController } from "@ionic/angular";
 
 @Component({
   selector: "app-outfit-cloth",
   templateUrl: "./outfit-cloth.component.html",
   styleUrls: ["./outfit-cloth.component.scss"],
-  /* standalone: true,
-  imports: [IonicModule, CommonModule], */
 })
-export class OutfitClothComponent {
+export class OutfitClothComponent implements AfterViewInit {
   @ViewChild("image", { static: true, read: ElementRef }) image: ElementRef;
   @ViewChild("leftArrow", { static: true, read: ElementRef })
   leftArrow: ElementRef;
   @ViewChild("rightArrow", { static: true, read: ElementRef })
   rightArrow: ElementRef;
 
-  @Input() images: string[] = [
-    "../../assets/Images/png/1-jacket.png",
-    "../../assets/Images/png/2-jacket.png",
-    "../../assets/Images/png/3-jacket.png",
-  ];
-  @Input() imageHeight: string = "300px";
-  @Input() imagewidth: number = 300;
-  @Input() cardHeight: number = 300;
-  @Input() cardWidth: number = 300;
+  @Input() images: string[] = [];
 
   currentImageIndex: number = 0;
   isSwiping: boolean = false;
@@ -46,6 +35,11 @@ export class OutfitClothComponent {
       },
       onMove: (ev) => {
         // Handle swipe movement if needed
+        if (!this.isSwiping) {
+          return;
+        }
+        const imageElement: HTMLElement = this.image.nativeElement;
+        imageElement.style.transform = `translateX(${ev.deltaX}px)`;
       },
       onEnd: (ev) => {
         this.isSwiping = false;
@@ -54,6 +48,10 @@ export class OutfitClothComponent {
         } else {
           this.loadNextImage();
         }
+
+        // update the image position.
+        const imageElement: HTMLElement = this.image.nativeElement;
+        imageElement.style.transform = "";
       },
     });
     gesture.enable(true);

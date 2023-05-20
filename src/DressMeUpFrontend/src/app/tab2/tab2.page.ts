@@ -3,6 +3,7 @@ import { OutfitsService } from "../services/outfits.service";
 import { IOutfit } from "../interfaces/outfit";
 import { IClothes } from "../interfaces/clothes";
 import { OutfitClothesService } from "../services/outfit-clothes.service";
+import { ClothesService } from "../services/clothes.service";
 
 @Component({
   selector: "app-tab2",
@@ -43,7 +44,7 @@ export class Tab2Page implements OnInit {
 
   constructor(
     private outfitService: OutfitsService,
-    private outfitClothesService: OutfitClothesService
+    private clothesService: ClothesService
   ) {
     // The `true` above ensures that callbacks run inside NgZone.
   }
@@ -52,6 +53,7 @@ export class Tab2Page implements OnInit {
     this.outfitService
       .getAllOutfits()
       .subscribe((data) => (this.outfits = data));
+    // this.clothesHats = this.clothesService.getClothesByType("");
   }
 
   onOutfitCardTapped(outfit: IOutfit) {
