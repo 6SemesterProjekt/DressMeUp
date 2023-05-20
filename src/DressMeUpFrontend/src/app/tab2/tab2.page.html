@@ -1,24 +1,15 @@
-<app-header title="Generator">
-
-
-</app-header>
+<app-header title="Generator"> </app-header>
 
 <ion-content [fullscreen]="false">
-  <!--  <ion-grid [fixed]="true">
-    <ion-row>
-      <ion-col class="ion-no-padding" size="1" *ngFor="let outfit of outfits">
-        <outfit [outfits]="outfit" (click)="onOutfitCardTapped(outfit)"></outfit>
-      </ion-col>
-    </ion-row>
-  </ion-grid> -->
+  <!-- 5 OufitCloth components that get injected with 
+    different data from Tab2Page -->
 
-  <app-outfit-cloth></app-outfit-cloth>
-  <app-outfit-cloth></app-outfit-cloth>
-  <app-outfit-cloth></app-outfit-cloth>
-
-
-
-  <!-- <app-explore-container name="DressMeUp">
-    <ion-searchbar></ion-searchbar>
-  </app-explore-container> -->
+  <app-outfit-cloth [images]="clothesHats"></app-outfit-cloth>
+  <app-outfit-cloth [images]="clothesJackets"></app-outfit-cloth>
+  <app-outfit-cloth [images]="clothesShirts"></app-outfit-cloth>
+  <app-outfit-cloth [images]="clothesPants"></app-outfit-cloth>
+  <app-outfit-cloth [images]="clothesShoes"></app-outfit-cloth>
+  <ion-button style="height: 70px; width: 100%; padding: 10px">
+    Generator
+  </ion-button>
 </ion-content>

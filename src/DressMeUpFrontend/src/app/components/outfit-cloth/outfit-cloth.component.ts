@@ -1,5 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  Input,
+} from "@angular/core";
 import { GestureController, IonicModule } from "@ionic/angular";
 
 @Component({
@@ -16,15 +22,20 @@ export class OutfitClothComponent {
   @ViewChild("rightArrow", { static: true, read: ElementRef })
   rightArrow: ElementRef;
 
-  images: string[] = [
+  @Input() images: string[] = [
     "../../assets/Images/png/1-jacket.png",
     "../../assets/Images/png/2-jacket.png",
     "../../assets/Images/png/3-jacket.png",
   ];
+  @Input() imageHeight: string = "300px";
+  @Input() imagewidth: number = 300;
+  @Input() cardHeight: number = 300;
+  @Input() cardWidth: number = 300;
+
   currentImageIndex: number = 0;
   isSwiping: boolean = false;
 
-  constructor(private gestureCtrl: GestureController) { }
+  constructor(private gestureCtrl: GestureController) {}
 
   ngAfterViewInit() {
     const gesture = this.gestureCtrl.create({
@@ -74,21 +85,3 @@ export class OutfitClothComponent {
     imageElement.src = this.images[this.currentImageIndex];
   }
 }
-
-/* previousImage() {
-    const currentIndex = this.images.indexOf(this.currentImage);
-    const previousIndex =
-      (currentIndex - 1 + this.images.length) % this.images.length;
-    this.currentImage = this.images[previousIndex];
-
-    console.log("currentIndex: " + this.currentImageIndex);
-    console.log("We make the call for left image! (ideally)");
-  }
-
-  nextImage() {
-    const currentIndex = this.images.indexOf(this.currentImage);
-    const nextIndex = (currentIndex + 1) % this.images.length;
-    this.currentImage = this.images[nextIndex];
-    console.log("currentIndex: " + this.currentImageIndex);
-    console.log("We make the call for right image! (ideally)");
-  } */
