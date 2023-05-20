@@ -32,6 +32,14 @@ export class ClothesService {
       })
     );
   }
+  // New method to get clothes by ClothesType
+  getClothesByType(clothesType: string): Observable<IClothes[]> {
+    return this.getAllclothes().pipe(
+      map((clothes) =>
+        clothes.filter((item) => item.ClothesType.toString() == clothesType)
+      )
+    );
+  }
 
   // request cloth by the id from api
   getClothesById(clothesId: number): Observable<IClothes[]> {

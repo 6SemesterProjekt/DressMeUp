@@ -1,20 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { BlobServiceClient, ContainerClient } from "@azure/storage-blob";
-import { environment } from 'src/environments/environment';
+import { environment } from "src/environments/environment";
 
-const CONTAINER_NAME = 'photos';
+const CONTAINER_NAME = "photos";
 const STORAGE_CONNECTION_STRING = environment.storageConnectionString;
 const STORAGE_ACCOUNT_NAME = environment.azureStorageAccountName;
 const SAS_TOKEN = environment.storageAccountSasToken;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AzureBlobService {
+  container: ContainerClient;
 
-  container : ContainerClient;
-
-  constructor() { 
+  constructor() {
     this.init();
   }
 
@@ -24,14 +23,13 @@ export class AzureBlobService {
     this.container = blobServiceClient.getContainerClient(CONTAINER_NAME);
   }
 
-  async uploadPhoto(blob : Blob) : Promise<string> {
-    if (blob == null) { return "https://www.creativefabrica.com/wp-content/uploads/2018/11/Clothes-icon-by-rudezstudio-4-580x386.jpg"; }
-
-    let newBlobName = `photo${new Date().getTime()}.jpg`;
+  async uploadPhoto(blob: Blob): Promise<string> {
+    let newBlobName = `photo${new Date().getTime()}.png`;
+    //let newBlobName = `photo${new Date().getTime()}.jpg`;
     await this.container.uploadBlockBlob(newBlobName, blob, blob.size);
 
     let blobUrl = `https://${STORAGE_ACCOUNT_NAME}.blob.core.windows.net/${CONTAINER_NAME}/${newBlobName}`;
-    console.log('blob service' + blobUrl);
+    console.log("blob service" + blobUrl);
     return blobUrl;
   }
 }
