@@ -20,26 +20,22 @@ jobs:
           submodules: true
       - name: Add environment secrets
         shell: pwsh
-        env: 
-          API_BASE_URL: ${{ env.API_BASE_URL}}
-          AZ_STORAGE_ACCOUNT_NAME: ${{ env.AZ_STORAGE_ACCOUNT_NAME }}
-          AZ_STORAGE_SAS_TOKEN: ${{ secrets.AZ_STORAGE_SAS_TOKEN }}
-          AZ_STORAGE_CONNECTION_STRING: ${{ secrets.AZ_STORAGE_CONNECTION_STRING }}
         run: |
-          Write-Host "apiBaseUrl: `"$env:API_BASE_URL`""
-          Write-Host "azureStorageAccountName: `"$env:AZ_STORAGE_ACCOUNT_NAME`""
-          Write-Host ${{ env.API_BASE_URL}}
-          $content = @"
-          export const environment = {
-          production: true,
-          apiBaseUrl: `"${{ env.API_BASE_URL}}`",
-          azureStorageAccountName: `"$env:AZ_STORAGE_ACCOUNT_NAME`",
-          storageAccountSasToken: `"$env:AZ_STORAGE_SAS_TOKEN`",
-          storageConnectionString: `"$env:.AZ_STORAGE_CONNECTION_STRING`"
-          };
-          "@
-          $file = "./src/DressMeUpFrontend/src/environments/environment.prod.ts"
-          Set-Content -Path $file -Value $content
+          .\SetSecrets.ps1 -storageAccountName '${{ env.AZ_STORAGE_ACCOUNT_NAME }}' -storageSasToken '${{ secrets.AZ_STORAGE_SAS_TOKEN }}' -apiBaseUrl '${{ env.API_BASE_URL}}' -storageConnectionString '${{ secrets.AZ_STORAGE_CONNECTION_STRING }}'
+          # Write-Host "apiBaseUrl: `"${{ env.API_BASE_URL}}`""
+          # Write-Host "azureStorageAccountName: `"${{ env.AZ_STORAGE_ACCOUNT_NAME }}`""
+          # Write-Host ${{ env.API_BASE_URL}}
+          # $content = @"
+          # export const environment = {
+          # production: true,
+          # apiBaseUrl: `"${{ env.API_BASE_URL}}`",
+          # azureStorageAccountName: `"${{ env.AZ_STORAGE_ACCOUNT_NAME }}`",
+          # storageAccountSasToken: `"${{ secrets.AZ_STORAGE_SAS_TOKEN }}`",
+          # storageConnectionString: `"${{ secrets.AZ_STORAGE_CONNECTION_STRING }}`"
+          # };
+          # "@
+          # $file = "./src/DressMeUpFrontend/src/environments/environment.prod.ts"
+          # Set-Content -Path $file -Value $content
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
