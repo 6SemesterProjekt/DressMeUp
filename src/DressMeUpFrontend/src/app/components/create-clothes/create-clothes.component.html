@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="false">
-  <ion-card>
+ 
     <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
       <ion-item>
         <ion-label position="floating">Tøj navn</ion-label>
@@ -23,10 +23,10 @@
         </div>
       </ion-item>
 
-      <ion-item>
+      <ion-item class="ion-justify-content-between">
         <ion-label position="fixed">Type</ion-label>
-        <ion-radio-group [allowEmptySelection]="false" value="end" formControlName="clothesType">
-          <ion-radio [value]="1">Accessoires</ion-radio>
+        <ion-radio-group [allowEmptySelection]="false" value="end" formControlName="clothesType" style="margin-left: auto; margin-right: 0;">
+          <ion-radio [value]="1">Accessories</ion-radio>
           <ion-radio [value]="2">Overtøj</ion-radio>
           <ion-radio [value]="3">Overdele</ion-radio>
           <ion-radio [value]="4">Underdele</ion-radio>
@@ -128,25 +128,24 @@
 
 
       <ion-item>
-        <ion-grid>
+        <ion-grid class="no-horizontal-padding">
           <ion-row>
-            <ion-col size="8">
+            <ion-col size="8" class="no-horizontal-padding">
               <ion-label position="start">Vælg billede</ion-label>
             </ion-col>
 
-
-            <ion-col size="4">
-              <ion-button position="end" (click)="addPhotoToGallery()">
+            <ion-col size="4" class="ion-text-end no-horizontal-padding">
+              <ion-button class="camera-button" position="end" (click)="addPhotoToGallery()">
                 <ion-icon name="camera"></ion-icon>
               </ion-button>
             </ion-col>
           </ion-row>
+
           <ion-row>
-            <ion-col size="16" *ngFor="let photo of photoService.photos; index as position">
-              <ion-img [src]="photo.webviewPath" (click)="showActionSheet(photo, position)"></ion-img>
+            <ion-col size="16" class="no-horizontal-padding">
+              <ion-img [src]="photo"></ion-img>
             </ion-col>
           </ion-row>
-
 
         </ion-grid>
         <div class="error-message" *ngIf="postForm.get('image').invalid && postForm.get('image').touched">
@@ -156,8 +155,10 @@
 
       </ion-item>
 
-
-      <ion-button style="width: 100%;" type="submit" [disabled]="!postForm.valid">Gem</ion-button>
+      <ion-item>
+        <ion-button class="save-button" type="submit" [disabled]="!postForm.valid">Gem</ion-button>
+      </ion-item>
+      
     </form>
-  </ion-card>
+ 
 </ion-content>

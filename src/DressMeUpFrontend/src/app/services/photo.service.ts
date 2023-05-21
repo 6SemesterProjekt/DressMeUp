@@ -18,18 +18,21 @@ export interface UserPhoto {
 })
 export class PhotoService {
   public photo: Blob;
+  capturedPhoto: Photo;
   public photos: UserPhoto[] = [];
   private PHOTO_STORAGE: string = 'photos';
   private platform: Platform;
   base64photo: string;
 
-  constructor(/* private http: HttpClient, */ platform: Platform, private blobService: AzureBlobService) {
+  constructor(platform: Platform, private blobService: AzureBlobService) {
     this.platform = platform;
   }
 
   async getPictureForClothes() {
-    let rawPicture = await this.takePicture();
-    this.photo = await this.convertPictureToBlob(rawPicture)
+    this.capturedPhoto = await this.takePicture();
+    this.photo = await this.convertPictureToBlob(this.capturedPhoto)
+    //await this.addNewToGallery();
+    return this.capturedPhoto.base64String;
   }
 
   async takePicture() {
@@ -50,7 +53,6 @@ export class PhotoService {
       ia[i] = byteString.charCodeAt(i);
     }
 
-    //return new Blob([ab], { type: 'image/jpeg' });
     return new Blob([ab], { type: 'image/png' });
   }
 
@@ -78,12 +80,13 @@ export class PhotoService {
 
   public async addNewToGallery() {
     // Take a photo
-    const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-      quality: 100
-    });
+    // const capturedPhoto = await Camera.getPhoto({
+    //   resultType: CameraResultType.Uri,
+    //   source: CameraSource.Camera,
+    //   quality: 100
+    // });
 
+    let capturedPhoto = this.capturedPhoto;
 
     //console.log(capturedPhoto.webPath);
     const response = await fetch(capturedPhoto.webPath!);
@@ -95,17 +98,13 @@ export class PhotoService {
 
     this.photos.unshift({
       filepath: "soon...",
-      webviewPath: capturedPhoto.webPath.toString()
+      webviewPath: capturedPhoto.webPath
 
     });
 
     //return blob;
-    return capturedPhoto.webPath.toString();
+    //return capturedPhoto.webPath.toString();
   }
-
-
-
-
 
   public async readAsBase64(photo: Photo) {
     // "hybrid" will detect Cordova or Capacitor
@@ -157,9 +156,6 @@ export class PhotoService {
     reader.readAsDataURL(blob);
   });
 
-
-
-
   // Save picture to file on device
   private async savePicture(photo: Photo) {
     // Convert photo to base64 format, required by Filesystem API to save
@@ -190,7 +186,6 @@ export class PhotoService {
       };
     }
   }
-
 
   // NEW FUNC Delte - Mark
   public async deletePicture(photo: UserPhoto, position: number) {

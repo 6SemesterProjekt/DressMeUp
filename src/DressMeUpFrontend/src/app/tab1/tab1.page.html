@@ -1,12 +1,14 @@
 <app-header title="Mit tøj">
   <ion-header>
+    <div class="search-div">
+      <ion-searchbar
+      animated="true"
+      placeholder="Søg efter tøj..."
+      [debounce]="500"
+      (ionInput)="onSearchBarChanged($event)"
+     ></ion-searchbar>
+    </div>
 
-  <ion-searchbar
-    animated="true"
-    placeholder="Søg efter tøj..."
-    [debounce]="500"
-    (ionInput)="onSearchBarChanged($event)"
-   ></ion-searchbar>
 
    <div class="scrollDiv" (ngModel)="selectedFilter">
     <div style="margin-left: 15px;" class="filter-options" *ngFor="let option of filterOptions"

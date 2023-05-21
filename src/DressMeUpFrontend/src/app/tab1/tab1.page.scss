@@ -20,18 +20,10 @@ ion-header {
   --background: #EFE8DE;
 }
 
-// form {
-//   ion-button {
-//     display: flex;
-//     justify-content: space-between;
-//     margin: 0.5rem;
-//     --background: #468e23;
-//   }
-
-//   div {
-//     color: red;
-//   }
-// }
+.search-div {
+  width: 100%;
+  padding: 7px;
+}
 
 #button-wrapper {
   display: flex;
