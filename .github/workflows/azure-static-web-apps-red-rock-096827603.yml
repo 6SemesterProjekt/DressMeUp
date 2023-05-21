@@ -21,8 +21,8 @@ jobs:
       - name: Add environment secrets
         shell: pwsh
         env: 
-          API_BASE_URL: ${{ env.API_BASE_URL}}
-          AZ_STORAGE_ACCOUNT_NAME: ${{ env.AZ_STORAGE_ACCOUNT_NAME }}
+          API_BASE_URL: ${{ vars.API_BASE_URL}}
+          AZ_STORAGE_ACCOUNT_NAME: ${{ vars.AZ_STORAGE_ACCOUNT_NAME }}
           AZ_STORAGE_SAS_TOKEN: ${{ secrets.AZ_STORAGE_SAS_TOKEN }}
           AZ_STORAGE_CONNECTION_STRING: ${{ secrets.AZ_STORAGE_CONNECTION_STRING }}
         run: |
