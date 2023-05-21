@@ -41,7 +41,7 @@ export class CreateClothesComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   async onSubmit() {
     console.log(this.postForm)
@@ -61,7 +61,7 @@ export class CreateClothesComponent implements OnInit {
     this.clothesService.createNewItem(newCloth).subscribe((i) => {
       if (i) {
         console.log(i);
-        
+
       }
     });
 
@@ -86,10 +86,11 @@ export class CreateClothesComponent implements OnInit {
   addPhotoToGallery() {
 
     this.photoService.getPictureForClothes()
-      .then(res=>{
+      .then(res => {
         console.log(res);
         this.photo = 'data:image/png;base64,' + res;
       });
+
   }
 
   public async showActionSheet(photo: UserPhoto, position: number) {
