@@ -21,6 +21,9 @@ jobs:
       - name: Add environment secrets
         shell: pwsh
         run: |
+          Write-Host "apiBaseUrl: `"${{ env.API_BASE_URL}}`""
+          Write-Host "azureStorageAccountName: `"${{ env.AZ_STORAGE_ACCOUNT_NAME }}`""
+          Write-Host ${{ env.API_BASE_URL}}
           $content = @"
           export const environment = {
           production: true,
@@ -43,7 +46,7 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/src/DressMeUpFrontend/" # App source code path
           api_location: "/src/DressMeUpApi/" # Api source code path - optional
-          output_location: "" # Built app content directory - optional
+          output_location: "www" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
