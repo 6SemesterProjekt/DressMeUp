@@ -21,7 +21,7 @@ jobs:
       - name: Add environment secrets
         shell: pwsh
         run: |
-          .\SetSecrets.ps1 -storageAccountName '${{ env.AZ_STORAGE_ACCOUNT_NAME }}' -storageSasToken '${{ secrets.AZ_STORAGE_SAS_TOKEN }}' -apiBaseUrl '${{ env.API_BASE_URL}}' -storageConnectionString '${{ secrets.AZ_STORAGE_CONNECTION_STRING }}'
+          ./SetSecrets.ps1 -storageAccountName '${{ env.AZ_STORAGE_ACCOUNT_NAME }}' -storageSasToken '${{ secrets.AZ_STORAGE_SAS_TOKEN }}' -apiBaseUrl '${{ env.API_BASE_URL}}' -storageConnectionString '${{ secrets.AZ_STORAGE_CONNECTION_STRING }}'
           # Write-Host "apiBaseUrl: `"${{ env.API_BASE_URL}}`""
           # Write-Host "azureStorageAccountName: `"${{ env.AZ_STORAGE_ACCOUNT_NAME }}`""
           # Write-Host ${{ env.API_BASE_URL}}
