@@ -10,35 +10,38 @@ import { PhotoService } from "../services/photo.service";
 })
 export class ClothesService {
   baseUrl: string = environment.apiBaseUrl + "/clothes";
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+  allClothes: Observable<IClothes[]>;
 
   // request all the clothes from api
   getAllclothes(): Observable<IClothes[]> {
-    return this.http.get<any[]>(this.baseUrl).pipe(
+    return this.allClothes = this.http.get<any[]>(this.baseUrl).pipe(
       map((response) => {
         return response.map(
-          (i) =>
-            ({
-              ClothesType: i.clothesType,
-              Color: i.color,
-              Fabric: i.fabric,
-              Seasons: i.seasons,
-              FilterTags: i.filterTags,
-              Brand: i.brand,
-              Image: i.image,
-              Name: i.name,
-            } as IClothes)
+          (i) => ({
+            ClothesType: i.clothesType,
+            Color: i.color,
+            Fabric: i.fabric,
+            Seasons: i.seasons,
+            FilterTags: i.filterTags,
+            Brand: i.brand,
+            Image: i.image,
+            Name: i.name,
+          } as IClothes)
         );
       })
     );
+
   }
   // New method to get clothes by ClothesType
   getClothesByType(clothesType: string): Observable<IClothes[]> {
-    return this.getAllclothes().pipe(
+    console.log("Gettting the getClothesByType() function.");
+    return this.allClothes.pipe(
       map((clothes) =>
-        clothes.filter((item) => item.ClothesType.toString() == clothesType)
+        clothes.filter((item) => item.ClothesType.toString() == clothesType) as IClothes[]
       )
     );
+
   }
 
   // request cloth by the id from api
@@ -47,16 +50,16 @@ export class ClothesService {
       map((response) => {
         return response.map(
           (i) =>
-            ({
-              ClothesType: i.clothesType,
-              Color: i.color,
-              Fabric: i.fabric,
-              Seasons: i.seasons,
-              FilterTags: i.filterTags,
-              Brand: i.brand,
-              Image: i.image,
-              Name: i.name,
-            } as IClothes)
+          ({
+            ClothesType: i.clothesType,
+            Color: i.color,
+            Fabric: i.fabric,
+            Seasons: i.seasons,
+            FilterTags: i.filterTags,
+            Brand: i.brand,
+            Image: i.image,
+            Name: i.name,
+          } as IClothes)
         );
       })
     );

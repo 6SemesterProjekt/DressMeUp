@@ -4,6 +4,8 @@ import { IOutfit } from "../interfaces/outfit";
 import { IClothes } from "../interfaces/clothes";
 import { OutfitClothesService } from "../services/outfit-clothes.service";
 import { ClothesService } from "../services/clothes.service";
+import { Observable, map } from "rxjs";
+import { resolve } from "dns";
 
 @Component({
   selector: "app-tab2",
@@ -13,34 +15,11 @@ import { ClothesService } from "../services/clothes.service";
 export class Tab2Page implements OnInit {
   outfits: IOutfit[] = [];
 
-  clothesHats: string[] = [
-    "../../assets/Images/png/hat-1.png",
-    "../../assets/Images/png/hat-2.png",
-    "../../assets/Images/png/sunglasses.png",
-  ];
-  clothesJackets: string[] = [
-    "../../assets/Images/png/1-jacket.png",
-    "../../assets/Images/png/2-jacket.png",
-    "../../assets/Images/png/3-jacket.png",
-  ];
-  clothesShirts: string[] = [
-    "../../assets/Images/png/sort-tshirt.png",
-    "../../assets/Images/png/beige-tshirt.png",
-    "../../assets/Images/png/blue-tshirt.png",
-    "../../assets/Images/png/light-blue-tshirt.png",
-    "../../assets/Images/png/green-tshirt.png",
-  ];
-  clothesPants: string[] = [
-    "../../assets/Images/png/natur-pants.png",
-    "../../assets/Images/png/black-pants.png",
-    "../../assets/Images/png/1-shorts.png",
-    "../../assets/Images/png/2-shorts.png",
-  ];
-  clothesShoes: string[] = [
-    "../../assets/Images/png/1-shoe.png",
-    "../../assets/Images/png/2-shoe.png",
-    "../../assets/Images/png/3-shoe.png",
-  ];
+  clothesHats: IClothes[] = null;
+  clothesJackets: IClothes[] = null;
+  clothesShirts: IClothes[] = null;
+  clothesPants: IClothes[] = null;
+  clothesShoes: IClothes[] = null;
 
   constructor(
     private outfitService: OutfitsService,
@@ -53,7 +32,11 @@ export class Tab2Page implements OnInit {
     this.outfitService
       .getAllOutfits()
       .subscribe((data) => (this.outfits = data));
-    // this.clothesHats = this.clothesService.getClothesByType("");
+    this.clothesService.getClothesByType("1").subscribe(clothes => { this.clothesHats = clothes as IClothes[] })
+    this.clothesService.getClothesByType("2").subscribe(clothes => { this.clothesJackets = clothes as IClothes[] });
+    this.clothesService.getClothesByType("3").subscribe(clothes => { this.clothesShirts = clothes as IClothes[] });
+    this.clothesService.getClothesByType("4").subscribe(clothes => { this.clothesPants = clothes as IClothes[] });
+    this.clothesService.getClothesByType("5").subscribe(clothes => { this.clothesShoes = clothes as IClothes[] });
   }
 
   onOutfitCardTapped(outfit: IOutfit) {

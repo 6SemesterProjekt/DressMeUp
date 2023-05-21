@@ -6,6 +6,9 @@ import {
   AfterViewInit,
 } from "@angular/core";
 import { GestureController } from "@ionic/angular";
+import { resolve } from "dns";
+import { Observable } from "rxjs";
+import { IClothes } from "src/app/interfaces/clothes";
 
 @Component({
   selector: "app-outfit-cloth",
@@ -19,12 +22,11 @@ export class OutfitClothComponent implements AfterViewInit {
   @ViewChild("rightArrow", { static: true, read: ElementRef })
   rightArrow: ElementRef;
 
-  @Input() images: string[] = [];
-
+  @Input() clothes: IClothes[];
   currentImageIndex: number = 0;
   isSwiping: boolean = false;
 
-  constructor(private gestureCtrl: GestureController) {}
+  constructor(private gestureCtrl: GestureController) { }
 
   ngAfterViewInit() {
     const gesture = this.gestureCtrl.create({
@@ -60,7 +62,7 @@ export class OutfitClothComponent implements AfterViewInit {
   loadPreviousImage() {
     if (!this.isSwiping) {
       this.currentImageIndex =
-        (this.currentImageIndex - 1 + this.images.length) % this.images.length;
+        (this.currentImageIndex - 1 + this.clothes.length) % this.clothes.length;
       this.reloadImage();
       console.log("currentIndex: " + this.currentImageIndex);
       console.log("We make the call for left image! (ideally)");
@@ -70,16 +72,17 @@ export class OutfitClothComponent implements AfterViewInit {
   loadNextImage() {
     if (!this.isSwiping) {
       this.currentImageIndex =
-        (this.currentImageIndex + 1) % this.images.length;
+        (this.currentImageIndex + 1) % this.clothes.length;
       this.reloadImage();
 
       console.log("currentIndex: " + this.currentImageIndex);
       console.log("We make the call for right image! (ideally)");
     }
+
   }
 
   reloadImage() {
     const imageElement: HTMLImageElement = this.image.nativeElement;
-    imageElement.src = this.images[this.currentImageIndex];
+    imageElement.src = this.clothes[this.currentImageIndex].Image;
   }
 }

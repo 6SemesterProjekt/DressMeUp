@@ -3,7 +3,7 @@
     <ion-icon style="  top: auto; margin-left: 30px" name="arrow-back-outline" class="arrow left"
       (click)="loadPreviousImage()" #leftArrow></ion-icon>
   </div>
-  <img style="height: 200px" [src]="images[currentImageIndex]" #image />
+  <img style="height: 200px" [src]="clothes[currentImageIndex].Image" #image />
   <div style="display: flex;  justify-content: center;  align-items: center;">
     <ion-icon style="top: auto; margin-right: 30px" name="arrow-forward-outline" class="arrow right"
       (click)="loadNextImage()" #rightArrow></ion-icon>
