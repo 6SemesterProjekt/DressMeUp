@@ -24,9 +24,9 @@ jobs:
           $content = @"
           export const environment = {
           production: true,
-          apiBaseUrl: {{ env.API_BASE_URL}},
-          azureStorageAccountName: {{ env.AZ_STORAGE_ACCOUNT_NAME }},
-          storageAccountSasToken: {{ secrets.AZ_STORAGE_SAS_TOKEN }}
+          apiBaseUrl: ${{ env.API_BASE_URL}},
+          azureStorageAccountName: ${{ env.AZ_STORAGE_ACCOUNT_NAME }},
+          storageAccountSasToken: ${{ secrets.AZ_STORAGE_SAS_TOKEN }}
           };
           "@
           $file = "./src/DressMeUpFrontend/src/environments/environment.prod.ts"
