@@ -49,6 +49,7 @@ export class Tab1Page {
   async openPostForm() {
     const modal = await this.modalController.create({
       component: CreateClothesComponent,
+      cssClass: 'create-clothes-modal'
     });
     await modal.present();
     await modal.onDidDismiss().then(output => {
