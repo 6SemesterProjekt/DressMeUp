@@ -26,7 +26,8 @@ jobs:
           production: true,
           apiBaseUrl: `"${{ env.API_BASE_URL}}`",
           azureStorageAccountName: `"${{ env.AZ_STORAGE_ACCOUNT_NAME }}`",
-          storageAccountSasToken: `"${{ secrets.AZ_STORAGE_SAS_TOKEN }}`"
+          storageAccountSasToken: `"${{ secrets.AZ_STORAGE_SAS_TOKEN }}`",
+          storageConnectionString: `"${{ secrets.AZ_STORAGE_CONNECTION_STRING }}`"
           };
           "@
           $file = "./src/DressMeUpFrontend/src/environments/environment.prod.ts"
