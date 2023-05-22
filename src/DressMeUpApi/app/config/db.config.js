@@ -1,18 +1,8 @@
 module.exports = {
-
-  //Azure database
   HOST: "dress-me-up.mysql.database.azure.com",
-  USER: "DressMeUp",
+  USER: "",
   PORT: 3306,
   DB: "dressmeupdb",
-  PASSWORD: "Admin203",
+  PASSWORD: "",
   dialect: "mysql",
-
-  // Localhost
-  /* HOST: "localhost",
-  PORT: 3306,
-  USER: "root",
-  PASSWORD: "Zea-Argo-2023",
-  DB: "dressmeupdb",
-  dialect: "mysql" */
 };
