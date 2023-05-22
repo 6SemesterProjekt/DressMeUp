@@ -4,31 +4,43 @@ import {
   ElementRef,
   Input,
   AfterViewInit,
+  OnInit,
 } from "@angular/core";
 import { GestureController } from "@ionic/angular";
 import { resolve } from "dns";
 import { Observable } from "rxjs";
-import { IClothes } from "src/app/interfaces/clothes";
+import { ClothesType, IClothes } from "src/app/interfaces/clothes";
 
 @Component({
   selector: "app-outfit-cloth",
   templateUrl: "./outfit-cloth.component.html",
   styleUrls: ["./outfit-cloth.component.scss"],
 })
-export class OutfitClothComponent implements AfterViewInit {
+export class OutfitClothComponent {
   @ViewChild("image", { static: true, read: ElementRef }) image: ElementRef;
   @ViewChild("leftArrow", { static: true, read: ElementRef })
   leftArrow: ElementRef;
   @ViewChild("rightArrow", { static: true, read: ElementRef })
   rightArrow: ElementRef;
 
-  @Input() clothes: IClothes[];
+  @Input() clothes: IClothes[] = [];
   currentImageIndex: number = 0;
   isSwiping: boolean = false;
 
   constructor(private gestureCtrl: GestureController) { }
 
-  ngAfterViewInit() {
+  ngOnInit() {
+    const cloth: IClothes = {
+      "Brand": "Nike",
+      "ClothesType": ClothesType.Accessoires,
+      "Seasons": [],
+      "Color": [],
+      "FilterTags": [],
+      "Fabric": [],
+      "Name": "Name",
+      "Image": "https://saphotostest.blob.core.windows.net/photos/photo1684488018710.png"
+    }
+    this.clothes.push(cloth);
     const gesture = this.gestureCtrl.create({
       el: this.image.nativeElement,
       gestureName: "swipe",
