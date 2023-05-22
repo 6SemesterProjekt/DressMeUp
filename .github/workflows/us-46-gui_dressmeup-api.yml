@@ -22,18 +22,18 @@ jobs:
           node-version: '18.x'
 
       - name: npm install, build, and test
-        with:
-          path: ./src/DressMeUpApi/
+        working-directory: ./src/DressMeUpApi
         run: |
           npm install
           npm run build --if-present
           npm run test --if-present
 
       - name: Upload artifact for deployment job
+        working-directory: ./src/DressMeUpApi
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: ./src/DressMeUpApi/
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
