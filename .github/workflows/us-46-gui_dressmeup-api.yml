@@ -33,7 +33,6 @@ jobs:
         with:
           name: node-app
           path: .
-        working-directory: ./src/DressMeUpApi
 
   deploy:
     runs-on: ubuntu-latest
