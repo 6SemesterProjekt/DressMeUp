@@ -3,6 +3,13 @@ ion-button {
     --background: var(--groen);
 }
 
+.luk-knap {
+
+    --background: none !important;
+    --color: var(--blaa) !important;
+
+}
+
 .save-button {
     width: 100%;
     height: 2.5rem;
@@ -37,7 +44,7 @@ ion-button {
 ion-radio-group {
     margin-top: 6px;
     margin-bottom: 6px;
-    width:min-content;
+    width: min-content;
 
     ion-radio {
         margin-top: 6px;
@@ -75,19 +82,20 @@ ion-header {
     --background: var(--creme);
 
     ion-toolbar {
-        --background: var(--creme)    
+        --background: var(--creme)
     }
 
     .header-title {
-        position: absolute; 
-        top: 0; left: 0; 
-        width: 100%; 
-        height: 100%; 
-        text-align: center; 
-        z-index: 19; 
-        display: flex; 
-        flex-direction: column; 
-        justify-content: center; 
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        z-index: 19;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         font-size: 20px;
         color: var(--blaa);
         font-weight: bold;
@@ -98,5 +106,3 @@ ion-header {
     color: red;
     font-size: 12px;
 }
-
-
