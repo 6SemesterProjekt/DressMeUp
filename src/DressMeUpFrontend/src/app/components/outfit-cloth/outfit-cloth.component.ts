@@ -16,7 +16,7 @@ import { ClothesType, IClothes } from "src/app/interfaces/clothes";
   templateUrl: "./outfit-cloth.component.html",
   styleUrls: ["./outfit-cloth.component.scss"],
 })
-export class OutfitClothComponent {
+export class OutfitClothComponent implements AfterViewInit {
   @ViewChild("image", { static: true, read: ElementRef }) image: ElementRef;
   @ViewChild("leftArrow", { static: true, read: ElementRef })
   leftArrow: ElementRef;
@@ -36,7 +36,9 @@ export class OutfitClothComponent {
     // Add more child components as needed
   ];
   constructor(private gestureCtrl: GestureController) {}
-
+  ngAfterViewInit() {
+    this.isSelected = false;
+  }
   ngOnInit() {
     const cloth: IClothes = {
       Brand: "Nike",
@@ -46,8 +48,7 @@ export class OutfitClothComponent {
       FilterTags: [],
       Fabric: [],
       Name: "Name",
-      Image:
-        "https://saphotostest.blob.core.windows.net/photos/photo1684488018710.png",
+      Image: "",
     };
     this.clothes.push(cloth);
     const gesture = this.gestureCtrl.create({
@@ -82,6 +83,7 @@ export class OutfitClothComponent {
       console.log("Parent sends greetings");
       this.getRandomIndex();
     });
+    this.getRandomIndex();
   }
 
   private pressTimer: ReturnType<typeof setTimeout>;
