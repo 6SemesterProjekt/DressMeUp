@@ -1,0 +1,68 @@
+name: Azure Static Web Apps CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  # pull_request:
+  #   types: [opened, synchronize, reopened, closed]
+  #   branches:
+  #     - main
+
+jobs:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Add environment secrets
+        shell: pwsh
+        env: 
+          API_BASE_URL: ${{ vars.API_BASE_URL}}
+          AZ_STORAGE_ACCOUNT_NAME: ${{ vars.AZ_STORAGE_ACCOUNT_NAME }}
+          AZ_STORAGE_SAS_TOKEN: ${{ secrets.AZ_STORAGE_SAS_TOKEN }}
+          AZ_STORAGE_CONNECTION_STRING: ${{ secrets.AZ_STORAGE_CONNECTION_STRING }}
+        run: |
+          Write-Host "apiBaseUrl: `"$env:API_BASE_URL`""
+          Write-Host "azureStorageAccountName: `"$env:AZ_STORAGE_ACCOUNT_NAME`""
+          Write-Host ${{ env.API_BASE_URL}}
+          $content = @"
+          export const environment = {
+          production: true,
+          apiBaseUrl: `"${{ env.API_BASE_URL}}`",
+          azureStorageAccountName: `"$env:AZ_STORAGE_ACCOUNT_NAME`",
+          storageAccountSasToken: `"$env:AZ_STORAGE_SAS_TOKEN`",
+          storageConnectionString: `"$env:AZ_STORAGE_CONNECTION_STRING`"
+          };
+          "@
+          $file = "./src/DressMeUpFrontend/src/environments/environment.prod.ts"
+          Set-Content -Path $file -Value $content
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_RED_ROCK_096827603 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          action: "upload"
+          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
+          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+          app_location: "/src/DressMeUpFrontend/" # App source code path
+          api_location: "/src/DressMeUpApi/" # Api source code path - optional
+          output_location: "www" # Built app content directory - optional
+          ###### End of Repository/Build Configurations ######
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_RED_ROCK_096827603 }}
+          action: "close"

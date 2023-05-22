@@ -33,7 +33,6 @@ ion-searchbar {
     }
 }
 
-
 ion-searchbar {
     --background: #EFE8DE;
 }
@@ -43,19 +42,18 @@ ion-searchbar {
     opacity: 1;
 }
 
-ion-fab-button {
-    //--background: #2f4858; // the blue color
-    --background: #50694a; // the green color
+.create-clothes-modal {
+    --min-height: min-content;
+    --max-height: 80%;
+    --border-radius: 8px;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.create-clothes-modal::part(backdrop) {
+    background: rgb(26, 26, 26);
+    opacity: 1;
 }
 
 ion-button {
     --background: #2f4858;
 }
-
-/* ion-tab-button {
-    ng-icon {
-        --backbround: #2f4858;
-        ;
-    }
-
-} */

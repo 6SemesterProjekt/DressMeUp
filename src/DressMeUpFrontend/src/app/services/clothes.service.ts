@@ -14,8 +14,10 @@ export class ClothesService {
   allClothes: Observable<IClothes[]>;
 
   // request all the clothes from api
+
   getAllclothes(): Observable<IClothes[]> {
     return this.allClothes = this.http.get<any[]>(this.baseUrl).pipe(
+
       map((response) => {
         return response.map(
           (i) => ({
