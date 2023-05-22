@@ -13,9 +13,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
+      - name: Change Directory
+        run: |
+          cd src/DressMeUpApi
 
       - name: Set up Node.js version
         uses: actions/setup-node@v1
@@ -23,7 +25,7 @@ jobs:
           node-version: '18.x'
 
       - name: npm install, build, and test
-        working-directory: ./src/DressMeUpApi
+        # working-directory: ./src/DressMeUpApi
         run: |
           npm install
           npm run build --if-present
