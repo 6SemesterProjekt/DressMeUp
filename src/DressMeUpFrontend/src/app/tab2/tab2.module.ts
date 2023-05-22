@@ -17,7 +17,7 @@ import { OutfitClothComponent } from "../components/outfit-cloth/outfit-cloth.co
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
-    SharedModule,
+    SharedModule
   ],
   declarations: [Tab2Page, OutfitComponent, OutfitClothComponent],
 })
