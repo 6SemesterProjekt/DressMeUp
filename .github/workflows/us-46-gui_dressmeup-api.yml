@@ -16,6 +16,25 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+
+      - name: Add environment secrets
+        shell: pwsh
+        env: 
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_USER: ${{ secrets.DB_USER }}
+        run: |
+          $content = @"
+          module.exports = {
+          HOST: "dress-me-up.mysql.database.azure.com",
+          USER: `"$env:DB_USER`",
+          PORT: 3306,
+          DB: "dressmeupdb",
+          PASSWORD: `"$env:DB_PASSWORD`",
+          dialect: "mysql",
+          };
+          "@
+          $file = "./src/DressMeUpApi/app/config/db.config.js"
+          Set-Content -Path $file -Value $content
         
       - name: Set up Node.js version
         uses: actions/setup-node@v1
