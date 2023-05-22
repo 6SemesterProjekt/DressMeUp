@@ -4,29 +4,43 @@ import {
   ElementRef,
   Input,
   AfterViewInit,
+  OnInit,
 } from "@angular/core";
 import { GestureController } from "@ionic/angular";
+import { resolve } from "dns";
+import { Observable } from "rxjs";
+import { ClothesType, IClothes } from "src/app/interfaces/clothes";
 
 @Component({
   selector: "app-outfit-cloth",
   templateUrl: "./outfit-cloth.component.html",
   styleUrls: ["./outfit-cloth.component.scss"],
 })
-export class OutfitClothComponent implements AfterViewInit {
+export class OutfitClothComponent {
   @ViewChild("image", { static: true, read: ElementRef }) image: ElementRef;
   @ViewChild("leftArrow", { static: true, read: ElementRef })
   leftArrow: ElementRef;
   @ViewChild("rightArrow", { static: true, read: ElementRef })
   rightArrow: ElementRef;
 
-  @Input() images: string[] = [];
-
+  @Input() clothes: IClothes[] = [];
   currentImageIndex: number = 0;
   isSwiping: boolean = false;
 
-  constructor(private gestureCtrl: GestureController) {}
+  constructor(private gestureCtrl: GestureController) { }
 
-  ngAfterViewInit() {
+  ngOnInit() {
+    const cloth: IClothes = {
+      "Brand": "Nike",
+      "ClothesType": ClothesType.Accessoires,
+      "Seasons": [],
+      "Color": [],
+      "FilterTags": [],
+      "Fabric": [],
+      "Name": "Name",
+      "Image": "https://saphotostest.blob.core.windows.net/photos/photo1684488018710.png"
+    }
+    this.clothes.push(cloth);
     const gesture = this.gestureCtrl.create({
       el: this.image.nativeElement,
       gestureName: "swipe",
@@ -60,7 +74,7 @@ export class OutfitClothComponent implements AfterViewInit {
   loadPreviousImage() {
     if (!this.isSwiping) {
       this.currentImageIndex =
-        (this.currentImageIndex - 1 + this.images.length) % this.images.length;
+        (this.currentImageIndex - 1 + this.clothes.length) % this.clothes.length;
       this.reloadImage();
       console.log("currentIndex: " + this.currentImageIndex);
       console.log("We make the call for left image! (ideally)");
@@ -70,16 +84,17 @@ export class OutfitClothComponent implements AfterViewInit {
   loadNextImage() {
     if (!this.isSwiping) {
       this.currentImageIndex =
-        (this.currentImageIndex + 1) % this.images.length;
+        (this.currentImageIndex + 1) % this.clothes.length;
       this.reloadImage();
 
       console.log("currentIndex: " + this.currentImageIndex);
       console.log("We make the call for right image! (ideally)");
     }
+
   }
 
   reloadImage() {
     const imageElement: HTMLImageElement = this.image.nativeElement;
-    imageElement.src = this.images[this.currentImageIndex];
+    imageElement.src = this.clothes[this.currentImageIndex].Image;
   }
 }

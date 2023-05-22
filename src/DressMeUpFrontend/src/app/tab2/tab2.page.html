@@ -4,20 +4,18 @@
   <!-- 5 OufitCloth components that get injected with 
     different data from Tab2Page -->
 
-  <app-outfit-cloth [images]="clothesHats"></app-outfit-cloth>
-  <app-outfit-cloth [images]="clothesJackets"></app-outfit-cloth>
-  <app-outfit-cloth [images]="clothesShirts"></app-outfit-cloth>
-  <app-outfit-cloth [images]="clothesPants"></app-outfit-cloth>
-  <app-outfit-cloth [images]="clothesShoes"></app-outfit-cloth>
-  <ion-button
-    style="
+  <app-outfit-cloth [clothes]="clothesHats"></app-outfit-cloth>
+  <app-outfit-cloth [clothes]="clothesJackets"></app-outfit-cloth>
+  <app-outfit-cloth [clothes]="clothesShirts"></app-outfit-cloth>
+  <app-outfit-cloth [clothes]="clothesPants"></app-outfit-cloth>
+  <app-outfit-cloth [clothes]="clothesShoes"></app-outfit-cloth>
+  <ion-button style="
       height: 70px;
       width: 100%;
       padding: 10px;
       padding-left: 42px;
       padding-right: 43px;
-    "
-  >
+    ">
     Generator
   </ion-button>
 </ion-content>
