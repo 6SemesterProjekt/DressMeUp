@@ -29,11 +29,11 @@ jobs:
           npm run test --if-present
 
       - name: Upload artifact for deployment job
-        working-directory: ./src/DressMeUpApi
         uses: actions/upload-artifact@v2
         with:
           name: node-app
           path: .
+        working-directory: ./src/DressMeUpApi
 
   deploy:
     runs-on: ubuntu-latest
