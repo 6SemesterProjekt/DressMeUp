@@ -19,6 +19,7 @@ export class CreateClothesComponent implements OnInit {
 
   postForm: FormGroup;
   photo: string;
+  photos : UserPhoto[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -76,25 +77,18 @@ export class CreateClothesComponent implements OnInit {
   async presentToast() {
     const toast = await this.toastController.create({
       message: "Tøj oprettet!",
-      duration: 3000, // milliseconds
+      duration: 2000, // milliseconds
       position: "top", // 'top', 'middle', or 'bottom'
     });
     toast.present();
   }
 
   addPhotoToGallery() {
-    // this.photoService
-    //   .addNewToGallery()
-    //   .then((response) => {
-    //     (this.photo = response);
-    //     this.base64photo = this.photoService.base64photo;
-    //     console.log('Component')
-    //     console.log(this.base64photo)
-    //   });
 
     this.photoService.getPictureForClothes()
       .then(res => {
         console.log(res);
+        this.photo = 'data:image/png;base64,' + res;
       });
 
   }

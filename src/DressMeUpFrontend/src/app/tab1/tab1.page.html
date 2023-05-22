@@ -1,12 +1,14 @@
-<app-header title="Mit tøj" style="font-weight: bold;">
+<app-header title="Mit tøj">
   <ion-header>
+    <div class="search-div">
+      <ion-searchbar
+      animated="true"
+      placeholder="Søg efter tøj..."
+      [debounce]="500"
+      (ionInput)="onSearchBarChanged($event)"
+     ></ion-searchbar>
+    </div>
 
-  <ion-searchbar
-    animated="true"
-    placeholder="Søg efter tøj..."
-    [debounce]="500"
-    (ionInput)="onSearchBarChanged($event)"
-   ></ion-searchbar>
 
    <div class="scrollDiv" (ngModel)="selectedFilter">
     <div style="margin-left: 15px;" class="filter-options" *ngFor="let option of filterOptions"
@@ -33,7 +35,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="ion-text-right">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="openPostForm()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

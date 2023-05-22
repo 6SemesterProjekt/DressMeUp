@@ -16,6 +16,6 @@ import { SharedModule } from '../components/shared/shared.module';
     Tab1PageRoutingModule,
     SharedModule
   ],
-  declarations: [Tab1Page, MyClothesComponent]
+  declarations: [Tab1Page, MyClothesComponent],
 })
 export class Tab1PageModule { }
