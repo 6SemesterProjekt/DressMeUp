@@ -13,7 +13,7 @@ export class ClothesService {
   constructor(private http: HttpClient) {}
 
   // request all the clothes from api
-  getAllclothes(): Observable<IClothes[]> {
+  getAllclothes(): Observable<IClothes[]> {    
     return this.http.get<any[]>(this.baseUrl).pipe(
       map((response) => {
         return response.map(
