@@ -4,7 +4,7 @@
       OPRET TØJ
     </div>
     <ion-buttons slot="end" style="z-index: 20;">
-      <ion-button (click)="onCancel()">
+      <ion-button class="luk-knap" (click)="onCancel()">
         <ion-icon name="close-outline" size="large"></ion-icon>
         Luk
       </ion-button>
@@ -13,154 +13,62 @@
 </ion-header>
 
 <ion-content [fullscreen]="false">
- 
-    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
-      <ion-item>
-        <ion-label position="floating">Tøj navn</ion-label>
-        <ion-input aria-label="Tøj navn" type="text" formControlName="name"></ion-input>
-        <div class="error-message" *ngIf="postForm.get('name').invalid && postForm.get('name').touched">
-          Angiv et navn
-        </div>
-      </ion-item>
 
-      <ion-item class="ion-justify-content-between">
-        <ion-label position="fixed">Type</ion-label>
-        <ion-radio-group [allowEmptySelection]="false" value="end" formControlName="clothesType" style="margin-left: auto; margin-right: 0;">
-          <ion-radio [value]="1">Accessories</ion-radio>
-          <ion-radio [value]="2">Overtøj</ion-radio>
-          <ion-radio [value]="3">Overdele</ion-radio>
-          <ion-radio [value]="4">Underdele</ion-radio>
-          <ion-radio [value]="5">Sko</ion-radio>
-        </ion-radio-group>
-      </ion-item>
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Tøj navn</ion-label>
+      <ion-input aria-label="Tøj navn" type="text" formControlName="name"></ion-input>
+      <div class="error-message" *ngIf="postForm.get('name').invalid && postForm.get('name').touched">
+        Angiv et navn
+      </div>
+    </ion-item>
 
-      <!-- <ion-item>
-        <ion-select label="Type" placeholder="vælg en type" formControlName="clothesType">
-          <ion-select-option [value]="1">Accessoires</ion-select-option>
-          <ion-select-option [value]="2">Overtøj</ion-select-option>
-          <ion-select-option [value]="3">Overdele</ion-select-option>
-          <ion-select-option [value]="4">Underdele</ion-select-option>
-          <ion-select-option [value]="5">Sko</ion-select-option>
-        </ion-select>
-      </ion-item> -->
+    <ion-item class="ion-justify-content-between">
+      <ion-label position="fixed">Type</ion-label>
+      <ion-radio-group [allowEmptySelection]="false" value="end" formControlName="clothesType"
+        style="margin-left: auto; margin-right: 0;">
+        <ion-radio [value]="1">Accessories</ion-radio>
+        <ion-radio [value]="2">Overtøj</ion-radio>
+        <ion-radio [value]="3">Overdele</ion-radio>
+        <ion-radio [value]="4">Underdele</ion-radio>
+        <ion-radio [value]="5">Sko</ion-radio>
+      </ion-radio-group>
+    </ion-item>
 
-      <!--  <ion-item>
-        <ion-label position="floating">Sæsoner</ion-label>
-        <ion-input type="text" formControlName="seasons"></ion-input>
-        <div
-          class="error-message"
-          *ngIf="
-            postForm.get('description').invalid &&
-            postForm.get('description').touched
-          "
-        >
-          Angiv en sæson
-        </div>
-      </ion-item> -->
+    <ion-item>
+      <ion-grid class="no-horizontal-padding">
+        <ion-row>
+          <ion-col size="8" class="no-horizontal-padding">
+            <ion-label position="start">Vælg billede</ion-label>
+          </ion-col>
 
-      <!-- <ion-item>
-        <ion-select label="Sæsoner" placeholder="vælg en sæson" formControlName="seasons">
-          <ion-select-option [value]="null">Ingen sæson</ion-select-option>
-          <ion-select-option [value]="1">Forår</ion-select-option>
-          <ion-select-option [value]="2">Sommer</ion-select-option>
-          <ion-select-option [value]="3">Efterår</ion-select-option>
-          <ion-select-option [value]="4">Vinter</ion-select-option>
-        </ion-select>
-      </ion-item>
+          <ion-col size="4" class="ion-text-end no-horizontal-padding">
+            <ion-button class="camera-button" position="end" (click)="addPhotoToGallery()">
+              <ion-icon name="camera"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
 
-      <ion-item>
-        <ion-select label="Stoftype" placeholder="vælg stoftype" formControlName="fabric">
-          <ion-select-option [value]="null">Ingen stoftype</ion-select-option>
-          <ion-select-option [value]="1">Bomuld</ion-select-option>
-          <ion-select-option [value]="2">Uld</ion-select-option>
-          <ion-select-option [value]="3">Denim</ion-select-option>
-          <ion-select-option [value]="4">Læder</ion-select-option>
-          <ion-select-option [value]="5">Silke</ion-select-option>
-          <ion-select-option [value]="6">Pels</ion-select-option>
-          <ion-select-option [value]="7">Linned</ion-select-option>
-          <ion-select-option [value]="8">Polyester</ion-select-option>
-          <ion-select-option [value]="9">Gummi</ion-select-option>
-        </ion-select>
-      </ion-item> -->
+        <ion-row>
 
-      <!--   <ion-item>
-        <ion-label position="floating">Farve</ion-label>
-        <ion-input type="text" formControlName="color"></ion-input>
-        <div
-          class="error-message"
-          *ngIf="postForm.get('color').invalid && postForm.get('color').touched"
-        >
-          Vælg en farve
-        </div>
-      </ion-item> -->
+          <ion-col size="12" class="no-horizontal-padding">
+            <ion-img [src]="photo"></ion-img>
 
-      <!-- <ion-item>
-        <ion-select label="Farve" placeholder="vælg en farve" formControlName="color">
-          <ion-select-option [value]="null">Ingen farve</ion-select-option>
-          <ion-select-option [value]="1">Sort</ion-select-option>
-          <ion-select-option [value]="2">Hvid</ion-select-option>
-          <ion-select-option [value]="3">Grøn</ion-select-option>
-          <ion-select-option [value]="4">Gul</ion-select-option>
-          <ion-select-option [value]="5">Blå</ion-select-option>
-          <ion-select-option [value]="6">Rød</ion-select-option>
-        </ion-select>
-      </ion-item>
+          </ion-col>
+        </ion-row>
 
-      <ion-item>
-        <ion-label position="floating">Brand</ion-label>
-        <ion-input aria-label="Brand" type="text" formControlName="brand"></ion-input>
-        <div class="error-message" *ngIf="postForm.get('brand').invalid && postForm.get('brand').touched">
-          Angiv et brand
-        </div>
-      </ion-item> -->
-
-      <!-- <ion-item>
-        <ion-select label="Filter tags" placeholder="vælg en type" formControlName="filterTags">
-          <ion-select-option [value]="null">Ingen type</ion-select-option>
-          <ion-select-option [value]="1">Hat</ion-select-option>
-          <ion-select-option [value]="2">T-shirt</ion-select-option>
-          <ion-select-option [value]="3">Jakke</ion-select-option>
-          <ion-select-option [value]="4">Frakke</ion-select-option>
-          <ion-select-option [value]="5">Bukser</ion-select-option>
-          <ion-select-option [value]="6">Sko</ion-select-option>
-        </ion-select>
-      </ion-item> -->
+      </ion-grid>
+      <div class="error-message" *ngIf="postForm.get('image').invalid && postForm.get('image').touched">
+        Tilføj billede.
+      </div>
 
 
-      <ion-item>
-        <ion-grid class="no-horizontal-padding">
-          <ion-row>
-            <ion-col size="8" class="no-horizontal-padding">
-              <ion-label position="start">Vælg billede</ion-label>
-            </ion-col>
+    </ion-item>
 
-            <ion-col size="4" class="ion-text-end no-horizontal-padding">
-              <ion-button class="camera-button" position="end" (click)="addPhotoToGallery()">
-                <ion-icon name="camera"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
+    <ion-item>
+      <ion-button class="save-button" type="submit" [disabled]="!postForm.valid">Gem</ion-button>
+    </ion-item>
 
-          <ion-row>
+  </form>
 
-            <ion-col size="16" class="no-horizontal-padding">
-              <ion-img [src]="photo"></ion-img>
-
-            </ion-col>
-          </ion-row>
-
-        </ion-grid>
-        <div class="error-message" *ngIf="postForm.get('image').invalid && postForm.get('image').touched">
-          Tilføj billede.
-        </div>
-
-
-      </ion-item>
-
-      <ion-item>
-        <ion-button class="save-button" type="submit" [disabled]="!postForm.valid">Gem</ion-button>
-      </ion-item>
-      
-    </form>
- 
 </ion-content>

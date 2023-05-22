@@ -3,6 +3,7 @@ import { OutfitsService } from "../services/outfits.service";
 import { IOutfit } from "../interfaces/outfit";
 import { IClothes } from "../interfaces/clothes";
 import { ClothesService } from "../services/clothes.service";
+import { Subject } from "rxjs";
 
 @Component({
   selector: "app-tab2",
@@ -16,6 +17,8 @@ export class Tab2Page implements OnInit {
   clothesShirts: IClothes[] = [];
   clothesPants: IClothes[] = [];
   clothesShoes: IClothes[] = [];
+
+  clickSubject: Subject<any> = new Subject();
 
   constructor(
     private outfitService: OutfitsService,
@@ -39,6 +42,9 @@ export class Tab2Page implements OnInit {
     });
 
 
+  }
+  notifyClick() {
+    this.clickSubject.next(1);
   }
 
   onOutfitCardTapped(outfit: IOutfit) {

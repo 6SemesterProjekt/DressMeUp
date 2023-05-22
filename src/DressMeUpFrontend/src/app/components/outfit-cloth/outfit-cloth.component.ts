@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { GestureController } from "@ionic/angular";
 import { resolve } from "dns";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { ClothesType, IClothes } from "src/app/interfaces/clothes";
 
 @Component({
@@ -22,6 +22,8 @@ export class OutfitClothComponent {
   leftArrow: ElementRef;
   @ViewChild("rightArrow", { static: true, read: ElementRef })
   rightArrow: ElementRef;
+
+  @Input('clickSubject') clickSubject: Subject<any>;
 
   @Input() clothes: IClothes[] = [];
   currentImageIndex: number = 0;
@@ -69,6 +71,14 @@ export class OutfitClothComponent {
       },
     });
     gesture.enable(true);
+    this.clickSubject.subscribe((e) => {
+      console.log('Parent sends greetings');
+      this.getRandomIndex();
+    });
+  }
+  getRandomIndex() {
+    let max = this.clothes.length;
+    this.currentImageIndex = Math.floor(Math.random() * max);
   }
 
   loadPreviousImage() {
