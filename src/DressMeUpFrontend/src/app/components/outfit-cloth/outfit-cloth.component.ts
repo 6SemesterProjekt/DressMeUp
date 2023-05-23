@@ -35,7 +35,7 @@ export class OutfitClothComponent implements AfterViewInit {
     { id: 3, image: "child3.jpg", selected: false },
     // Add more child components as needed
   ];
-  constructor(private gestureCtrl: GestureController) {}
+  constructor(private gestureCtrl: GestureController) { }
   ngAfterViewInit() {
     this.isSelected = false;
   }
@@ -100,7 +100,9 @@ export class OutfitClothComponent implements AfterViewInit {
   }
 
   selectImage() {
-    this.isSelected = !this.isSelected; // Toggle isSelected flag
+    if (this.isSwiping == false) {
+      this.isSelected = !this.isSelected; // Toggle isSelected flag
+    }
   }
 
   getRandomIndex() {
