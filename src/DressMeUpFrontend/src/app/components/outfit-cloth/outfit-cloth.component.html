@@ -1,11 +1,39 @@
-<div class="container">
-  <div style="display: flex;  justify-content: center; align-items: center;">
-    <ion-icon style="  top: auto; margin-left: 30px" name="arrow-back-outline" class="arrow left"
-      (click)="loadPreviousImage()" #leftArrow></ion-icon>
+<div
+  class="container"
+  (touchstart)="startPressTimer()"
+  (touchend)="clearPressTimer()"
+  (touchcancel)="clearPressTimer()"
+>
+  <div style="display: flex; justify-content: center; align-items: center">
+    <ion-icon
+      style="top: auto; margin-left: 30px"
+      name="arrow-back-outline"
+      class="arrow left"
+      (click)="loadPreviousImage()"
+      (press)="selectImage()"
+      #leftArrow
+      *ngIf="isSelected == false"
+    ></ion-icon>
   </div>
-  <img style="height: 200px" [src]="clothes[currentImageIndex].Image" #image />
-  <div style="display: flex;  justify-content: center;  align-items: center;">
-    <ion-icon style="top: auto; margin-right: 30px" name="arrow-forward-outline" class="arrow right"
-      (click)="loadNextImage()" #rightArrow></ion-icon>
+  <img
+    style="height: 200px"
+    [src]="clothes[currentImageIndex].Image"
+    #image
+    [class.selected]="isSelected"
+  />
+  <img
+    *ngIf="isSelected"
+    class="checkmark"
+    src="../../../assets/chechmark.png"
+  />
+  <div style="display: flex; justify-content: center; align-items: center">
+    <ion-icon
+      style="top: auto; margin-right: 30px"
+      name="arrow-forward-outline"
+      class="arrow right"
+      (click)="loadNextImage()"
+      #rightArrow
+      *ngIf="isSelected == false"
+    ></ion-icon>
   </div>
 </div>

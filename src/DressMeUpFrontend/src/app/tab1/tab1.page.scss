@@ -3,13 +3,16 @@ ion-grid {
 }
 
 ion-icon {
-  font-size: 40px;
+  font-size: 45px;
+  --ionicon-stroke-width: 45px;
 }
 
 ion-fab-button {
   margin: 15px;
-  --background: var(--groen) !important;
-  --color: var(--creme);
+  //--background: #50694a !important; // old color
+  --background: #438234 !important;
+  --border-color: #fff;
+  --color: #fff;
 }
 
 ion-toolbar {

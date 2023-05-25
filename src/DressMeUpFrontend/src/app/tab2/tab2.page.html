@@ -1,21 +1,39 @@
-<app-header title="Generator"> </app-header>
+<app-header title="Dress Me Up"> </app-header>
 
 <ion-content [fullscreen]="false">
   <!-- 5 OufitCloth components that get injected with 
     different data from Tab2Page -->
 
-  <app-outfit-cloth [clothes]="clothesHats" [clickSubject]="clickSubject"></app-outfit-cloth>
-  <app-outfit-cloth [clothes]="clothesJackets" [clickSubject]="clickSubject"></app-outfit-cloth>
-  <app-outfit-cloth [clothes]="clothesShirts" [clickSubject]="clickSubject"></app-outfit-cloth>
-  <app-outfit-cloth [clothes]="clothesPants" [clickSubject]="clickSubject"></app-outfit-cloth>
-  <app-outfit-cloth [clothes]="clothesShoes" [clickSubject]="clickSubject"></app-outfit-cloth>
-  <ion-button style="
+  <app-outfit-cloth
+    [clothes]="clothesHats"
+    [clickSubject]="clickSubject"
+  ></app-outfit-cloth>
+  <app-outfit-cloth
+    [clothes]="clothesJackets"
+    [clickSubject]="clickSubject"
+  ></app-outfit-cloth>
+  <app-outfit-cloth
+    [clothes]="clothesShirts"
+    [clickSubject]="clickSubject"
+  ></app-outfit-cloth>
+  <app-outfit-cloth
+    [clothes]="clothesPants"
+    [clickSubject]="clickSubject"
+  ></app-outfit-cloth>
+  <app-outfit-cloth
+    [clothes]="clothesShoes"
+    [clickSubject]="clickSubject"
+  ></app-outfit-cloth>
+  <ion-button
+    style="
       height: 70px;
       width: 100%;
       padding: 10px;
       padding-left: 42px;
       padding-right: 43px;
-    " (click)="notifyClick()">
-    Generator
+    "
+    (click)="notifyClick()"
+  >
+    Outfit Generator
   </ion-button>
 </ion-content>
