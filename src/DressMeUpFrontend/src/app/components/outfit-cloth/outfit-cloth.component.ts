@@ -1,14 +1,6 @@
-import {
-  Component,
-  ViewChild,
-  ElementRef,
-  Input,
-  AfterViewInit,
-  OnInit,
-} from "@angular/core";
+import { Component, ViewChild, ElementRef, Input } from "@angular/core";
 import { GestureController } from "@ionic/angular";
-import { resolve } from "dns";
-import { Observable, Subject } from "rxjs";
+import { Subject } from "rxjs";
 import { ClothesType, IClothes } from "src/app/interfaces/clothes";
 
 @Component({
@@ -16,7 +8,7 @@ import { ClothesType, IClothes } from "src/app/interfaces/clothes";
   templateUrl: "./outfit-cloth.component.html",
   styleUrls: ["./outfit-cloth.component.scss"],
 })
-export class OutfitClothComponent implements AfterViewInit {
+export class OutfitClothComponent {
   @ViewChild("image", { static: true, read: ElementRef }) image: ElementRef;
   @ViewChild("leftArrow", { static: true, read: ElementRef })
   leftArrow: ElementRef;
@@ -24,22 +16,16 @@ export class OutfitClothComponent implements AfterViewInit {
   rightArrow: ElementRef;
 
   @Input("clickSubject") clickSubject: Subject<any>;
-
   @Input() clothes: IClothes[] = [];
+
   currentImageIndex: number = 0;
   isSwiping: boolean = false;
 
-  childComponents: any[] = [
-    { id: 1, image: "child1.jpg", selected: false },
-    { id: 2, image: "child2.jpg", selected: false },
-    { id: 3, image: "child3.jpg", selected: false },
-    // Add more child components as needed
-  ];
-  constructor(private gestureCtrl: GestureController) { }
-  ngAfterViewInit() {
-    this.isSelected = false;
-  }
+  constructor(private gestureCtrl: GestureController) {}
   ngOnInit() {
+    // Make a templete of interface ICloth, and push it to the array.
+    // Are made because there is an error, if the array is empty
+    // when the data are fetch from the service.
     const cloth: IClothes = {
       Brand: "Nike",
       ClothesType: ClothesType.Accessoires,
@@ -51,10 +37,13 @@ export class OutfitClothComponent implements AfterViewInit {
       Image: "",
     };
     this.clothes.push(cloth);
+
+    // Create a gesture from gestureController, and sets the functionalities
     const gesture = this.gestureCtrl.create({
       el: this.image.nativeElement,
       gestureName: "swipe",
       onStart: () => {
+        // Sets the bool property to be true
         this.isSwiping = true;
       },
       onMove: (ev) => {

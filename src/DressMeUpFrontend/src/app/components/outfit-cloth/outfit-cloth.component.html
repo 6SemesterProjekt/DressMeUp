@@ -10,16 +10,15 @@
       name="arrow-back-outline"
       class="arrow left"
       (click)="loadPreviousImage()"
-      (press)="selectImage()"
-      #leftArrow
       *ngIf="isSelected == false"
+      #leftArrow
     ></ion-icon>
   </div>
   <img
     style="height: 200px"
     [src]="clothes[currentImageIndex].Image"
-    #image
     [class.selected]="isSelected"
+    #image
   />
   <img
     *ngIf="isSelected"
@@ -32,8 +31,8 @@
       name="arrow-forward-outline"
       class="arrow right"
       (click)="loadNextImage()"
-      #rightArrow
       *ngIf="isSelected == false"
+      #rightArrow
     ></ion-icon>
   </div>
 </div>
