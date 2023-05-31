@@ -21,11 +21,82 @@ export class OutfitClothComponent {
   currentImageIndex: number = 0;
   isSwiping: boolean = false;
 
-  constructor(private gestureCtrl: GestureController) {}
+  constructor(private gestureCtrl: GestureController) { }
   ngOnInit() {
-    // Make a templete of interface ICloth, and push it to the array.
-    // Are made because there is an error, if the array is empty
-    // when the data are fetch from the service.
+
+    var image = document.getElementById("cloth-image-id");
+    var touchStartTimestamp;
+    var longPressDuration = 500; // Adjust the duration as needed (in milliseconds)
+    var isLongPress = false;
+
+    image.addEventListener("contextmenu", function (event) {
+      event.preventDefault(); // Prevent the default context menu from appearing
+    });
+
+    image.addEventListener("mousedown", function (event) {
+      if (event.button === 2) { // Check if it's a right click
+        event.preventDefault(); // Prevent the default context menu from appearing
+      }
+
+      touchStartTimestamp = new Date().getTime();
+      isLongPress = false;
+    });
+
+    image.addEventListener("touchstart", function (event) {
+      if (event.touches.length > 1) { // Check if it's a multi-touch event
+        event.preventDefault(); // Prevent the default context menu from appearing
+      }
+
+      touchStartTimestamp = new Date().getTime();
+      isLongPress = false;
+    });
+
+    image.addEventListener("mouseup", function (event) {
+      var touchEndTimestamp = new Date().getTime();
+      var pressDuration = touchEndTimestamp - touchStartTimestamp;
+
+      if (pressDuration >= longPressDuration && !isLongPress) {
+        event.preventDefault(); // Prevent the default context menu from appearing
+        isLongPress = true;
+      }
+    });
+
+    image.addEventListener("touchend", function (event) {
+      var touchEndTimestamp = new Date().getTime();
+      var pressDuration = touchEndTimestamp - touchStartTimestamp;
+
+      if (pressDuration >= longPressDuration && !isLongPress) {
+        event.preventDefault(); // Prevent the default context menu from appearing
+        isLongPress = true;
+      }
+    });
+
+    document.addEventListener("mousemove", function (event) {
+      if (isLongPress && !isWithinImage(event)) {
+        event.preventDefault(); // Prevent the default behavior when holding outside the image
+      }
+    });
+
+    document.addEventListener("touchmove", function (event) {
+      if (isLongPress && !isWithinImage(event)) {
+        event.preventDefault(); // Prevent the default behavior when holding outside the image
+      }
+    });
+
+    function isWithinImage(event) {
+      var rect = image.getBoundingClientRect();
+      var x = event.clientX || event.touches[0].clientX;
+      var y = event.clientY || event.touches[0].clientY;
+
+      return (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom);
+    }
+
+
+
+
+    // Makes a templete of interface ICloth, and push it to the array.
+    // This is made because there is an error, if the array is empty
+    // when the data are fetched from the service.
     const cloth: IClothes = {
       Brand: "Nike",
       ClothesType: ClothesType.Accessoires,
