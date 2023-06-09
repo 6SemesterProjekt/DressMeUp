@@ -95,8 +95,7 @@ export class OutfitClothComponent implements AfterViewInit {
     }, 500); // Adjust the duration as needed for your long press threshold
   }
 
-  clearPressTimer(e : Event) {
-    e.preventDefault();
+  clearPressTimer() {
     clearTimeout(this.pressTimer);
   }
 
@@ -104,6 +103,10 @@ export class OutfitClothComponent implements AfterViewInit {
     if (this.isSwiping == false) {
       this.isSelected = !this.isSelected; // Toggle isSelected flag
     }
+  }
+
+  preventPopup(e: Event) {
+    e.preventDefault();
   }
 
   getRandomIndex() {
