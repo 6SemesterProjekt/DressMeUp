@@ -1,9 +1,5 @@
-<div
-  class="container"
-  (touchstart)="startPressTimer()"
-  (touchend)="clearPressTimer($event)"
-  (touchcancel)="clearPressTimer($event)"
->
+<div class="container" (touchstart)="startPressTimer()" (touchend)="clearPressTimer($event)"
+  (touchcancel)="clearPressTimer($event)">
   <div style="display: flex; justify-content: center; align-items: center">
     <ion-icon style="top: auto; margin-left: 30px" name="arrow-back-outline" class="arrow left"
       (click)="loadPreviousImage()" *ngIf="isSelected == false" #leftArrow></ion-icon>
@@ -16,8 +12,8 @@
     <ion-icon style="top: auto; margin-right: 30px" name="arrow-forward-outline" class="arrow right"
       (click)="loadNextImage()" *ngIf="isSelected == false" #rightArrow></ion-icon>
   </div>
-  <audio #audioPlayer>
+  <!-- <audio #audioPlayer>
     <source src="path/to/sound-clip.mp3" type="audio/mpeg">
-  </audio>
+  </audio> -->
 
 </div>
