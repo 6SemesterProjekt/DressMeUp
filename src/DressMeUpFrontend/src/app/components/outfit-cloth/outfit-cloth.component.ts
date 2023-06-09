@@ -155,7 +155,8 @@ export class OutfitClothComponent {
     }, 500); // Adjust the duration as needed for your long press threshold
   }
 
-  clearPressTimer() {
+  clearPressTimer(e : Event) {
+    e.preventDefault();
     clearTimeout(this.pressTimer);
   }
 

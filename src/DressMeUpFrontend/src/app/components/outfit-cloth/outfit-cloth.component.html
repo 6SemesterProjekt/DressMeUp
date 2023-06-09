@@ -1,5 +1,9 @@
-<div class="container" (touchstart)="startPressTimer()" (touchend)="clearPressTimer()"
-  (touchcancel)="clearPressTimer()">
+<div
+  class="container"
+  (touchstart)="startPressTimer()"
+  (touchend)="clearPressTimer($event)"
+  (touchcancel)="clearPressTimer($event)"
+>
   <div style="display: flex; justify-content: center; align-items: center">
     <ion-icon style="top: auto; margin-left: 30px" name="arrow-back-outline" class="arrow left"
       (click)="loadPreviousImage()" *ngIf="isSelected == false" #leftArrow></ion-icon>
