@@ -1,14 +1,6 @@
-import {
-  Component,
-  ViewChild,
-  ElementRef,
-  Input,
-  AfterViewInit,
-  OnInit,
-} from "@angular/core";
+import { Component, ViewChild, ElementRef, Input, AfterViewInit, } from "@angular/core";
 import { GestureController } from "@ionic/angular";
-import { resolve } from "dns";
-import { Observable, Subject } from "rxjs";
+import { Subject } from "rxjs";
 import { ClothesType, IClothes } from "src/app/interfaces/clothes";
 
 @Component({
@@ -22,6 +14,7 @@ export class OutfitClothComponent implements AfterViewInit {
   leftArrow: ElementRef;
   @ViewChild("rightArrow", { static: true, read: ElementRef })
   rightArrow: ElementRef;
+  @ViewChild('audioPlayer') audioPlayer: ElementRef<HTMLAudioElement>;
 
   @Input("clickSubject") clickSubject: Subject<any>;
 
@@ -88,6 +81,24 @@ export class OutfitClothComponent implements AfterViewInit {
 
   private pressTimer: ReturnType<typeof setTimeout>;
   isSelected: boolean = false;
+
+  // added from line 86-99, select is made now from when doing a double click
+  // There is also a sound that is played when the choth is selected
+  toggleSelection() {
+    this.isSelected = !this.isSelected;
+
+    if (this.isSelected) {
+      console.log("Sound approved! " + this.isSelected);
+      this.playSoundClip();
+    }
+  }
+  playSoundClip() {
+    const audioElement: HTMLAudioElement = this.audioPlayer.nativeElement;
+    audioElement.currentTime = 0; // Reset the audio clip
+    audioElement.play();
+  }
+
+
 
   startPressTimer() {
     this.pressTimer = setTimeout(() => {

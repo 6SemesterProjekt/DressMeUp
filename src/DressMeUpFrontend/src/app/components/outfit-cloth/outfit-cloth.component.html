@@ -1,40 +1,26 @@
-<div
-  class="container"
+<!-- *NOTE ABOUT 
+  Old function when the selecting is made after a long click.
+  New (dblclcik) that calls the toggleSelecting metode is a double click.
+
   (touchstart)="startPressTimer()"
   (touchend)="clearPressTimer()"
-  (touchcancel)="clearPressTimer()"
->
+  (touchcancel)="clearPressTimer()" 
+  -->
+<div class="container" (dblclick)="toggleSelection()">
   <div style="display: flex; justify-content: center; align-items: center">
-    <ion-icon
-      style="top: auto; margin-left: 30px"
-      name="arrow-back-outline"
-      class="arrow left"
-      (click)="loadPreviousImage()"
-      (press)="selectImage()"
-      #leftArrow
-      *ngIf="isSelected == false"
-    ></ion-icon>
+    <ion-icon style="top: auto; margin-left: 30px" name="arrow-back-outline" class="arrow left"
+      (click)="loadPreviousImage()" (press)="selectImage()" #leftArrow *ngIf="isSelected == false"></ion-icon>
   </div>
-  <img
-    style="height: 200px"
-    [src]="clothes[currentImageIndex].Image"
-    #image
-    [class.selected]="isSelected"
-    (touchend)="preventPopup($event)"
-  />
-  <img
-    *ngIf="isSelected"
-    class="checkmark"
-    src="../../../assets/chechmark.png"
-  />
+  <img style="height: 200px" [src]="clothes[currentImageIndex].Image" #image [class.selected]="isSelected"
+    (touchend)="preventPopup($event)" />
+  <img *ngIf="isSelected" class="checkmark" src="../../../assets/chechmark.png" />
   <div style="display: flex; justify-content: center; align-items: center">
-    <ion-icon
-      style="top: auto; margin-right: 30px"
-      name="arrow-forward-outline"
-      class="arrow right"
-      (click)="loadNextImage()"
-      #rightArrow
-      *ngIf="isSelected == false"
-    ></ion-icon>
+    <ion-icon style="top: auto; margin-right: 30px" name="arrow-forward-outline" class="arrow right"
+      (click)="loadNextImage()" #rightArrow *ngIf="isSelected == false"></ion-icon>
   </div>
+
+  <!--added the code from line 15-17, about a audio source that can play a sound clip.-->
+  <audio #audioPlayer>
+    <source src="../../../assets/sound/Pop sound.mp3" type="audio/mpeg">
+  </audio>
 </div>
