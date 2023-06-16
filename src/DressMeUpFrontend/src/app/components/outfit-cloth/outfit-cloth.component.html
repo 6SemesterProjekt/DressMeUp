@@ -9,7 +9,7 @@
   this code was in the ion-icon.
   (press)="selectImage()"
   -->
-<div class="container" (dblclick)="toggleSelection()">
+<div class="container" (touchend)="handleTouchEnd($event)">
   <div style="display: flex; justify-content: center; align-items: center">
     <ion-icon style="top: auto; margin-left: 30px" name="arrow-back-outline" class="arrow left"
       (click)="loadPreviousImage()" #leftArrow *ngIf="isSelected == false"></ion-icon>

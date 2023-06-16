@@ -79,17 +79,35 @@ export class OutfitClothComponent implements AfterViewInit {
     this.getRandomIndex();
   }
 
-  private pressTimer: ReturnType<typeof setTimeout>;
-  isSelected: boolean = false;
+  /*   private pressTimer: ReturnType<typeof setTimeout>;
+    isSelected: boolean = false; */
 
   // added from line 86-99, select is made now from when doing a double click
   // There is also a sound that is played when the choth is selected
+  private touchCount: number = 0;
+  private touchTimer: ReturnType<typeof setTimeout>;
+  isSelected: boolean = false;
+
   toggleSelection() {
     this.isSelected = !this.isSelected;
 
-    if (this.isSelected) {
-      console.log("Sound approved! " + this.isSelected);
+    /* if (this.isSelected) {
       this.playSoundClip();
+    } */
+  }
+
+  handleTouchEnd(event: TouchEvent) {
+    this.touchCount++;
+
+    if (this.touchCount === 1) {
+      this.touchTimer = setTimeout(() => {
+        this.touchCount = 0;
+        this.toggleSelection();
+      }, 300); // Adjust the duration as needed for the double-click interval
+    } else if (this.touchCount === 2) {
+      clearTimeout(this.touchTimer);
+      this.touchCount = 0;
+      this.toggleSelection();
     }
   }
   playSoundClip() {
