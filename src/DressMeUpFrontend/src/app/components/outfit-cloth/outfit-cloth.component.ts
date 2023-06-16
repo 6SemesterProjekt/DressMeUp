@@ -89,6 +89,8 @@ export class OutfitClothComponent implements AfterViewInit {
   private pressTimer: ReturnType<typeof setTimeout>;
   isSelected: boolean = false;
 
+  preventContextMenu(){return false;}
+
   startPressTimer() {
     this.pressTimer = setTimeout(() => {
       this.selectImage();
