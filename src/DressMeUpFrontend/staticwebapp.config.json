@@ -3,7 +3,7 @@
   "routes": [
     {
       "route": "/tabs/outfits",
-      "redirect": "/"
+      "redirect": ""
     }
   ]
 }
