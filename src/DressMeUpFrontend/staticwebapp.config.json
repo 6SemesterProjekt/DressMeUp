@@ -3,10 +3,10 @@
   "routes": [
     {
       "route": "/tabs/outfits",
-      "redirect": "/index.html"
+      "redirect": "/"
     }
   ],  
   "navigationFallback": {
-    "rewrite": "/index.html"
+    "rewrite": "/"
   }
 }
