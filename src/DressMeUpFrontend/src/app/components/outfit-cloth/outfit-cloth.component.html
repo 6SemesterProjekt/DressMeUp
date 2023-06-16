@@ -5,11 +5,14 @@
   (touchstart)="startPressTimer()"
   (touchend)="clearPressTimer()"
   (touchcancel)="clearPressTimer()" 
+
+  this code was in the ion-icon.
+  (press)="selectImage()"
   -->
 <div class="container" (dblclick)="toggleSelection()">
   <div style="display: flex; justify-content: center; align-items: center">
     <ion-icon style="top: auto; margin-left: 30px" name="arrow-back-outline" class="arrow left"
-      (click)="loadPreviousImage()" (press)="selectImage()" #leftArrow *ngIf="isSelected == false"></ion-icon>
+      (click)="loadPreviousImage()" #leftArrow *ngIf="isSelected == false"></ion-icon>
   </div>
   <img style="height: 200px" [src]="clothes[currentImageIndex].Image" #image [class.selected]="isSelected"
     (touchend)="preventPopup($event)" />
