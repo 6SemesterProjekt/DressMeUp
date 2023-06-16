@@ -20,16 +20,16 @@ exports.create = async (req, res) => {
         });
 
         // add the associated items to the join tables (many-to-many)
-        if(req.body.colors.filter(c=>c != null).length && req.body.colors != null) {
+        if (req.body.colors.filter(c => c != null).length && req.body.colors != null) {
             await newCloth.setColors(req.body.colors);
         }
-        if (req.body.seasons.filter(c=>c != null).length && req.body.seasons != null){
+        if (req.body.seasons.filter(c => c != null).length && req.body.seasons != null) {
             await newCloth.setSeasons(req.body.seasons);
         }
-        if (req.body.fabrics.filter(c=>c != null).length && req.body.fabrics != null){
+        if (req.body.fabrics.filter(c => c != null).length && req.body.fabrics != null) {
             await newCloth.setFabrics(req.body.fabrics);
         }
-        if (req.body.filterTags.filter(c=>c != null).length && req.body.filterTags != null){
+        if (req.body.filterTags.filter(c => c != null).length && req.body.filterTags != null) {
             await newCloth.setFilterTags(req.body.filterTags);
         }
 
@@ -49,25 +49,25 @@ exports.getAllClothes = (req, res) => {
     var condition = req.query.clothesType ?
         { clothesType: req.query.clothesType } : null;
 
-    Clothes.findAll({ 
-        where: condition, 
-        include: [{ 
-            model: db.seasons, 
+    Clothes.findAll({
+        where: condition,
+        include: [{
+            model: db.seasons,
             as: 'seasons',
-            through: { attributes: []} 
+            through: { attributes: [] }
         },
-        { 
-            model: db.colors, 
+        {
+            model: db.colors,
             as: 'colors',
-            through: { attributes: []} 
-        },{ 
-            model: db.filterTags, 
+            through: { attributes: [] }
+        }, {
+            model: db.filterTags,
             as: 'filterTags',
-            through: { attributes: []} 
-        },{ 
-            model: db.fabrics, 
+            through: { attributes: [] }
+        }, {
+            model: db.fabrics,
             as: 'fabrics',
-            through: { attributes: []} 
+            through: { attributes: [] }
         }]
     })
         .then(data => {
@@ -98,33 +98,33 @@ exports.getClothesById = (req, res) => {
     const id = req.params.id;
 
     Clothes.findByPk(id, {
-        include: [{ 
-            model: db.seasons, 
+        include: [{
+            model: db.seasons,
             as: 'seasons',
-            through: { attributes: []} 
+            through: { attributes: [] }
         },
-        { 
-            model: db.colors, 
+        {
+            model: db.colors,
             as: 'colors',
-            through: { attributes: []} 
-        },{ 
-            model: db.filterTags, 
+            through: { attributes: [] }
+        }, {
+            model: db.filterTags,
             as: 'filterTags',
-            through: { attributes: []} 
-        },{ 
-            model: db.fabrics, 
+            through: { attributes: [] }
+        }, {
+            model: db.fabrics,
             as: 'fabrics',
-            through: { attributes: []} 
+            through: { attributes: [] }
         }]
     })
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        res.status(500).send({
-            message: "Error retrieving clothes with id=" + id + ": " + err
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving clothes with id=" + id + ": " + err
+            });
         });
-    });
 };
 
 exports.deleteClothes = (req, res) => {

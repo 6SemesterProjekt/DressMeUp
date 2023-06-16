@@ -1,0 +1,12 @@
+{
+    "trailingSlash": "never",
+    "routes": [
+        {
+            "route": "/tabs/outfits",
+            "redirect": "/"
+        }
+    ],
+    "navigationFallback": {
+        "rewrite": "/"
+    }
+}
