@@ -1,14 +1,6 @@
-import {
-  Component,
-  ViewChild,
-  ElementRef,
-  Input,
-  AfterViewInit,
-  OnInit,
-} from "@angular/core";
+import { Component, ViewChild, ElementRef, Input, AfterViewInit } from "@angular/core";
 import { GestureController } from "@ionic/angular";
-import { resolve } from "dns";
-import { Observable, Subject } from "rxjs";
+import { Subject } from "rxjs";
 import { ClothesType, IClothes } from "src/app/interfaces/clothes";
 
 @Component({
@@ -93,15 +85,15 @@ export class OutfitClothComponent implements AfterViewInit {
 
   startPressTimer() {
     const now = new Date().getTime();
-    const doubleTapThreshold = 500; // Adjust the duration for the double-tap interval in milliseconds
+    const doubleTapThreshold = 200; // Adjust the duration for the double-tap interval in milliseconds
 
     if (now - this.lastTap < doubleTapThreshold) {
       this.selectImage();
     }
 
     this.lastTap = now;
-  }
 
+  }
 
   clearPressTimer() {
     clearTimeout(this.pressTimer);

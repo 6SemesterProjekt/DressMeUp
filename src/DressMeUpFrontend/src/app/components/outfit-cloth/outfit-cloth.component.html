@@ -10,13 +10,13 @@
   (press)="selectImage()"
   -->
 
-<div class="container">
+<div class="container" (touchstart)="startPressTimer()" (touchend)="clearPressTimer()"
+  (touchcancel)="clearPressTimer()">
   <div style="display: flex; justify-content: center; align-items: center">
     <ion-icon style="top: auto; margin-left: 30px" name="arrow-back-outline" class="arrow left"
       (click)="loadPreviousImage()" (press)="selectImage()" #leftArrow *ngIf="isSelected == false"></ion-icon>
   </div>
   <img style="height: 200px" [src]="clothes[currentImageIndex].Image" #image [class.selected]="isSelected"
-    (click)="startPressTimer()" (touchend)="clearPressTimer()" (touchcancel)="clearPressTimer()"
     (touchend)="preventPopup($event)" />
   <img *ngIf="isSelected" class="checkmark" src="../../../assets/chechmark.png" />
   <div style="display: flex; justify-content: center; align-items: center">
