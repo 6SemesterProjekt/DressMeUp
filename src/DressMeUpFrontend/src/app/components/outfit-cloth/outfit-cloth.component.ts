@@ -100,6 +100,8 @@ export class OutfitClothComponent implements AfterViewInit {
 
 
 
+  // OLD CODE WITH THE LONG PRESS SELECTION 
+  /*
   startPressTimer() {
     this.pressTimer = setTimeout(() => {
       this.selectImage();
@@ -109,12 +111,11 @@ export class OutfitClothComponent implements AfterViewInit {
   clearPressTimer() {
     clearTimeout(this.pressTimer);
   }
-
-  selectImage() {
+ selectImage() {
     if (this.isSwiping == false) {
       this.isSelected = !this.isSelected; // Toggle isSelected flag
     }
-  }
+  } */
 
   preventPopup(e: Event) {
     e.preventDefault();
