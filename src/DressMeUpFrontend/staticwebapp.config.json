@@ -1,8 +1,9 @@
 {
+  "trailingSlash": "never",
   "routes": [
     {
       "route": "/tabs/outfits",
-      "redirect": "/tabs/outfits"
+      "redirect": "/"
     }
   ]
 }
