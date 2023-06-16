@@ -44,8 +44,9 @@ export class OutfitClothComponent implements AfterViewInit {
 
   ngOnInit() {
     this.image.nativeElement.addEventListener("contextmenu", (e)=>{
-      console.log("contextmenu event fired")
-      e.preventDefault()});
+      console.log("Debug: contextmenu event fired")
+      e.preventDefault()
+    });
 
     const cloth: IClothes = {
       Brand: "Nike",
@@ -102,8 +103,7 @@ export class OutfitClothComponent implements AfterViewInit {
     }, 500); // Adjust the duration as needed for your long press threshold
   }
 
-  clearPressTimer(e : Event) {
-    //e.preventDefault();
+  clearPressTimer() {
     clearTimeout(this.pressTimer);
   }
 

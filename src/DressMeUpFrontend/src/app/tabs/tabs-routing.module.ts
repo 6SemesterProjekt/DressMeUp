@@ -31,12 +31,6 @@ const routes: Routes = [
     redirectTo: '/tabs/outfits',
     pathMatch: 'full'
   }
-  ,
-  {
-    path: 'tabs/outfits',
-    redirectTo: '/tabs/outfits',
-    pathMatch: 'full'
-  }
 ];
 
 @NgModule({
