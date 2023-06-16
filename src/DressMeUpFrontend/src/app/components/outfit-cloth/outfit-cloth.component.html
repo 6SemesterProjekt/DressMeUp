@@ -1,8 +1,5 @@
 <div
   class="container"
-  (touchstart)="startPressTimer()"
-  (touchend)="clearPressTimer()"
-  (touchcancel)="clearPressTimer()"
 >
   <div style="display: flex; justify-content: center; align-items: center">
     <ion-icon
@@ -20,7 +17,9 @@
     [src]="clothes[currentImageIndex].Image"
     #image
     [class.selected]="isSelected"
-    (touchend)="preventPopup($event)"
+    (touchstart)="startPressTimer()"
+    (touchend)="clearPressTimer($event)"
+    (touchcancel)="clearPressTimer($event)"
   />
   <img
     *ngIf="isSelected"
