@@ -93,7 +93,7 @@ export class OutfitClothComponent implements AfterViewInit {
 
   startPressTimer() {
     const now = new Date().getTime();
-    const doubleTapThreshold = 1500; // Adjust the duration for the double-tap interval in milliseconds
+    const doubleTapThreshold = 500; // Adjust the duration for the double-tap interval in milliseconds
 
     if (now - this.lastTap < doubleTapThreshold) {
       this.selectImage();
