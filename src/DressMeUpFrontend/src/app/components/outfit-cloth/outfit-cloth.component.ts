@@ -35,11 +35,18 @@ export class OutfitClothComponent implements AfterViewInit {
     { id: 3, image: "child3.jpg", selected: false },
     // Add more child components as needed
   ];
-  constructor(private gestureCtrl: GestureController) { }
+  constructor(private gestureCtrl: GestureController) { 
+  }
+
   ngAfterViewInit() {
     this.isSelected = false;
   }
+
   ngOnInit() {
+    this.image.nativeElement.addEventListener("contextmenu", (e)=>{
+      console.log("contextmenu event fired")
+      e.preventDefault()});
+
     const cloth: IClothes = {
       Brand: "Nike",
       ClothesType: ClothesType.Accessoires,
@@ -89,8 +96,6 @@ export class OutfitClothComponent implements AfterViewInit {
   private pressTimer: ReturnType<typeof setTimeout>;
   isSelected: boolean = false;
 
-  preventContextMenu(){return false;}
-
   startPressTimer() {
     this.pressTimer = setTimeout(() => {
       this.selectImage();
@@ -98,7 +103,7 @@ export class OutfitClothComponent implements AfterViewInit {
   }
 
   clearPressTimer(e : Event) {
-    e.preventDefault();
+    //e.preventDefault();
     clearTimeout(this.pressTimer);
   }
 

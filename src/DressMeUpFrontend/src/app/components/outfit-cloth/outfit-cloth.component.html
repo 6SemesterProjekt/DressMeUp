@@ -20,7 +20,6 @@
     (touchstart)="startPressTimer()"
     (touchend)="clearPressTimer($event)"
     (touchcancel)="clearPressTimer($event)"
-    (onContextMenu)="preventContextMenu()"
   />
   <img
     *ngIf="isSelected"
