@@ -11,11 +11,13 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { CreateClothesComponent } from "./components/create-clothes/create-clothes.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { ClothesDetailComponent } from "./components/clothes-detail/clothes-detail.component";
+import { DeleteClothModalPageComponent } from "./components/delete-cloth-modal-page/delete-cloth-modal-page.component";
 //import { OutfitClothComponent } from "./components/outfit-cloth/outfit-cloth.component";
 
 
 @NgModule({
-  declarations: [AppComponent, CreateClothesComponent],
+  declarations: [AppComponent, CreateClothesComponent, ClothesDetailComponent, DeleteClothModalPageComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -23,7 +25,6 @@ import { ReactiveFormsModule } from "@angular/forms";
     HttpClientModule,
     ReactiveFormsModule
   ],
-
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],

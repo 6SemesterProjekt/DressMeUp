@@ -19,7 +19,7 @@ export class CreateClothesComponent implements OnInit {
 
   postForm: FormGroup;
   photo: string;
-  photos : UserPhoto[];
+  photos: UserPhoto[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,6 +30,7 @@ export class CreateClothesComponent implements OnInit {
     public actionSheetController: ActionSheetController) {
 
     this.postForm = this.formBuilder.group({
+      id: 0,
       clothesType: [null, Validators.required],
       color: [null],
       fabric: [null],
@@ -48,6 +49,7 @@ export class CreateClothesComponent implements OnInit {
     let url = await this.photoService.uploadPictureToSotrage();
     console.log('Component: ' + url)
     const newCloth: IClothes = {
+      Id: 0,
       ClothesType: this.postForm.value.clothesType,
       Color: [this.postForm.value.color],
       Fabric: [this.postForm.value.fabric],
@@ -55,7 +57,9 @@ export class CreateClothesComponent implements OnInit {
       FilterTags: [this.postForm.value.filterTags],
       Brand: this.postForm.value.brand,
       Image: url,
-      Name: this.postForm.value.name
+      Name: this.postForm.value.name,      
+      CreatedAt: "2023-06-17",
+      UpdatedAt: "2023-06-18"
     };
     console.log(newCloth)
     this.clothesService.createNewItem(newCloth).subscribe((i) => {

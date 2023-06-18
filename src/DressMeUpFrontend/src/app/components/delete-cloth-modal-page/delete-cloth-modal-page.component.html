@@ -1,0 +1,32 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Delete Cloth</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-header>
+  <ion-toolbar>
+    <div class="header-title">
+      SLET TØJ
+    </div>
+    <ion-buttons slot="end" style="z-index: 20;">
+      <ion-button class="luk-knap" (click)="dismissModal()">
+        <ion-icon name="close-outline" size="large"></ion-icon>
+        Luk
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Er du sikker på at du vil slette dette tøj?</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" color="danger" (click)="deleteCloth()">SLET</ion-button>
+</ion-content>

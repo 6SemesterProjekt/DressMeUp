@@ -60,6 +60,18 @@ ion-searchbar {
     opacity: 1;
 }
 
+.delete-clothes-modal {
+    --min-height: min-content;
+    --max-height: 80%;
+    --border-radius: 8px;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.delete-clothes-modal::part(backdrop) {
+    background: rgb(26, 26, 26);
+    opacity: 1;
+}
+
 ion-button {
     --background: #2f4858;
 }
