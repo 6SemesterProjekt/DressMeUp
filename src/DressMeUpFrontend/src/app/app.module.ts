@@ -13,11 +13,12 @@ import { CreateClothesComponent } from "./components/create-clothes/create-cloth
 import { ReactiveFormsModule } from "@angular/forms";
 import { ClothesDetailComponent } from "./components/clothes-detail/clothes-detail.component";
 import { DeleteClothModalPageComponent } from "./components/delete-cloth-modal-page/delete-cloth-modal-page.component";
+import { TypePipe } from './pipes/type.pipe';
 //import { OutfitClothComponent } from "./components/outfit-cloth/outfit-cloth.component";
 
 
 @NgModule({
-  declarations: [AppComponent, CreateClothesComponent, ClothesDetailComponent, DeleteClothModalPageComponent],
+  declarations: [AppComponent, CreateClothesComponent, ClothesDetailComponent, DeleteClothModalPageComponent, TypePipe],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

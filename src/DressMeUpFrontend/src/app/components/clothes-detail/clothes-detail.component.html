@@ -15,19 +15,15 @@
 
 <ion-content [fullscreen]="false">
   <!-- Display cloth details here -->
-  <p>Type: {{ clothes.ClothesType }}</p>
+  <p>Type: {{ clothes.ClothesType | type: clothes.ClothesType }}</p>
   <p>CreatedAt: {{ clothes.CreatedAt | date: "dd-MM-yyyy"}}</p>
   <p>UpdatedAt: {{ clothes.UpdatedAt | date: "dd-MM-yyyy" }}</p>
 
-  <p>UpdatedAt: {{ clothes.Brand }}</p>
+  <p>Brand: {{ clothes.Brand }}</p>
   <!-- Add more details as needed -->
-
-
 
   <ion-img [src]="clothes.Image"></ion-img>
   
-    <ion-button (click)="deleteCloth()">Slet tøj</ion-button>
+    <ion-button (click)="deleteCloth()" color="danger">Slet tøj</ion-button>
   
-
-
 </ion-content>
