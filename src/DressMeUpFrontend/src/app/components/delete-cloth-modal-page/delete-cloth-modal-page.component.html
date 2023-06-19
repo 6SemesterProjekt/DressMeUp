@@ -1,12 +1,3 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>Delete Cloth</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="dismissModal()">Close</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-header>
   <ion-toolbar>
     <div class="header-title">
@@ -22,11 +13,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label>Er du sikker på at du vil slette dette tøj?</ion-label>
-    </ion-item>
-  </ion-list>
-
-  <ion-button expand="full" color="danger" (click)="deleteCloth()">SLET</ion-button>
+  <div>
+    Er du sikker på at du vil slette dette tøj?
+  </div>
+  <ion-button color="danger" (click)="deleteCloth()">SLET</ion-button>
 </ion-content>
