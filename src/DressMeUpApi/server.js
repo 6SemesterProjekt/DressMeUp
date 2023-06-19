@@ -19,10 +19,6 @@ require("./app/routes/seasons.routes")(app);
 require("./app/routes/filterTags.routes")(app);
 require("./app/routes/users.routes")(app);
 
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to DressMeUp API" });
-});
-
 db.sequelize.sync().then(
   app.listen(PORT,  ()=> {
     console.log(`Server is running on port ${PORT}`)
