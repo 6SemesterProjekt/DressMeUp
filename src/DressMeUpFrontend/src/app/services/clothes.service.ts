@@ -21,6 +21,7 @@ export class ClothesService {
       map((response) => {
         return response.map(
           (i) => ({
+            Id: i.id,
             ClothesType: i.clothesType,
             Color: i.color,
             Fabric: i.fabric,
@@ -29,6 +30,8 @@ export class ClothesService {
             Brand: i.brand,
             Image: i.image,
             Name: i.name,
+            CreatedAt: i.createdAt,
+            UpdatedAt: i.updatedAt
           } as IClothes)
         );
       })
@@ -46,24 +49,8 @@ export class ClothesService {
   }
 
   // request cloth by the id from api
-  getClothesById(clothesId: number): Observable<IClothes[]> {
-    return this.http.get<any[]>(this.baseUrl + "/clothes/" + clothesId).pipe(
-      map((response) => {
-        return response.map(
-          (i) =>
-          ({
-            ClothesType: i.clothesType,
-            Color: i.color,
-            Fabric: i.fabric,
-            Seasons: i.seasons,
-            FilterTags: i.filterTags,
-            Brand: i.brand,
-            Image: i.image,
-            Name: i.name,
-          } as IClothes)
-        );
-      })
-    );
+  getClothesById(clothesId: number): Observable<IClothes> {
+    return this.http.get<IClothes>(this.baseUrl + "/clothes/" + clothesId);
   }
 
   // create new cloth object from api
@@ -80,5 +67,26 @@ export class ClothesService {
     };
 
     return this.http.post<IClothes>(this.baseUrl, cloth);
+  }
+
+  // Delete cloth object from api
+  deleteCloth(id: number) {
+    return this.http.delete(this.baseUrl + "/" + id);
+  }
+
+  /* deleteCloth(cloth: IClothes) {
+    return this.http.delete(this.baseUrl + cloth);
+  } */
+
+  // Delete cloth object from api
+  /* deleteCloth(cloth: IClothes): Observable<any> {
+    // Implement your logic here to delete the cloth using other identifying properties
+    // For example, you might use cloth.name or cloth.type to identify and delete the cloth
+    // Make sure to adjust this logic based on your actual data structure and requirements
+    return this.http.delete(this.baseUrl + "?name=" + cloth.Name);
+  } */
+  // Update cloth object from api
+  updateCloth(id: number, cloth: IClothes) {
+    return this.http.put<IClothes>(this.baseUrl + id, cloth);
   }
 }

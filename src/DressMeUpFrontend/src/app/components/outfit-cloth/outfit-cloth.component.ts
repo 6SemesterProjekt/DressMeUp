@@ -33,6 +33,7 @@ export class OutfitClothComponent implements AfterViewInit {
   }
   ngOnInit() {
     const cloth: IClothes = {
+      Id: 0,
       Brand: "Nike",
       ClothesType: ClothesType.Accessoires,
       Seasons: [],
@@ -41,6 +42,8 @@ export class OutfitClothComponent implements AfterViewInit {
       Fabric: [],
       Name: "Name",
       Image: "",
+      CreatedAt: "2023-06-17",
+      UpdatedAt: "2023-06-18"
     };
     this.clothes.push(cloth);
     const gesture = this.gestureCtrl.create({

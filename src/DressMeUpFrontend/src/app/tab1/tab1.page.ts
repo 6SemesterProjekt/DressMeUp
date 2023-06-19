@@ -5,6 +5,8 @@ import { IClothes } from "../interfaces/clothes";
 import { CreateClothesComponent } from "../components/create-clothes/create-clothes.component";
 import { ModalController } from "@ionic/angular";
 import { ClothesType } from "../interfaces/clothes";
+import { ClothesDetailComponent } from "../components/clothes-detail/clothes-detail.component";
+import { ToastController } from "@ionic/angular";
 
 @Component({
   selector: "app-tab1",
@@ -26,8 +28,9 @@ export class Tab1Page {
 
   constructor(
     private modalController: ModalController,
-    private clothesService: ClothesService
-  ) {}
+    private clothesService: ClothesService,
+    private toastController: ToastController
+  ) { }
 
   async ngOnInit() {
     this.clothesService
@@ -49,8 +52,26 @@ export class Tab1Page {
       );
   }
 
-  onClothesCardTapped(clothes: IClothes) {
-    console.log(clothes);
+  async onClothesCardTapped(clothes: IClothes) {
+    await this.openClothesDetailModal(clothes);
+  }
+
+  async openClothesDetailModal(clothes: IClothes) {
+    const modal = await this.modalController.create({
+      component: ClothesDetailComponent,
+      cssClass: 'create-clothes-modal',
+      componentProps: {
+        clothes: clothes
+      }
+    });
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+    if (data.clothDeleted == true) {
+      this.clothesService
+        .getAllclothes()
+        .subscribe((data) => (this.clothes = data));
+    }
   }
 
   async openPostForm() {
@@ -65,4 +86,8 @@ export class Tab1Page {
         .subscribe((data) => (this.clothes = data));
     });
   }
+
+
+
+
 }
